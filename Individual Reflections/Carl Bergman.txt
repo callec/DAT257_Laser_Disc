@@ -1,0 +1,33 @@
+﻿Week 1
+* what do I want to learn or understand better?
+   * For this week I want to learn scrum and better understand KPI. At this
+     point I have some experience in agile development and think I am new to
+	 KPIs. To achieve this I should attend the lectures and research both of the
+	 topics.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, e.g. agile, scrum, KPIs. 
+* what is my contribution towards the team’s use of Scrum?
+   * Previous experience in agile, shared a small summary of scrum that was
+     found online.
+* what is my contribution towards the team’s deliveries?
+   * As we have collaborated on all the deliveries so far I would say that it
+     currently is where I want it to be. Perhaps a more proactive role in the
+	 communication channels could be achieved.
+
+
+Week 2
+* what do I want to learn or understand better?
+   * I still want to better understand scrum development. Further on we will
+     most likely work with flutter to be able to develop for both android and
+	 ios at the same time, so I want to learn that too. Will read articles on
+	 both to learn further.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week mostly android development.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way.
+* what is my contribution towards the team’s deliveries?
+   * As we have collaborated on all the deliveries so far I would say that it
+     currently is where I want it to be.
