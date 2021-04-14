@@ -13,10 +13,16 @@ String option3 = 'You often catch yourself when you overreact, you find ‘the '
     'space’, and from there you can create a more balanced response.';
 String option4 = 'As you let your reactions be instead of trying to change them,'
     '  you often get insights and see new possibilities.';
+
 String subOption1 = 'some of the time'; //Vad betyder egentligen graderingen som görs i fas två
 String subOption2 = 'almost all of the time';
 String subOption3 = 'always';
 String subOption4 = '10 11 12';
+
+Color c1 = Colors.red[200];
+Color c2 = Colors.yellow[200];
+Color c3 = Colors.green[200];
+Color c4 = Colors.blue[200];
 
 class _CreateAnswers extends StatelessWidget {
 
@@ -34,10 +40,10 @@ class _CreateAnswers extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(child: _AnswerText(a1)),
-          Expanded(child: _AnswerText(a2)),
-          Expanded(child: _AnswerText(a3)),
-          Expanded(child: _AnswerText(a4)),
+          Expanded(child: _AnswerText(a1, c1)),
+          Expanded(child: _AnswerText(a2, c2)),
+          Expanded(child: _AnswerText(a3, c3)),
+          Expanded(child: _AnswerText(a4, c4)),
         ],
       )
     );
@@ -116,28 +122,32 @@ class _QuestionText extends StatelessWidget {
 
 class _AnswerText extends StatelessWidget {
   final String atext;
+  final Color color;
 
-  _AnswerText(this.atext);
+  _AnswerText(this.atext, this.color);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: InkWell(
-        onTap: () {print("Hello, world!");},
-        child: Container(
-          //color: Colors.green,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-            child: Text(
-              atext,
-              style: TextStyle(
-                fontSize: 14,
-              ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      child: Material(
+        child: InkWell(
+          onTap: () {print("Hello, world!");},
+          child: Container(
+            //color: Colors.green,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+              child: Text(
+                atext,
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              )
             )
-          )
-        )
-      )
+          ),
+        ),
+        color: color,
+      ),
     );
   }
 }
