@@ -57,8 +57,8 @@ class _CreateAnswers extends StatelessWidget {
           Expanded(child: _AnswerText(a3)),
           Expanded(child: _AnswerText(a4)),
         ],
-        )
-      );
+      )
+    );
   }
 }
 
@@ -67,19 +67,23 @@ class _AnswerText extends StatelessWidget {
 
   _AnswerText(this.atext);
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: Container(
-        color: Colors.green,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-          child: Text(
-            atext,
-            style: TextStyle(
-              fontSize: 14,
-            ),
+      child: InkWell(
+        onTap: () {print("Hello, world!");},
+        child: Container(
+          //color: Colors.green,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+            child: Text(
+              atext,
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            )
           )
         )
       )
