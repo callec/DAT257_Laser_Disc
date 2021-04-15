@@ -52,7 +52,7 @@ class Question extends StatelessWidget {
             children: <Widget>[
               _QuestionText(question_text),
               _CreateAnswers(option1, option2, option3, option4, _getColor),
-              _CreateFollowUpAnswers(0)
+              //_CreateFollowUpAnswers(0)
             ],
           ),
         ),
@@ -96,10 +96,10 @@ class _CreateAnswers extends StatelessWidget {
 ///
 /// Has arguments three strings which shows that to display
 class _CreateFollowUpAnswers extends StatelessWidget {
-
+  final _ColorCallBack colorFunction;
   final int a1;
 
-  _CreateFollowUpAnswers(this.a1);
+  _CreateFollowUpAnswers(this.a1, this.colorFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +108,9 @@ class _CreateFollowUpAnswers extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _FollowUpAnswerText(a1)),
-            Expanded(child: _FollowUpAnswerText(a1+1)),
-            Expanded(child: _FollowUpAnswerText(a1+2)),
+            Expanded(child: _FollowUpAnswerText(a1*3+1, colorFunction(a1))),
+            Expanded(child: _FollowUpAnswerText(a1*3+2, colorFunction(a1))),
+            Expanded(child: _FollowUpAnswerText(a1*3+3, colorFunction(a1))),
           ],
         )
     );
@@ -156,12 +156,11 @@ class _AnswerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: Material(
-        child: InkWell(
-          onTap: () {print("Hello, world!");},
-          child: Container(
-            color: Colors.transparent,
-            child: Padding(
+      child: Container(
+        color: colorFunction(number),
+        child: Column(
+          children: [
+            Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: Text(
                 atext,
@@ -169,10 +168,11 @@ class _AnswerText extends StatelessWidget {
                   fontSize: 14,
                 ),
               )
-            )
-          ),
+            ),
+            Spacer(),
+            _CreateFollowUpAnswers(number, colorFunction)
+          ]
         ),
-        color: colorFunction(number),
       ),
     );
   }
@@ -182,36 +182,33 @@ class _AnswerText extends StatelessWidget {
 ///
 /// Argument: a string
 class _FollowUpAnswerText extends StatelessWidget {
-
+  final Color color;
   final int number;
 
-  _FollowUpAnswerText(this.number);
+  _FollowUpAnswerText(this.number, this.color);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: Material(
-        child: ElevatedButton( style: ElevatedButton.styleFrom(
-          primary:Colors.red,
-            onPrimary: Colors.white,
-         ),
-
-          onPressed: () {print("Hello, world!");},
-          child: Container(
-              color: Colors.transparent,
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                  child: Text(
-                    '$number',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  )
-              )
-          ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          onPrimary: Colors.black,
         ),
-        color: Colors.green,
+        onPressed: () {print('$number points');},
+        child: Container(
+            color: Colors.transparent,
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                child: Text(
+                  '$number',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                )
+            )
+        ),
       ),
     );
   }
