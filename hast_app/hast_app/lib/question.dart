@@ -18,9 +18,10 @@ class Question extends StatelessWidget {
   String option4 = 'As you let your reactions be instead of trying to change them,'
       '  you often get insights and see new possibilities.';
 
-  String subOption1 = 'some of the time'; //Vad betyder egentligen graderingen som görs i fas två
-  String subOption2 = 'almost all of the time';
-  String subOption3 = 'always';
+  String subOption1 = '1'; //Vad betyder egentligen graderingen som görs i fas två
+  String subOption2 = '2';
+  String subOption3 = '3';
+
 
   /// Takes an int and returns a Color (has an optional intensity argument).
   Color _getColor(int n, [int intensity = 200]) {
@@ -51,7 +52,7 @@ class Question extends StatelessWidget {
             children: <Widget>[
               _QuestionText(question_text),
               _CreateAnswers(option1, option2, option3, option4, _getColor),
-              _CreateFollowUpAnswers(subOption1,subOption2,subOption3)
+              _CreateFollowUpAnswers(0)
             ],
           ),
         ),
@@ -96,11 +97,9 @@ class _CreateAnswers extends StatelessWidget {
 /// Has arguments three strings which shows that to display
 class _CreateFollowUpAnswers extends StatelessWidget {
 
-  final String a1;
-  final String a2;
-  final String a3;
+  final int a1;
 
-  _CreateFollowUpAnswers(this.a1, this.a2, this.a3);
+  _CreateFollowUpAnswers(this.a1);
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +109,8 @@ class _CreateFollowUpAnswers extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(child: _FollowUpAnswerText(a1)),
-            Expanded(child: _FollowUpAnswerText(a2)),
-            Expanded(child: _FollowUpAnswerText(a3)),
+            Expanded(child: _FollowUpAnswerText(a1+1)),
+            Expanded(child: _FollowUpAnswerText(a1+2)),
           ],
         )
     );
@@ -183,23 +182,28 @@ class _AnswerText extends StatelessWidget {
 ///
 /// Argument: a string
 class _FollowUpAnswerText extends StatelessWidget {
-  final String atext;
 
-  _FollowUpAnswerText(this.atext);
+  final int number;
+
+  _FollowUpAnswerText(this.number);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       child: Material(
-        child: InkWell(
-          onTap: () {print("Hello, world!");},
+        child: ElevatedButton( style: ElevatedButton.styleFrom(
+          primary:Colors.red,
+            onPrimary: Colors.white,
+         ),
+
+          onPressed: () {print("Hello, world!");},
           child: Container(
               color: Colors.transparent,
               child: Padding(
                   padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                   child: Text(
-                    atext,
+                    '$number',
                     style: TextStyle(
                       fontSize: 14,
                     ),
