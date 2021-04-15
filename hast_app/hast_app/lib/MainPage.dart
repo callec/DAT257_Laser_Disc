@@ -1,21 +1,4 @@
-
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => MainPage(),
-        '/question': (context) => toTest(),
-      },
-    );
-  }
-}
 
 class MainPage extends StatelessWidget {
   @override
@@ -55,9 +38,10 @@ class toTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Test"),
+      ),
       body: Text("Här är första frågan."),
-
     );
   }
-
 }
