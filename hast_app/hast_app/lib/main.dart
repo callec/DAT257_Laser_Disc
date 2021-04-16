@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'MainPage.dart';
+import 'question.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => MainPage(),
-        '/question': (context) => toTest(),
+        '/question': (context) => Question(),
       },
     );
   }
