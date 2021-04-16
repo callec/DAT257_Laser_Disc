@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// A function used in many places that takes an int and returns a Color.
-typedef _ColorCallBack = Color Function(int n);
+typedef _ColorCallBack = Color Function(int n, [int intensity]);
 
 class Question extends StatelessWidget {
 
@@ -108,9 +108,9 @@ class _CreateFollowUpAnswers extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _FollowUpAnswerText(a1*3+1, colorFunction(a1))),
-            Expanded(child: _FollowUpAnswerText(a1*3+2, colorFunction(a1))),
-            Expanded(child: _FollowUpAnswerText(a1*3+3, colorFunction(a1))),
+            Expanded(child: _FollowUpAnswerText(a1*3+1, colorFunction(a1, 300))),
+            Expanded(child: _FollowUpAnswerText(a1*3+2, colorFunction(a1, 300))),
+            Expanded(child: _FollowUpAnswerText(a1*3+3, colorFunction(a1, 300))),
           ],
         )
     );
