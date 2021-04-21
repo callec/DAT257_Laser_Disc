@@ -30,12 +30,25 @@ class MainPage extends StatelessWidget {
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _description(context),
+                        _description(
+                            context, 'WELCOME! Presenting Information'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
                         _button(context)
                       ]))),
-              Center(child: Text('Answer honestly!')),
-              Center(child: Text('Hast')),
+              Center(
+                  child: Container(
+                      margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
+                      child: Column(children: [
+                        _description(context, 'Answer honestly!!'),
+                        Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
+                      ]))),
+              Center(
+                  child: Container(
+                      margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
+                      child: Column(children: [
+                        _description(context, 'Hast Info, good company'),
+                        Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
+                      ]))),
             ],
           ),
         ),
@@ -43,15 +56,17 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  Widget _description(context) { //information text on home-page
+  Widget _description(context, String presentingText) {
+    //information text on home-page
     return Container(
         width: MediaQuery.of(context).size.width - 200,
-        child: Text('WELCOME! Presenting Information',
+        child: Text(presentingText,
             textAlign: TextAlign.center,
             style: new TextStyle(fontSize: 20.0, color: Colors.black)));
   }
 
-  Widget _button(context) { //
+  Widget _button(context) {
+    //
     return ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, '/question');
