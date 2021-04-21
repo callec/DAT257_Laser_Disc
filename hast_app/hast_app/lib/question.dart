@@ -206,8 +206,8 @@ class _QuestionState extends State<Question> {
                           ),
                           onPressed: () {
                             if (question_number >= 1) {
-                              question_number--; //TODO
-                              _displayFollowUp = false;
+                              question_number--;
+                              _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
                               setState(() {});
                             }
                           },
@@ -229,8 +229,8 @@ class _QuestionState extends State<Question> {
                           ),
                           onPressed: () {
                             if (question_number <= 6) {
-                              question_number++; //TODO
-                              _displayFollowUp = false;
+                              question_number++;
+                              _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
                               setState(() {});
                             } else if (question_number == 7) {
                               Navigator.pushNamed(context, '/result');
