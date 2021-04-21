@@ -22,7 +22,35 @@ class _DrawerTestState extends State<DrawerTest> {
     false
   ];
 
-  Widget _buildList(BuildContext context, TextTheme textTheme) {
+
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return Row(
+      children: [
+        Drawer(child: _buildOverviewDrawer(context, textTheme)),
+        VerticalDivider(
+          width: 1,
+          thickness: 1,
+        ),
+        Expanded(
+          child: Scaffold(
+              appBar: AppBar(
+                title: Text(widget.title),
+              ),
+              body: Center(
+                child: Text(_selectedDestination.toString(),
+                    style: textTheme.headline2),
+              )),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildOverviewDrawer(BuildContext context, TextTheme textTheme) {
     return ListView.builder(
         itemCount: _finishedQuestions.length + 1,
         padding: EdgeInsets.zero,
@@ -50,40 +78,15 @@ class _DrawerTestState extends State<DrawerTest> {
               color: _selectedDestination == i
                   ? Colors.blueAccent
                   : _finishedQuestions[i - 1]
-                      ? Colors.green
-                      : null,
+                  ? Colors.green
+                  : null,
             ),
             title: Text('Item ' + i.toString()),
             selected: _selectedDestination == i,
             onTap: () => selectDestination(i),
+
           );
         });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return Row(
-      children: [
-        Drawer(child: _buildList(context, textTheme)),
-        VerticalDivider(
-          width: 1,
-          thickness: 1,
-        ),
-        Expanded(
-          child: Scaffold(
-              appBar: AppBar(
-                title: Text(widget.title),
-              ),
-              body: Center(
-                child: Text(_selectedDestination.toString(),
-                    style: textTheme.headline2),
-              )),
-        ),
-      ],
-    );
   }
 
   void selectDestination(int index) {
