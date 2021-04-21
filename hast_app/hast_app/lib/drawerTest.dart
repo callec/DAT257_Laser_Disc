@@ -11,7 +11,6 @@ class DrawerTest extends StatefulWidget {
 
 class _DrawerTestState extends State<DrawerTest> {
   int _selectedDestination = 1;
-  int _questionCount = 8;
   final List<bool> _finishedQuestions = [
     true,
     true,
@@ -25,7 +24,7 @@ class _DrawerTestState extends State<DrawerTest> {
 
   Widget _buildList(BuildContext context, TextTheme textTheme) {
     return ListView.builder(
-        itemCount: _questionCount,
+        itemCount: _finishedQuestions.length + 1,
         padding: EdgeInsets.zero,
         itemBuilder: (context, i) {
           if (i == 0) {
@@ -46,8 +45,14 @@ class _DrawerTestState extends State<DrawerTest> {
             );
           }
           return ListTile(
-            leading: Icon(_finishedQuestions[i - 1] ? Icons.done : Icons.label,
-            color: _finishedQuestions[i-1] ? Colors.green : null,),
+            leading: Icon(
+              _finishedQuestions[i - 1] ? Icons.done : Icons.label,
+              color: _selectedDestination == i
+                  ? Colors.blueAccent
+                  : _finishedQuestions[i - 1]
+                      ? Colors.green
+                      : null,
+            ),
             title: Text('Item ' + i.toString()),
             selected: _selectedDestination == i,
             onTap: () => selectDestination(i),
@@ -73,7 +78,8 @@ class _DrawerTestState extends State<DrawerTest> {
                 title: Text(widget.title),
               ),
               body: Center(
-                child: Text(_selectedDestination.toString()),
+                child: Text(_selectedDestination.toString(),
+                    style: textTheme.headline2),
               )),
         ),
       ],
