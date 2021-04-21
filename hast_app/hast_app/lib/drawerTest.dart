@@ -12,47 +12,48 @@ class DrawerTest extends StatefulWidget {
 class _DrawerTestState extends State<DrawerTest> {
   int _selectedDestination = 1;
   int _questionCount = 8;
-  
+  final List<bool> _finishedQuestions = [
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false
+  ];
 
-  Widget _buildList(BuildContext context){
-
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
+  Widget _buildList(BuildContext context, TextTheme textTheme) {
     return ListView.builder(
-      itemCount: _questionCount,
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, i){
-
-        if(i == 0){
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Question Overview',
-                  style: textTheme.headline6,
+        itemCount: _questionCount,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, i) {
+          if (i == 0) {
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Question Overview',
+                    style: textTheme.headline6,
+                  ),
                 ),
-              ),
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
-            ],
+                Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+              ],
+            );
+          }
+          return ListTile(
+            leading: Icon(_finishedQuestions[i - 1] ? Icons.done : Icons.label,
+            color: _finishedQuestions[i-1] ? Colors.green : null,),
+            title: Text('Item ' + i.toString()),
+            selected: _selectedDestination == i,
+            onTap: () => selectDestination(i),
           );
-        }
-        return ListTile(
-          leading: Icon(Icons.label),
-          title: Text('Item ' + i.toString()),
-          selected: _selectedDestination == i,
-          onTap: () => selectDestination(i),
-        );
-      }
-    );
-
-
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,32 +62,19 @@ class _DrawerTestState extends State<DrawerTest> {
 
     return Row(
       children: [
-        Drawer(
-          child: _buildList(context)
-        ),
+        Drawer(child: _buildList(context, textTheme)),
         VerticalDivider(
           width: 1,
           thickness: 1,
         ),
         Expanded(
           child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-            ),
-            body: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              padding: EdgeInsets.all(20),
-              childAspectRatio: 3 / 2,
-              children: [
-                Image.asset('assets/nav-drawer-1.jpg'),
-                Image.asset('assets/nav-drawer-2.jpg'),
-                Image.asset('assets/nav-drawer-3.jpg'),
-                Image.asset('assets/nav-drawer-4.jpg'),
-              ],
-            ),
-          ),
+              appBar: AppBar(
+                title: Text(widget.title),
+              ),
+              body: Center(
+                child: Text(_selectedDestination.toString()),
+              )),
         ),
       ],
     );
