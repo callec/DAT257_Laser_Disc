@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 /// A function used in many places that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
 
-class Question extends StatelessWidget {
+class Question extends StatefulWidget {
+  @override
+  _QuestionState createState() => _QuestionState();
+}
 
+class _QuestionState extends State<Question> {
   int question_number = 1;
   String question_title = 'Lifestyle and Work Assessment';
   String question_text = 'Reactivity vs. finding \'the space\'';
@@ -18,10 +22,11 @@ class Question extends StatelessWidget {
   String option4 = 'As you let your reactions be instead of trying to change them,'
       '  you often get insights and see new possibilities.';
 
-  String subOption1 = '1'; //Vad betyder egentligen graderingen som görs i fas två
-  String subOption2 = '2';
-  String subOption3 = '3';
-
+  // fråga HAST ifall dessa ska vara konstanta
+  //Vad betyder egentligen graderingen som görs i fas två
+  String subOption1 = 'Alternative 1';
+  String subOption2 = 'Alternative 2';
+  String subOption3 = 'Alternative 3';
 
   /// Takes an int and returns a Color (has an optional intensity argument).
   Color _getColor(int n, [int intensity = 200]) {
@@ -39,6 +44,31 @@ class Question extends StatelessWidget {
     }
   }
 
+  /* TODO:
+   *  - ColorCallBack -> passing color instead
+   *  - Followupanswer in answer -> answer alone, followupanswer below
+   *   - important
+   *  - Answer gray out if not chosen
+   *  - followupanswer gray out if not chosen
+   *  - followupanswer changes if another answer is chosen
+   *   - important
+   */
+
+  bool _displayFollowUp = false;
+  int _followUpValue = -1;
+
+  void followUpCallBack(int n) {
+    setState(() {
+      if (_followUpValue == n) {
+        _displayFollowUp = false;
+        _followUpValue = -1;
+      } else {
+        _displayFollowUp = true;
+        _followUpValue = n;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +81,11 @@ class Question extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _QuestionText(question_text),
-              _CreateAnswers(option1, option2, option3, option4, _getColor),
-              //_CreateFollowUpAnswers(0)
+              _CreateAnswers(option1, option2, option3, option4, _getColor, followUpCallBack),
+              _displayFollowUp ?
+                _CreateFollowUpAnswers(_followUpValue, _getColor(_followUpValue), subOption1, subOption2, subOption3)
+              :
+                Text("")
             ],
           ),
         ),
@@ -72,8 +105,9 @@ class _CreateAnswers extends StatelessWidget {
   final String a4;
 
   final _ColorCallBack colorFunction;
+  final Function(int) followUpCallBack;
 
-  _CreateAnswers(this.a1, this.a2, this.a3, this.a4, this.colorFunction);
+  _CreateAnswers(this.a1, this.a2, this.a3, this.a4, this.colorFunction, this.followUpCallBack);
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +116,10 @@ class _CreateAnswers extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _AnswerText(a1, 0, colorFunction)),
-            Expanded(child: _AnswerText(a2, 1, colorFunction)),
-            Expanded(child: _AnswerText(a3, 2, colorFunction)),
-            Expanded(child: _AnswerText(a4, 3, colorFunction)),
+            Expanded(child: _AnswerText(a1, 0, colorFunction(0), followUpCallBack)),
+            Expanded(child: _AnswerText(a2, 1, colorFunction(1), followUpCallBack)),
+            Expanded(child: _AnswerText(a3, 2, colorFunction(2), followUpCallBack)),
+            Expanded(child: _AnswerText(a4, 3, colorFunction(3), followUpCallBack)),
           ],
         )
     );
@@ -96,21 +130,25 @@ class _CreateAnswers extends StatelessWidget {
 ///
 /// Has arguments three strings which shows that to display
 class _CreateFollowUpAnswers extends StatelessWidget {
-  final _ColorCallBack colorFunction;
+  final Color color;
   final int a1;
+  final String op1;
+  final String op2;
+  final String op3;
 
-  _CreateFollowUpAnswers(this.a1, this.colorFunction);
+  _CreateFollowUpAnswers(this.a1, this.color, this.op1, this.op2, this.op3);
 
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
+      key: UniqueKey(),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _FollowUpAnswerText(a1*3+1, colorFunction(a1, 300))),
-            Expanded(child: _FollowUpAnswerText(a1*3+2, colorFunction(a1, 300))),
-            Expanded(child: _FollowUpAnswerText(a1*3+3, colorFunction(a1, 300))),
+            Expanded(child: _FollowUpAnswerText(a1*3+1, color, op1)),
+            Expanded(child: _FollowUpAnswerText(a1*3+2, color, op2)),
+            Expanded(child: _FollowUpAnswerText(a1*3+3, color, op3)),
           ],
         )
     );
@@ -147,32 +185,41 @@ class _QuestionText extends StatelessWidget {
 /// Arguments: answer text, a number, a function
 class _AnswerText extends StatelessWidget {
   final String atext;
-  final _ColorCallBack colorFunction;
+  Color color;
   final int number;
+  final Function(int) followUpCallBack;
 
-  _AnswerText(this.atext, this.number, this.colorFunction);
+  _AnswerText(this.atext, this.number, this.color, this.followUpCallBack);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: Container(
-        color: colorFunction(number),
-        child: Column(
+      padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
+      child: Column (
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-              child: Text(
-                atext,
-                style: TextStyle(
-                  fontSize: 14,
+            Expanded(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: color,
+                  onPrimary: Colors.black,
                 ),
-              )
+                onPressed: () {
+                  //setState(() => _followUpVisibility = !_followUpVisibility);
+                  print('$number : answertext');
+                  followUpCallBack(number);
+                },
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                    child: Text(
+                      atext,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    )
+                ),
+              ),
             ),
-            Spacer(),
-            _CreateFollowUpAnswers(number, colorFunction)
           ]
-        ),
       ),
     );
   }
@@ -184,8 +231,9 @@ class _AnswerText extends StatelessWidget {
 class _FollowUpAnswerText extends StatelessWidget {
   final Color color;
   final int number;
+  final String text;
 
-  _FollowUpAnswerText(this.number, this.color);
+  _FollowUpAnswerText(this.number, this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +250,7 @@ class _FollowUpAnswerText extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                 child: Text(
-                  '$number',
+                  text,
                   style: TextStyle(
                     fontSize: 14,
                   ),
