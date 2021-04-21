@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hast_app/drawerTest.dart';
 import 'MainPage.dart';
 import 'question.dart';
 import 'result.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MainPage(),
         '/question': (context) => Question(),
         '/result': (context) => ResultPage(),
+        '/drawer': (context) => DrawerTest(title: "Hello"),
       },
     );
   }
