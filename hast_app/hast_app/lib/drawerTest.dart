@@ -31,7 +31,7 @@ class _DrawerTestState extends State<DrawerTest> {
 
     return Row(
       children: [
-        Drawer(child: _buildOverviewDrawer(context, textTheme)),
+        Drawer(child: _buildOverviewDrawer(context, theme)),
         VerticalDivider(
           width: 1,
           thickness: 1,
@@ -50,7 +50,7 @@ class _DrawerTestState extends State<DrawerTest> {
     );
   }
 
-  Widget _buildOverviewDrawer(BuildContext context, TextTheme textTheme) {
+  Widget _buildOverviewDrawer(BuildContext context, ThemeData theme) {
     return ListView.builder(
         itemCount: _finishedQuestions.length + 1,
         padding: EdgeInsets.zero,
@@ -62,7 +62,7 @@ class _DrawerTestState extends State<DrawerTest> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Question Overview',
-                    style: textTheme.headline6,
+                    style: theme.textTheme.headline6
                   ),
                 ),
                 Divider(
@@ -76,7 +76,7 @@ class _DrawerTestState extends State<DrawerTest> {
             leading: Icon(
               _finishedQuestions[i - 1] ? Icons.done : Icons.label,
               color: _selectedDestination == i
-                  ? Colors.blueAccent
+                  ? theme.accentColor
                   : _finishedQuestions[i - 1]
                   ? Colors.green
                   : null,
