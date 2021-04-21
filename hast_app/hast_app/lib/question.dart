@@ -24,11 +24,6 @@ String option1_4 =
     'As you let your reactions be instead of trying to change them,'
     '  you often get insights and see new possibilities.';
 
-String subOption1 = '1';
-String subOption2 = '2';
-
-String subOption3 = '3';
-
 String question2_title = 'Lifestyle and Work Assessment';
 
 String question2_text = 'Relaxed or Stressed';
@@ -44,6 +39,12 @@ String option2_3 =
 
 String option2_4 =
     'You are relaxed, yet responsive to what happens in life and you seem to be able to handle big and small challenges with grace and ease. Others wonder how you can be so productive and yet so relaxed.';
+
+// fråga HAST ifall dessa ska vara konstanta
+//Vad betyder egentligen graderingen som görs i fas två
+String subOption1 = 'Alternative 1';
+String subOption2 = 'Alternative 2';
+String subOption3 = 'Alternative 3';
 
 String nextButton = "Next";
 
@@ -112,31 +113,6 @@ _updateQuestionContent() {
       new QuestionContent(
           question2_text, option2_1, option2_2, option2_3, option2_4));
 }
-
-  @override
-  _QuestionState createState() => _QuestionState();
-}
-
-
-class _QuestionState extends State<Question> {
-  int question_number = 1;
-  String question_title = 'Lifestyle and Work Assessment';
-  String question_text = 'Reactivity vs. finding \'the space\'';
-  String option1 = 'You often overreact to other people, since you are often '
-      'treated unfairly. Sometimes you feel the world is against you.';
-  String option2 = 'You see that you react in ways that don’t work in many '
-      'situations. You don’t feel good about it, but you have no idea how to '
-      'change your behaviour.';
-  String option3 = 'You often catch yourself when you overreact, you find ‘the '
-      'space’, and from there you can create a more balanced response.';
-  String option4 = 'As you let your reactions be instead of trying to change them,'
-      '  you often get insights and see new possibilities.';
-
-  // fråga HAST ifall dessa ska vara konstanta
-  //Vad betyder egentligen graderingen som görs i fas två
-  String subOption1 = 'Alternative 1';
-  String subOption2 = 'Alternative 2';
-  String subOption3 = 'Alternative 3';
 
   @override
   _QuestionState createState() => _QuestionState();
@@ -231,6 +207,7 @@ class _QuestionState extends State<Question> {
                           onPressed: () {
                             if (question_number >= 1) {
                               question_number--; //TODO
+                              _displayFollowUp = false;
                               setState(() {});
                             }
                           },
@@ -253,6 +230,7 @@ class _QuestionState extends State<Question> {
                           onPressed: () {
                             if (question_number <= 6) {
                               question_number++; //TODO
+                              _displayFollowUp = false;
                               setState(() {});
                             } else if (question_number == 7) {
                               Navigator.pushNamed(context, '/result');
