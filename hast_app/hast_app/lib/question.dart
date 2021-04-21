@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 /// A function used in many places that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
@@ -60,59 +61,61 @@ class QuestionContent {
 }
 
 class Question extends StatefulWidget {
-Question() {
-  question_number = 0;
+  Question() {
+    question_number = 0;
 
-  _updateQuestionContent();
-}
+    _updateQuestionContent();
+  }
 
-_updateQuestionContent() {
-  //Add question 1 text
-  questionList.insert(0, new QuestionContent(
-          question1_text, option1_1, option1_2, option1_3, option1_4));
+  _updateQuestionContent() {
+    //Add question 1 text
+    questionList.insert(
+        0,
+        new QuestionContent(
+            question1_text, option1_1, option1_2, option1_3, option1_4));
 
-  //Add question 2 text
-  questionList.insert(
-      1,
-      new QuestionContent(
-          question2_text, option2_1, option2_2, option2_3, option2_4));
+    //Add question 2 text
+    questionList.insert(
+        1,
+        new QuestionContent(
+            question2_text, option2_1, option2_2, option2_3, option2_4));
 
-  //Add question 3 text
-  questionList.insert(
-      2,
-      new QuestionContent(
-          question1_text, option1_1, option1_2, option1_3, option1_4));
+    //Add question 3 text
+    questionList.insert(
+        2,
+        new QuestionContent(
+            question1_text, option1_1, option1_2, option1_3, option1_4));
 
-  //Add question 4 text
-  questionList.insert(
-      3,
-      new QuestionContent(
-          question2_text, option2_1, option2_2, option2_3, option2_4));
+    //Add question 4 text
+    questionList.insert(
+        3,
+        new QuestionContent(
+            question2_text, option2_1, option2_2, option2_3, option2_4));
 
-  //Add question 5 text
-  questionList.insert(
-      4,
-      new QuestionContent(
-          question1_text, option1_1, option1_2, option1_3, option1_4));
+    //Add question 5 text
+    questionList.insert(
+        4,
+        new QuestionContent(
+            question1_text, option1_1, option1_2, option1_3, option1_4));
 
-  //Add question 6 text
-  questionList.insert(
-      5,
-      new QuestionContent(
-          question2_text, option2_1, option2_2, option2_3, option2_4));
+    //Add question 6 text
+    questionList.insert(
+        5,
+        new QuestionContent(
+            question2_text, option2_1, option2_2, option2_3, option2_4));
 
-  //Add question 7 text
-  questionList.insert(
-      6,
-      new QuestionContent(
-          question1_text, option1_1, option1_2, option1_3, option1_4));
+    //Add question 7 text
+    questionList.insert(
+        6,
+        new QuestionContent(
+            question1_text, option1_1, option1_2, option1_3, option1_4));
 
-  //Add question 8 text
-  questionList.insert(
-      7,
-      new QuestionContent(
-          question2_text, option2_1, option2_2, option2_3, option2_4));
-}
+    //Add question 8 text
+    questionList.insert(
+        7,
+        new QuestionContent(
+            question2_text, option2_1, option2_2, option2_3, option2_4));
+  }
 
   @override
   _QuestionState createState() => _QuestionState();
@@ -162,8 +165,7 @@ class _QuestionState extends State<Question> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (question_number == 7){
+    if (question_number == 7) {
       nextButton = 'Result';
     } else
       nextButton = 'Next';
@@ -175,8 +177,7 @@ class _QuestionState extends State<Question> {
           title: Text(question_title),
         ),
         body: Center(
-            child: Column(children: <Widget>[
-          Padding(
+          child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
             child: Column(
               children: <Widget>[
@@ -186,64 +187,63 @@ class _QuestionState extends State<Question> {
                     currentQuestion.option2,
                     currentQuestion.option3,
                     currentQuestion.option4,
-                    _getColor, followUpCallBack),
+                    _getColor,
+                    followUpCallBack),
                 //_CreateFollowUpAnswers(0)
-                _displayFollowUp ? _CreateFollowUpAnswers(_followUpValue, _getColor(_followUpValue), subOption1, subOption2, subOption3) : Text(""),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
-                    child: Row(
-                      children: <Widget>[
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.resolveWith(
-                                (Set<MaterialState> states) {
-                              return Colors.white;
-                            }),
-                            backgroundColor: MaterialStateProperty.resolveWith(
-                                (Set<MaterialState> states) {
-                              return Colors.red[800];
-                            }),
-                          ),
-                          onPressed: () {
-                            if (question_number >= 1) {
-                              question_number--;
-                              _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
-                              setState(() {});
-                            }
-                          },
-                          child: Text('Back'),
-                        ),
-                        Spacer(),
-                        Text((question_number+1).toString()),
-                        Spacer(),
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.resolveWith(
-                                (Set<MaterialState> states) {
-                              return Colors.white;
-                            }),
-                            backgroundColor: MaterialStateProperty.resolveWith(
-                                (Set<MaterialState> states) {
-                              return Colors.red[800];
-                            }),
-                          ),
-                          onPressed: () {
-                            if (question_number <= 6) {
-                              question_number++;
-                              _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
-                              setState(() {});
-                            } else if (question_number == 7) {
-                              Navigator.pushNamed(context, '/result');
-                            }
-                          },
-                          child: Text(nextButton),
-                        ),
-                      ],
-                    ))
+                _displayFollowUp
+                    ? _CreateFollowUpAnswers(
+                        _followUpValue,
+                        _getColor(_followUpValue),
+                        subOption1,
+                        subOption2,
+                        subOption3)
+                    : Text(""),
+                Spacer(),
+                Row(
+                  children: <Widget>[
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: (question_number == 0) ? Colors.grey : Colors.red[800],
+                      ),
+                      onPressed: () {
+                        if (question_number >= 1) {
+                          question_number--;
+                          _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
+
+                          //setState updates this widget
+                          setState(() {});
+                        }
+                      },
+                      child: Text('Back'),
+                    ),
+                    Spacer(),
+                    Text((question_number + 1).toString()),
+                    Spacer(),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: (question_number == 7) ? Colors.green[800] : Colors.red[800],
+                      ),
+                      onPressed: () {
+                        if (question_number <= 6) {
+                          question_number++;
+                          _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
+
+                          //setState updates this widget
+                          setState(() {});
+                        } else if (question_number == 7) {
+                          Navigator.pushNamed(context, '/result');
+                        }
+                      },
+                      child: Text(nextButton),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-        ])));
+        ));
   }
 }
 
@@ -259,22 +259,22 @@ class _CreateAnswers extends StatelessWidget {
   final _ColorCallBack colorFunction;
   final Function(int) followUpCallBack;
 
-  _CreateAnswers(this.a1, this.a2, this.a3, this.a4, this.colorFunction, this.followUpCallBack);
+  _CreateAnswers(this.a1, this.a2, this.a3, this.a4, this.colorFunction,
+      this.followUpCallBack);
 
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: _AnswerText(a1, 0, colorFunction(0), followUpCallBack)),
-            Expanded(child: _AnswerText(a2, 1, colorFunction(1), followUpCallBack)),
-            Expanded(child: _AnswerText(a3, 2, colorFunction(2), followUpCallBack)),
-            Expanded(child: _AnswerText(a4, 3, colorFunction(3), followUpCallBack)),
-          ],
-        )
-    );
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(child: _AnswerText(a1, 0, colorFunction(0), followUpCallBack)),
+        Expanded(child: _AnswerText(a2, 1, colorFunction(1), followUpCallBack)),
+        Expanded(child: _AnswerText(a3, 2, colorFunction(2), followUpCallBack)),
+        Expanded(child: _AnswerText(a4, 3, colorFunction(3), followUpCallBack)),
+      ],
+    ));
   }
 }
 
@@ -293,17 +293,16 @@ class _CreateFollowUpAnswers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
-      key: UniqueKey(),
+        key: UniqueKey(),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _FollowUpAnswerText(a1*3+1, color, op1)),
-            Expanded(child: _FollowUpAnswerText(a1*3+2, color, op2)),
-            Expanded(child: _FollowUpAnswerText(a1*3+3, color, op3)),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 1, color, op1)),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 2, color, op2)),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 3, color, op3)),
           ],
-        )
-    );
+        ));
   }
 }
 
@@ -347,32 +346,29 @@ class _AnswerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
-      child: Column (
-          children: [
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: color,
-                  onPrimary: Colors.black,
-                ),
-                onPressed: () {
-                  //setState(() => _followUpVisibility = !_followUpVisibility);
-                  print('$number : answertext');
-                  followUpCallBack(number);
-                },
-                child: Padding(
-                    padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    child: Text(
-                      atext,
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                    )
-                ),
-              ),
+      child: Column(children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: color,
+              onPrimary: Colors.black,
             ),
-          ]
-      ),
+            onPressed: () {
+              //setState(() => _followUpVisibility = !_followUpVisibility);
+              print('$number : answertext');
+              followUpCallBack(number);
+            },
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                child: Text(
+                  atext,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                )),
+          ),
+        ),
+      ]),
     );
   }
 }
