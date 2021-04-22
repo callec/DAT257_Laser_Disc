@@ -139,13 +139,8 @@ class _QuestionState extends State<Question> {
   }
 
   /* TODO:
-   *  - ColorCallBack -> passing color instead
-   *  - Followupanswer in answer -> answer alone, followupanswer below
-   *   - important
    *  - Answer gray out if not chosen
    *  - followupanswer gray out if not chosen
-   *  - followupanswer changes if another answer is chosen
-   *   - important
    */
 
   bool _displayFollowUp = false;
@@ -210,7 +205,7 @@ class _QuestionState extends State<Question> {
                         if (question_number >= 1) {
                           question_number--;
                           _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
-
+                          _followUpValue = -1;
                           //setState updates this widget
                           setState(() {});
                         }
@@ -229,7 +224,7 @@ class _QuestionState extends State<Question> {
                         if (question_number <= 6) {
                           question_number++;
                           _displayFollowUp = false; //TODO maybe change to be able to see which option you picked when going back
-
+                          _followUpValue = -1;
                           //setState updates this widget
                           setState(() {});
                         } else if (question_number == 7) {
