@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
           appBar: AppBar(
             title: Text('HAST - self reflection'), //title on top of the page
             automaticallyImplyLeading: false,
-            backgroundColor: Color(0xff5808e5),
+            backgroundColor: Theme.of(context).accentColor,
             bottom: TabBar(
               indicatorColor: Colors.white,
               tabs: [
