@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hast_app/question.dart';
 
 class DrawerTest extends StatefulWidget {
   final String title;
@@ -37,14 +38,7 @@ class _DrawerTestState extends State<DrawerTest> {
           thickness: 1,
         ),
         Expanded(
-          child: Scaffold(
-              appBar: AppBar(
-                title: Text(widget.title),
-              ),
-              body: Center(
-                child: Text(_selectedDestination.toString(),
-                    style: textTheme.headline2),
-              )),
+          child: Question(), //Nu en statisk fråga, kopplas senare 
         ),
       ],
     );
