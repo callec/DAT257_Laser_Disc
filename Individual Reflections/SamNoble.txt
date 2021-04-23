@@ -1,1 +1,82 @@
-Sam Noble 
+Individual reflection - Sam Noble
+
+Week 1
+- What do I want to learn or understand better?
+I feel intrigued about using Scrum, I have never used it before but it seems promising. I would like to learn more about Scrum and how to set up a project like this. Also, I am excited to work with my team and learn how to create an app.
+
+- How can I help someone else, or the entire team, to learn something new?
+It is unclear what strengths I have that the team can make use of so far. However, I have contributed with some takeaways från writing my bachelor's thesis regarding group contract and arranging of roles during meetings for documentation and decision making purposes. We will try this out next week and I hope It can give the group some kind of value.
+
+- What is my contribution towards the team’s use of Scrum?
+Right now my contribution towards using scrum is reading up on Scrum and trying my best to understand it in order to reduce friction in workflow. 
+
+- What is my contribution towards the team’s deliveries?
+The whole team including myself has contributed with ideas that we could run with for this project. 
+
+Week 2
+- What do I want to learn or understand better?
+I want to learn and understand flutter and dart in order to contribute in programming the application.
+
+- How can I help someone else, or the entire team, to learn something new?
+I can support people by wisdom and knowledge that I have gained from other group projects. Hopefully there are a lot of things we can learn from each other's program backgrounds. 
+
+- What is my contribution towards the team’s use of Scrum?
+I have never used scrum before but I have read up on it and I have contributed to defining the groups common understanding of this workflow.
+
+- What is my contribution towards the team’s deliveries?
+I have contributed with a stakeholder whom the group has chosen to go forward with. Also I believe that I have been active in group meetings to help create an effective workflow. I will try to prepare myself further in regards to the chosen programming language.
+
+Week 3 (Easter)
+No reflection.
+
+Week 4
+- What do I want to learn or understand better?
+I want to learn and understand flutter and dart in order to contribute in programming the application. This will hopefully help my creativity and ability to help designing our web app.
+
+- How can I help someone else, or the entire team, to learn something new?
+I can support people in my group by sharing how my programming partner and I have solved our user story.
+
+- What is my contribution towards the team’s use of Scrum?
+My role this sprint has been to act as Timekeeper and “Bssare” which hopefully has contributed to effective meetings.
+
+- What is my contribution towards the team’s deliveries?
+I have read up on Dart and built a test app in order to prepare myself for my task this sprint. This week my contribution was mainly towards completing one of the user stories.
+
+Week 5
+- What do I want to learn or understand better?
+I want to learn what flutter is capable of in terms of app development. It seems like a really powerful and useful tool at the moment, I am curious to see what else it can do!
+
+- How can I help someone else, or the entire team, to learn something new?
+I assume that our groups have learned different things in solving each user story. I can show others how my team approached and solved our problems. 
+
+- What is my contribution towards the team’s use of Scrum?
+This week I have been active in meetings and offered input and solutions for our user stories.
+
+- What is my contribution towards the team’s deliveries?
+I have read up on Dart and built a test app in order to prepare myself for my task this sprint. This week my contribution was mainly towards helping to complete my groups designated user stories.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
