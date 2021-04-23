@@ -1,9 +1,9 @@
-﻿Week 1
+﻿Wk 1
 * what do I want to learn or understand better?
    * For this week I want to learn scrum and better understand KPI. At this
      point I have some experience in agile development and think I am new to
-	 KPIs. To achieve this I should attend the lectures and research both of the
-	 topics.
+     KPIs. To achieve this I should attend the lectures and research both of the
+     topics.
 * how can I help someone else, or the entire team, to learn something new?
    * By sharing our previous knowledge of the topics we need to learn more
      about, e.g. agile, scrum, KPIs. 
@@ -13,15 +13,15 @@
 * what is my contribution towards the team’s deliveries?
    * As we have collaborated on all the deliveries so far I would say that it
      currently is where I want it to be. Perhaps a more proactive role in the
-	 communication channels could be achieved.
+     communication channels could be achieved.
 
 
 Week 2
 * what do I want to learn or understand better?
    * I still want to better understand scrum development. Further on we will
      most likely work with flutter to be able to develop for both android and
-	 ios at the same time, so I want to learn that too. Will read articles on
-	 both to learn further.
+     ios at the same time, so I want to learn that too. Will read articles on
+     both to learn further.
 * how can I help someone else, or the entire team, to learn something new?
    * By sharing our previous knowledge of the topics we need to learn more
      about, for this week mostly android development.
@@ -31,3 +31,46 @@ Week 2
 * what is my contribution towards the team’s deliveries?
    * As we have collaborated on all the deliveries so far I would say that it
      currently is where I want it to be.
+
+
+Week 3
+* what do I want to learn or understand better?
+   * I wish to understand how HAST want the app to work. I have been filled in
+     by my teammates but I still feel that my understanding is lacking. To
+     achieve this I will listen well and ask questions during the meetings with
+     HAST. As the other weeks I still want to know more about scrum development
+     and how flutter works.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week mostly programming and git.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way. As well as giving suggestions on ways that the
+     current roles could be modified to achieve better results.
+* what is my contribution towards the team’s deliveries?
+   * We have collaborated on all deliveries but I feel that we as a group could
+     be more productive, I am uncertain how to reach that level as we all need
+     teach ourselves flutter which is new to all of us.
+     This week I was the team leader and I am satisfied with my performance.
+
+
+Week 4
+* what do I want to learn or understand better?
+   * I want to learn how to structure flutter applications in a way that makes
+     it easy for other and myself how they work and how to add on to them.
+     To achieve this i will read about it on my own and do some local tests
+     for our project. Currently I know basic app structure such as MVVM and MVC
+     but I do not know how to apply it to flutter/dart.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week mostly programming and git, as well as pair
+     programming with screen sharing to help my programming partner(s).
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way, as well as helping my programming partner(s)
+     to better understand how git/dart.
+* what is my contribution towards the team’s deliveries?
+   * This week we have collaborated (as usual) and I am fairly satisfied with
+     how it went. I still feel that we could be more productive but it
+     is not easy to achieve as we need to consider the teams overall knowledge
+     of development as well as arringing meetings when everyone is available.
