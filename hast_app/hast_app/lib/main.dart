@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hast_app/drawerTest.dart';
+import 'package:hast_app/models/quiz_model.dart';
+//import 'package:hast_app/screen/main_page.dart';
+import 'package:hast_app/screen/quiz_page.dart';
 import 'MainPage.dart';
-import 'question.dart';
+//import 'question.dart';
 import 'result.dart';
 
 void main() {
@@ -12,13 +16,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => MainPage(),
-        '/question': (context) => Question(),
-        '/result': (context) => ResultPage(),
-        '/drawer': (context) => DrawerTest(title: "Hello"),
-      },
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => QuizModel()),
+        ChangeNotifierProvider(
+          create: (context) => QuizModel(),
+        )
+      ],
+      child: MaterialApp(
+        routes: {
+          '/': (context) => MainPage(),
+          '/quiz': (context) => QuizPage(),
+          '/result': (context) => ResultPage(),
+          '/drawer': (context) => DrawerTest(title: "Hello"),
+        },
+      )
     );
   }
 }

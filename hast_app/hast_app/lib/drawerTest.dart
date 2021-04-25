@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hast_app/question.dart';
+//import 'package:hast_app/question.dart';
+import 'package:hast_app/screen/quiz_page.dart';
 
 //Created by Erik, Louise and Sam
 //Edited by Sam, Louise and Erik
@@ -26,8 +27,6 @@ class _DrawerTestState extends State<DrawerTest> {
     false
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -41,7 +40,8 @@ class _DrawerTestState extends State<DrawerTest> {
           thickness: 1,
         ),
         Expanded(
-          child: Question(), //Nu en statisk fråga, kopplas senare 
+          // TODO: reset current question number to 0
+          child: QuizPage(), //Nu en statisk fråga, kopplas senare
         ),
       ],
     );
@@ -57,10 +57,8 @@ class _DrawerTestState extends State<DrawerTest> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Question Overview',
-                    style: theme.textTheme.headline6
-                  ),
+                  child: Text('Question Overview',
+                      style: theme.textTheme.headline6),
                 ),
                 Divider(
                   height: 1,
@@ -75,13 +73,12 @@ class _DrawerTestState extends State<DrawerTest> {
               color: _selectedDestination == i
                   ? theme.accentColor
                   : _finishedQuestions[i - 1]
-                  ? Colors.green
-                  : null,
+                      ? Colors.green
+                      : null,
             ),
             title: Text('Question ' + i.toString()),
             selected: _selectedDestination == i,
             onTap: () => selectDestination(i),
-
           );
         });
   }
