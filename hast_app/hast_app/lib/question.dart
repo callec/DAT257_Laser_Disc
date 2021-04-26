@@ -124,6 +124,7 @@ class Question extends StatefulWidget {
 class _QuestionState extends State<Question> {
   /// Takes an int and returns a Color (has an optional intensity argument).
   Color _getColor(int n, [int intensity = 200]) {
+    n = -1;
     switch (n) {
       case 0:
         return Colors.red[intensity];
