@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hast_app/drawerTest.dart';
+import 'package:hast_app/drawer.dart';
 import 'package:hast_app/models/quiz_model.dart';
 //import 'package:hast_app/screen/main_page.dart';
 import 'package:hast_app/screen/quiz_page.dart';

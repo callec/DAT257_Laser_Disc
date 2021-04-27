@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hast_app/models/quiz_model.dart';
 //import 'package:hast_app/question.dart';
 import 'package:hast_app/screen/quiz_page.dart';
+import 'package:provider/provider.dart';
 
 //Created by Erik, Louise and Sam
 //Edited by Sam, Louise and Erik
@@ -33,8 +35,8 @@ class _DrawerTestState extends State<DrawerTest> {
     final textTheme = theme.textTheme;
 
     return Row(
-      children: [
-        Drawer(child: _buildOverviewDrawer(context, theme)),
+      children: [Consumer<QuizModel>(builder:(context, model, child)=>
+          Drawer(child: _buildOverviewDrawer(context, theme, model)),),
         VerticalDivider(
           width: 1,
           thickness: 1,
@@ -47,7 +49,7 @@ class _DrawerTestState extends State<DrawerTest> {
     );
   }
 
-  Widget _buildOverviewDrawer(BuildContext context, ThemeData theme) {
+  Widget _buildOverviewDrawer(BuildContext context, ThemeData theme, QuizModel model) {
     return ListView.builder(
         itemCount: _finishedQuestions.length + 1,
         padding: EdgeInsets.zero,
@@ -69,15 +71,10 @@ class _DrawerTestState extends State<DrawerTest> {
           }
           return ListTile(
             leading: Icon(
-              _finishedQuestions[i - 1] ? Icons.done : Icons.label,
-              color: _selectedDestination == i
-                  ? theme.accentColor
-                  : _finishedQuestions[i - 1]
-                      ? Colors.green
-                      : null,
+              Icons.label,
             ),
             title: Text('Question ' + i.toString()),
-            selected: _selectedDestination == i,
+            selected: model.currentNumber == i - 1,
             onTap: () => selectDestination(i),
           );
         });
