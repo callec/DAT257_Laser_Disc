@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hast_app/models/result_model.dart';
+import 'package:provider/provider.dart';
 
 class ResultPage extends StatelessWidget {
   int score = 0;
@@ -13,6 +15,8 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO: sätt text till den som matchar mängden poäng!
     scoreText = text1;
+    ResultModel result = context.watch<ResultModel>();
+    score = result.score;
     /*switch(score){
       case (): {
         scoreText = text1;

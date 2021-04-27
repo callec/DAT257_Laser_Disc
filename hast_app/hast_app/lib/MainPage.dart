@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:hast_app/models/quiz_model.dart';
 
 //Created by Erik and Sam
 //Edited by Louise, Erik, Sam
@@ -6,6 +8,8 @@ import 'package:flutter/material.dart';
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var quizModel = context.watch<QuizModel>();
+
     return MaterialApp(
       title: 'Flutter Demo',
       home: DefaultTabController(
@@ -33,7 +37,7 @@ class MainPage extends StatelessWidget {
                         _description(
                             context, 'WELCOME! Presenting Information'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                        _button(context)
+                        _button(context, quizModel)
                       ]))),
               Center(
                   child: Container(
@@ -65,10 +69,11 @@ class MainPage extends StatelessWidget {
             style: new TextStyle(fontSize: 20.0, color: Colors.black)));
   }
 
-  Widget _button(context) {
+  Widget _button(context, QuizModel quizModel) {
     //
     return ElevatedButton(
         onPressed: () {
+          quizModel.reset();
           Navigator.pushNamed(context, '/drawer');
         },
         child: Text("Start Self Reflection"));

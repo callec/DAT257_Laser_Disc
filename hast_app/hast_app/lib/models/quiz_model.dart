@@ -9,9 +9,18 @@ class QuizModel with ChangeNotifier {
   String _questionTitle = 'fetch this title somehow';
   List<QuestionContent> _questions = QuestionFactory.createStandardQuiz();
 
+  List<QuestionContent> get questions => _questions;
+
   QuestionContent get currentQuestion => _questions[_questionNumber];
+
   int get currentNumber => _questionNumber;
+
   String get title => _questionTitle;
+
+  void reset(){
+    _questions = QuestionFactory.createStandardQuiz();
+    _questionNumber = 0;
+  }
 
   void nextQuestion() {
     if (_questionNumber < (_questions.length - 1)) ++_questionNumber;
@@ -26,14 +35,10 @@ class QuizModel with ChangeNotifier {
   }
 
   void setAlternative(int n) {
-    if (this.currentQuestion.chosenAlternative == n) {
+    if (this.currentQuestion.chosenAlternative == n)
       this.currentQuestion.chosenAlternative = -1;
-      notifyListeners();
-      return;
-    }
-
-    this.currentQuestion.chosenAlternative = n;
-
+    else
+      this.currentQuestion.chosenAlternative = n;
     notifyListeners();
   }
 

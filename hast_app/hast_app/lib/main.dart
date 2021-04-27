@@ -6,7 +6,8 @@ import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'MainPage.dart';
 //import 'question.dart';
-import 'result.dart';
+import 'screen/result_page.dart';
+import 'package:hast_app/models/result_model.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +19,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => QuizModel()),
-        ChangeNotifierProvider(
+        Provider(create: (context) => ResultModel()),
+        ChangeNotifierProxyProvider<ResultModel, QuizModel>(
           create: (context) => QuizModel(),
+          update: (context, result, quiz){
+            result.quizModel = quiz;
+            return quiz;
+          }
+
         )
       ],
       child: MaterialApp(
