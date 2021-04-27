@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hast_app/common/question.dart';
 import 'package:hast_app/questionDrawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -33,66 +34,69 @@ class QuizPage extends StatelessWidget {
         ),
         body: Row(children: [
           QuestionDrawer(),
-          Expanded(child:
-          Center(
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                  child: Consumer<QuizModel>(
-                      // TODO maybe it would be better to rebuild individual Text widgets
-                      // within the larger widgets?
-                      builder: (context, model, child) => Column(children: [
-                            _QuestionText(model.currentQuestion.question),
-                            _CreateAnswers(
-                                _getColor, model.currentQuestion.alternatives),
-                            model.currentQuestion.chosenAlternative != -1
-                                ? _CreateFollowUpAnswers(
-                                    model.currentQuestion.chosenAlternative,
-                                    _getColor(model
-                                        .currentQuestion.chosenAlternative),
-                                    model.currentQuestion.subAlternatives)
-                                : Text(""),
-                            Spacer(),
-                            Row(
-                              children: <Widget>[
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: (model.currentNumber == 0)
-                                        ? Colors.grey
-                                        : Colors.red[800],
-                                  ),
-                                  onPressed: () {
-                                    if (model.currentNumber >= 1) {
-                                      model.prevQuestion();
-                                    }
-                                  },
-                                  child: Text('Back'),
-                                ),
+          Expanded(
+              child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                      child: Consumer<QuizModel>(
+                          // TODO maybe it would be better to rebuild individual Text widgets
+                          // within the larger widgets?
+                          builder: (context, model, child) => Column(children: [
+                                _QuestionText(model.currentQuestion.question),
+                                _CreateAnswers(_getColor,
+                                    model.currentQuestion),
+                                model.currentQuestion.chosenAlternative != -1
+                                    ? _CreateFollowUpAnswers(
+                                        model.currentQuestion.chosenAlternative,
+                                        _getColor(model
+                                            .currentQuestion.chosenAlternative),
+                                        model.currentQuestion.subAlternatives)
+                                    : Text(""),
                                 Spacer(),
-                                Text((model.currentNumber + 1).toString()),
-                                Spacer(),
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.white,
-                                    backgroundColor: (model.currentNumber == 7)
-                                        ? Colors.green[800]
-                                        : Colors.red[800],
-                                  ),
-                                  onPressed: () {
-                                    if (model.currentNumber <= 6) {
-                                      model.nextQuestion();
-                                    } else if (model.currentNumber == 7) {
-                                      Navigator.pushNamed(context, '/result');
-                                    }
-                                  },
-                                  child: Text(model.currentNumber < 7
-                                      ? 'Next'
-                                      : 'Result'),
-                                ),
-                              ],
-                            )
-                          ]))))
-          )]));
+                                Row(
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        primary: Colors.white,
+                                        backgroundColor:
+                                            (model.currentNumber == 0)
+                                                ? Colors.grey
+                                                : Colors.red[800],
+                                      ),
+                                      onPressed: () {
+                                        if (model.currentNumber >= 1) {
+                                          model.prevQuestion();
+                                        }
+                                      },
+                                      child: Text('Back'),
+                                    ),
+                                    Spacer(),
+                                    Text((model.currentNumber + 1).toString()),
+                                    Spacer(),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        primary: Colors.white,
+                                        backgroundColor:
+                                            (model.currentNumber == 7)
+                                                ? Colors.green[800]
+                                                : Colors.red[800],
+                                      ),
+                                      onPressed: () {
+                                        if (model.currentNumber <= 6) {
+                                          model.nextQuestion();
+                                        } else if (model.currentNumber == 7) {
+                                          Navigator.pushNamed(
+                                              context, '/result');
+                                        }
+                                      },
+                                      child: Text(model.currentNumber < 7
+                                          ? 'Next'
+                                          : 'Result'),
+                                    ),
+                                  ],
+                                )
+                              ])))))
+        ]));
   }
 }
 
@@ -100,13 +104,16 @@ class QuizPage extends StatelessWidget {
 ///
 /// Has arguments 4 strings and a function.
 class _CreateAnswers extends StatelessWidget {
-  final List<String> alternatives;
-
+  final QuestionContent question;
   final _ColorCallBack colorFunction;
+  bool alternativeBeenChosen;
 
 //  final Function(int) followUpCallBack;
 
-  _CreateAnswers(this.colorFunction, this.alternatives);
+  //Send in question instead?
+  _CreateAnswers(this.colorFunction, this.question){
+     alternativeBeenChosen = question.chosenAlternative != -1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,11 +121,12 @@ class _CreateAnswers extends StatelessWidget {
         child: Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
+
       children: [
-        Expanded(child: _AnswerText(alternatives[0], 0, colorFunction(0))),
-        Expanded(child: _AnswerText(alternatives[1], 1, colorFunction(1))),
-        Expanded(child: _AnswerText(alternatives[2], 2, colorFunction(2))),
-        Expanded(child: _AnswerText(alternatives[3], 3, colorFunction(3))),
+        Expanded(child: _AnswerText(question.alternatives[0], 0, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 0 ? 0 : -1 : 0))),
+        Expanded(child: _AnswerText(question.alternatives[1], 1, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 1 ? 1 : -1 : 1))),
+        Expanded(child: _AnswerText(question.alternatives[2], 2, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 2 ? 2 : -1 : 2))),
+        Expanded(child: _AnswerText(question.alternatives[3], 3, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 3 ? 3 : -1 : 3))),
       ],
     ));
   }
