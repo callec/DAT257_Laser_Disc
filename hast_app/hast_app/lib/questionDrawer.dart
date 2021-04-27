@@ -75,7 +75,7 @@ class _DrawerTestState extends State<DrawerTest> {
             ),
             title: Text('Question ' + i.toString()),
             selected: model.currentNumber == i - 1,
-            onTap: () => selectDestination(i),
+            onTap: () => model.setQuestion(i - 1),
           );
         });
   }

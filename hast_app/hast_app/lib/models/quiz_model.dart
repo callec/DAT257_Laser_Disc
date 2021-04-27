@@ -25,6 +25,14 @@ class QuizModel with ChangeNotifier {
     notifyListeners();
   }
 
+  //Updates current question in model if user clicks question in questionDrawer
+  void setQuestion(int n){
+    if (n > - 1 && n < _questions.length) {
+      _questionNumber = n;
+      notifyListeners();
+    }
+  }
+
   void setAlternative(int n) {
     if (this.currentQuestion.chosenAlternative == n) {
       this.currentQuestion.chosenAlternative = -1;
