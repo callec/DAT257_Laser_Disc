@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => MainPage(),
           '/quiz': (context) => QuizPage(),
           '/result': (context) => ResultPage(),
-          '/drawer': (context) => DrawerTest(title: "Hello"),
+          '/drawer': (context) => QuestionDrawer(title: "Hello"),
         },
       )
     );

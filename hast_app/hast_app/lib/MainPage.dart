@@ -69,7 +69,7 @@ class MainPage extends StatelessWidget {
     //
     return ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/drawer');
+          Navigator.pushNamed(context, '/quiz');
         },
         child: Text("Start Self Reflection"));
   }

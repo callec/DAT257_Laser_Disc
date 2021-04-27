@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hast_app/models/quiz_model.dart';
+
 //import 'package:hast_app/question.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
@@ -7,16 +8,16 @@ import 'package:provider/provider.dart';
 //Created by Erik, Louise and Sam
 //Edited by Sam, Louise and Erik
 
-class DrawerTest extends StatefulWidget {
+class QuestionDrawer extends StatefulWidget {
   final String title;
 
-  DrawerTest({Key key, this.title}) : super(key: key);
+  QuestionDrawer({Key key, this.title}) : super(key: key);
 
   @override
-  _DrawerTestState createState() => _DrawerTestState();
+  _QuestionDrawerState createState() => _QuestionDrawerState();
 }
 
-class _DrawerTestState extends State<DrawerTest> {
+class _QuestionDrawerState extends State<QuestionDrawer> {
   int _selectedDestination = 1;
   final List<bool> _finishedQuestions = [
     true,
@@ -35,21 +36,21 @@ class _DrawerTestState extends State<DrawerTest> {
     final textTheme = theme.textTheme;
 
     return Row(
-      children: [Consumer<QuizModel>(builder:(context, model, child)=>
-          Drawer(child: _buildOverviewDrawer(context, theme, model)),),
-        VerticalDivider(
-          width: 1,
-          thickness: 1,
-        ),
-        Expanded(
-          // TODO: reset current question number to 0
-          child: QuizPage(), //Nu en statisk fråga, kopplas senare
-        ),
-      ],
+        children: [
+          Consumer<QuizModel>(
+            builder: (context, model, child) =>
+                Drawer(child: _buildOverviewDrawer(context, theme, model)),
+          ),
+          VerticalDivider(
+            width: 1,
+            thickness: 1,
+          ),
+        ]
     );
   }
 
-  Widget _buildOverviewDrawer(BuildContext context, ThemeData theme, QuizModel model) {
+  Widget _buildOverviewDrawer(
+      BuildContext context, ThemeData theme, QuizModel model) {
     return ListView.builder(
         itemCount: _finishedQuestions.length + 1,
         padding: EdgeInsets.zero,
