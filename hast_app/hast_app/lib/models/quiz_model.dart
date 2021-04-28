@@ -3,6 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:hast_app/common/question.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 
+//Created?
+//Edited by Erik, Felix, Sam
+
 class QuizModel with ChangeNotifier {
   // TODO do we need a QuizContent class? or same title for 8 qs?
   int _questionNumber = 0;

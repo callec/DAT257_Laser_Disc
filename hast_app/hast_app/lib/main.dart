@@ -10,6 +10,8 @@ import 'MainPage.dart';
 //import 'question.dart';
 import 'result.dart';
 
+//Edited by Erik, Felix, Sam
+
 void main() {
   runApp(MyApp());
 }

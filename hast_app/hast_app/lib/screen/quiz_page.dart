@@ -6,6 +6,9 @@ import 'package:hast_app/questionDrawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
+//Created?
+//Edited by Erik, Felix, Sam
+
 /// A function that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
 
@@ -28,7 +31,6 @@ class QuizPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
           title: hastLogga(),
@@ -50,7 +52,6 @@ class QuizPage extends StatelessWidget {
                                     model.currentQuestion),
                                 model.currentQuestion.chosenAlternative != -1
                                     ? _CreateFollowUpAnswers(
-                                        model.currentQuestion.chosenAlternative,
                                         _getColor,
                                       model.currentQuestion)
                                     : Text(""),
@@ -108,14 +109,12 @@ class QuizPage extends StatelessWidget {
 class _CreateAnswers extends StatelessWidget {
   final QuestionContent question;
   final _ColorCallBack colorFunction;
-  bool alternativeBeenChosen;
+
 
 //  final Function(int) followUpCallBack;
 
   //Send in question instead?
-  _CreateAnswers(this.colorFunction, this.question){
-     alternativeBeenChosen = question.chosenAlternative != -1;
-  }
+  _CreateAnswers(this.colorFunction, this.question);
 
   @override
   Widget build(BuildContext context) {
@@ -124,44 +123,25 @@ class _CreateAnswers extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
 
-      children: _buildAnswers()/*[
-        Expanded(child: _AnswerText(question.alternatives[0], 0, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 0 ? 0 : -1 : 0))),
-        Expanded(child: _AnswerText(question.alternatives[1], 1, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 1 ? 1 : -1 : 1))),
-        Expanded(child: _AnswerText(question.alternatives[2], 2, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 2 ? 2 : -1 : 2))),
-        Expanded(child: _AnswerText(question.alternatives[3], 3, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 3 ? 3 : -1 : 3))),
-
-        //if(har vi valt alternativ)
-            //if(är det mitt alterntivt?)
-              //sätt min färg
-            //else
-                //Sätt mig grå
-        //sätt min färg
-        //
-
-      ],*/
+      children: _buildAnswers()
     ));
   }
 
   List<Widget> _buildAnswers(){
     List<Widget> tempList = [];
+    int alternativeNumber = question.chosenAlternative;
+    bool alternativeBeenChosen = alternativeNumber != -1;
+
+    //Build Answer boxes
     for(int x = 0; x < question.alternatives.length; x++){
       tempList.add(
           Expanded(child:
           _AnswerText(
               question.alternatives[x],
               x,
-              colorFunction(alternativeBeenChosen ? question.chosenAlternative == x ? x : -1 : x))
+              colorFunction(alternativeBeenChosen ? alternativeNumber == x ? x : -1 : x))
           )
       );
-      //if(har vi valt alternativ)
-      //    if(är det mitt alterntivt?)
-      //        sätt min färg
-      //    else
-      //        Sätt mig grå
-      //
-      //sätt min färg
-      //
-
     }
     return tempList;
   }
@@ -173,10 +153,9 @@ class _CreateAnswers extends StatelessWidget {
 /// Has arguments three strings which shows that to display
 class _CreateFollowUpAnswers extends StatelessWidget {
   final _ColorCallBack color;
-  final int multiplier;
   final QuestionContent question;
 
-  _CreateFollowUpAnswers(this.multiplier, this.color, this.question);
+  _CreateFollowUpAnswers(this.color, this.question);
 
   @override
   Widget build(BuildContext context) {
@@ -185,30 +164,26 @@ class _CreateFollowUpAnswers extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildSubAlternatives()/*[
-            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 1, 0, color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 0 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[0])),
-            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 2, 1, color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 1 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[1])),
-            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 3, 2,  color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 2 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[2])),
-          ]*/,
+          children: _buildSubAlternatives(),
         ));
   }
 
   List<Widget> _buildSubAlternatives(){
     List<Widget> tempList = [];
 
+    //Have a alternative been chosen?
     bool _subAltBeenChosen = question.chosenSubAlternative != -1;
 
     int alternativeNumber = question.chosenAlternative;
     int subAlternativeNumber = question.chosenSubAlternative;
     List<String> options = question.subAlternatives;
 
-
-
+    //Create three sub alternatives
     for(int x = 0; x < 3; x++){
       tempList.add(
           Expanded(
               child: _FollowUpAnswerText(
-                  multiplier * 3 + (x+1),
+                   alternativeNumber * 3 + (x+1),
                   x,
                   color(_subAltBeenChosen ?
                       subAlternativeNumber == x ? alternativeNumber : -1 : alternativeNumber),
