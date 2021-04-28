@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:hast_app/question.dart';
+//import 'package:hast_app/question_content.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 
 //Created by Erik, Louise and Sam

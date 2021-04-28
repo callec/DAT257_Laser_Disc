@@ -5,7 +5,7 @@ import 'package:hast_app/models/quiz_model.dart';
 //import 'package:hast_app/screen/main_page.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'MainPage.dart';
-//import 'question.dart';
+//import 'question_content.dart';
 import 'screen/result_page.dart';
 import 'package:hast_app/models/result_model.dart';
 
