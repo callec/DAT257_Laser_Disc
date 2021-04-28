@@ -73,8 +73,10 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
           return ListTile(
             leading: Icon(
               Icons.label,
+              color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor,
             ),
-            title: Text('Question ' + i.toString()),
+            title: Text('Question ' + i.toString(), style: TextStyle(color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor)
+            ),
             selected: model.currentNumber == i - 1,
             onTap: () => model.setQuestion(i - 1),
           );

@@ -42,7 +42,7 @@ class ResultPage extends StatelessWidget {
               }),
               backgroundColor: MaterialStateProperty.resolveWith(
                   (Set<MaterialState> states) {
-                return Colors.red[800];
+                return Color.fromARGB(255,255, 49, 34);
               }),
             ),
             onPressed: () {

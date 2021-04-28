@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hast_app/MainPage.dart';
 import 'package:hast_app/common/question.dart';
 import 'package:hast_app/questionDrawer.dart';
 import 'package:provider/provider.dart';
@@ -13,13 +14,13 @@ class QuizPage extends StatelessWidget {
   Color _getColor(int n, [int intensity = 200]) {
     switch (n) {
       case 0:
-        return Colors.red[intensity];
+        return Color.fromARGB(255, 246, 207, 30);
       case 1:
-        return Colors.yellow[intensity];
+        return Color.fromARGB(255, 255, 189, 84);
       case 2:
-        return Colors.green[intensity];
+        return Color.fromARGB(255, 255, 151, 74);
       case 3:
-        return Colors.blue[intensity];
+        return Color.fromARGB(255, 255, 103, 86);
       default:
         return Colors.grey[intensity];
     }
@@ -27,9 +28,11 @@ class QuizPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text(context.read<QuizModel>().title),
+          title: hastLogga(),
+          backgroundColor: Colors.white,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
         body: Row(children: [
@@ -61,7 +64,7 @@ class QuizPage extends StatelessWidget {
                                         backgroundColor:
                                             (model.currentNumber == 0)
                                                 ? Colors.grey
-                                                : Colors.red[800],
+                                                : Color.fromARGB(255,255, 49, 34),
                                       ),
                                       onPressed: () {
                                         if (model.currentNumber >= 1) {
@@ -79,7 +82,7 @@ class QuizPage extends StatelessWidget {
                                         backgroundColor:
                                             (model.currentNumber == 7)
                                                 ? Colors.green[800]
-                                                : Colors.red[800],
+                                                : Color.fromARGB(255,255, 49, 34),
                                       ),
                                       onPressed: () {
                                         if (model.currentNumber <= 6) {
@@ -182,7 +185,7 @@ class _QuestionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
+      color: Colors.white,
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Text(

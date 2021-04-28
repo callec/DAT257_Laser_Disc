@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 
 class hastLogga extends StatelessWidget{
   Widget build(BuildContext context) {
-    return Image(image: AssetImage('assets/hastlogga.png'));
+    return Image.asset(
+      "assets/hastlogga.png",
+      fit: BoxFit.contain,
+      height: 45,
+    );
   }
 }
 
@@ -21,16 +25,12 @@ class MainPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title:  Image.asset(
-              "assets/hastlogga.png",
-              fit: BoxFit.contain,
-              height: 45,
-            ),
+            title: hastLogga(),
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             bottom: TabBar(
               labelColor: Color.fromARGB(255, 138, 146, 151),
-              indicatorColor: Colors.red,
+              indicatorColor: Color.fromARGB(255,255, 49, 34),
               tabs: [
                 Tab(text: 'Home', icon: Icon(Icons.home)), //Our tabs
                 Tab(text: 'About the test', icon: Icon(Icons.help)),
@@ -81,7 +81,7 @@ class MainPage extends StatelessWidget {
 
   Widget _button(context) {
     //
-    return ElevatedButton(
+    return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
         onPressed: () {
           Navigator.pushNamed(context, '/quiz');
         },
@@ -89,14 +89,3 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class toTest extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Test"),
-      ),
-      body: Text("Här är första frågan."),
-    );
-  }
-}
