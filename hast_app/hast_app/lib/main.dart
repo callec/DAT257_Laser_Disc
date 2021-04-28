@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/questionDrawer.dart';
 import 'package:hast_app/models/quiz_model.dart';
+
 //import 'package:hast_app/screen/main_page.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'MainPage.dart';
+
 //import 'question.dart';
 import 'result.dart';
 
@@ -17,21 +19,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider(create: (context) => QuizModel()),
-        ChangeNotifierProvider(
-          create: (context) => QuizModel(),
-        )
-      ],
-      child: MaterialApp(
-        routes: {
-          '/': (context) => MainPage(),
-          '/quiz': (context) => QuizPage(),
-          '/result': (context) => ResultPage(),
-          '/drawer': (context) => QuestionDrawer(title: "Hello"),
-        },
-      )
-    );
+        providers: [
+          Provider(create: (context) => QuizModel()),
+          ChangeNotifierProvider(
+            create: (context) => QuizModel(),
+          )
+        ],
+        child: MaterialApp(
+          theme: ThemeData(
+            // Define the default brightness and colors.
+            brightness: Brightness.dark,
+            primaryColor: Colors.lightBlue[800],
+            accentColor: Color.fromARGB(255,255, 49, 34),
+
+            // Define the default font family.
+            fontFamily: 'Georgia',
+
+            // Define the default TextTheme. Use this to specify the default
+            // text styling for headlines, titles, bodies of text, and more.
+            textTheme: TextTheme(
+              headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              headline6: TextStyle(fontSize: 24.0),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            ),
+          ),
+          routes: {
+            '/': (context) => MainPage(),
+            '/quiz': (context) => QuizPage(),
+            '/result': (context) => ResultPage(),
+            '/drawer': (context) => QuestionDrawer(title: "Hello"),
+          },
+        ));
   }
 }
 

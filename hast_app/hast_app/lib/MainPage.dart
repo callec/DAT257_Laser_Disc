@@ -1,6 +1,15 @@
+//Created by Erik and Sam
 import 'package:flutter/material.dart';
 
-//Created by Erik and Sam
+
+class hastLogga extends StatelessWidget{
+  Widget build(BuildContext context) {
+    return Image(image: AssetImage('assets/hastlogga.png'));
+  }
+}
+
+
+
 //Edited by Louise, Erik, Sam
 
 class MainPage extends StatelessWidget {
@@ -12,11 +21,16 @@ class MainPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('HAST - self reflection'), //title on top of the page
+            title:  Image.asset(
+              "assets/hastlogga.png",
+              fit: BoxFit.contain,
+              height: 45,
+            ),
             automaticallyImplyLeading: false,
-            backgroundColor: Theme.of(context).accentColor,
+            backgroundColor: Colors.white,
             bottom: TabBar(
-              indicatorColor: Colors.white,
+              labelColor: Color.fromARGB(255, 138, 146, 151),
+              indicatorColor: Colors.red,
               tabs: [
                 Tab(text: 'Home', icon: Icon(Icons.home)), //Our tabs
                 Tab(text: 'About the test', icon: Icon(Icons.help)),
