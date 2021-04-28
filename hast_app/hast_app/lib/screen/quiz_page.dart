@@ -50,7 +50,7 @@ class QuizPage extends StatelessWidget {
                                         model.currentQuestion.chosenAlternative,
                                         _getColor(model
                                             .currentQuestion.chosenAlternative),
-                                        model.currentQuestion.subAlternatives)
+                                        model.currentQuestion.subAlternatives, model.currentQuestion)
                                     : Text(""),
                                 Spacer(),
                                 Row(
@@ -127,6 +127,15 @@ class _CreateAnswers extends StatelessWidget {
         Expanded(child: _AnswerText(question.alternatives[1], 1, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 1 ? 1 : -1 : 1))),
         Expanded(child: _AnswerText(question.alternatives[2], 2, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 2 ? 2 : -1 : 2))),
         Expanded(child: _AnswerText(question.alternatives[3], 3, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 3 ? 3 : -1 : 3))),
+
+        //if(har vi valt alternativ)
+            //if(är det mitt alterntivt?)
+              //sätt min färg
+            //else
+                //Sätt mig grå
+        //sätt min färg
+        //
+
       ],
     ));
   }
@@ -139,8 +148,12 @@ class _CreateFollowUpAnswers extends StatelessWidget {
   final Color color;
   final int a1;
   final List<String> options;
+  final QuestionContent question;
+  bool _subAlternativeBeenChosen;
 
-  _CreateFollowUpAnswers(this.a1, this.color, this.options);
+  _CreateFollowUpAnswers(this.a1, this.color, this.options, this.question){
+    _subAlternativeBeenChosen = question.chosenSubAlternative != -1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +163,9 @@ class _CreateFollowUpAnswers extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 1, color, options[0])),
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 2, color, options[1])),
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 3, color, options[2])),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 1, 0, _subAlternativeBeenChosen ? question.chosenSubAlternative == 0 ? color : Colors.grey[200] :color , options[0])),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 2, 1, _subAlternativeBeenChosen ? question.chosenSubAlternative == 1 ? color : Colors.grey[200] :color , options[1])),
+            Expanded(child: _FollowUpAnswerText(a1 * 3 + 3, 2,  _subAlternativeBeenChosen ? question.chosenSubAlternative == 2 ? color : Colors.grey[200] :color , options[2])),
           ],
         ));
   }
@@ -208,6 +221,7 @@ class _AnswerText extends StatelessWidget {
             //setState(() => _followUpVisibility = !_followUpVisibility);
             print('$number : answertext');
             context.read<QuizModel>().setAlternative(number);
+            context.read<QuizModel>().setSubAlternative(null);
           },
           child: Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
@@ -230,8 +244,9 @@ class _FollowUpAnswerText extends StatelessWidget {
   final Color color;
   final int number;
   final String text;
+  final int index;
 
-  _FollowUpAnswerText(this.number, this.color, this.text);
+  _FollowUpAnswerText(this.number, this.index, this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -244,7 +259,8 @@ class _FollowUpAnswerText extends StatelessWidget {
           ),
           onPressed: () {
             print('$number points');
-            context.read<QuizModel>().setSubAlternative(number);
+            context.read<QuizModel>().setSubAlternative(index);
+            print('$index index');
           },
           child: Container(
               color: Colors.transparent,
