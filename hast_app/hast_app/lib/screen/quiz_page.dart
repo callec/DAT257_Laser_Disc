@@ -41,15 +41,21 @@ class QuizPage extends StatelessWidget {
                 _QuestionText(model.currentQuestion.question),
                 _CreateAnswers(
                   _getColor, model.currentQuestion.alternatives),
-              model.currentQuestion.chosenAlternative != -1 ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0), child: Text("How much do you agree to the chosen statement?", style: new TextStyle(fontSize: 18))): Text(""),
-              model.currentQuestion.chosenAlternative != -1
-                ?
-                  Padding( padding: const EdgeInsets.symmetric(horizontal: 128), child: _CreateFollowUpAnswers(
-                      model.currentQuestion.chosenAlternative,
-                      _getColor(
+                  model.currentQuestion.chosenAlternative != -1
+                      ? Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                          child: Text("How much do you agree to the chosen statement?",
+                            style: new TextStyle(fontSize: 18)))
+                      : Text(""),
+                  model.currentQuestion.chosenAlternative != -1
+                    ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 128),
+                      child: _CreateFollowUpAnswers(
+                        model.currentQuestion.chosenAlternative,
+                        _getColor(
                           model.currentQuestion.chosenAlternative),
-                      model.currentQuestion.subAlternatives))
-          : Text(""),
+                        model.currentQuestion.subAlternatives))
+                    : Text(""),
                 Spacer(),
                 Row(
                   children: <Widget>[
@@ -104,7 +110,6 @@ class _CreateAnswers extends StatelessWidget {
   final List<String> alternatives;
 
   final _ColorCallBack colorFunction;
-//  final Function(int) followUpCallBack;
 
   _CreateAnswers(this.colorFunction, this.alternatives);
 

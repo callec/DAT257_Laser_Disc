@@ -4,6 +4,9 @@ import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/common/quiz_content.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 
+/// Handles the inner workings of a Quiz.
+///
+/// Keeps the titles, questions, and enables traversing between them.
 class QuizModel with ChangeNotifier {
   // TODO do we need a QuizContent class? or same title for 8 qs?
   QuizContent _quiz;
@@ -23,6 +26,7 @@ class QuizModel with ChangeNotifier {
     this.reset();
   }
 
+  /// Reset the quiz to the starting point.
   void reset(){
     _quiz = QuestionFactory.createStandardQuiz();
     _questions = _quiz.questions;
@@ -31,18 +35,21 @@ class QuizModel with ChangeNotifier {
     _questionNumber = 0;
   }
 
+  /// Change question forward.
   void nextQuestion() {
     if (_questionNumber < (_questions.length - 1)) ++_questionNumber;
 
     notifyListeners();
   }
 
+  /// Change question backward.
   void prevQuestion() {
     if (_questionNumber > 0) --_questionNumber;
 
     notifyListeners();
   }
 
+  /// Set which alternative has been chosen.
   void setAlternative(int n) {
     if (this.currentQuestion.chosenAlternative == n)
       this.currentQuestion.chosenAlternative = -1;
@@ -51,6 +58,7 @@ class QuizModel with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Set which subalternative has been chosen.
   void setSubAlternative(int n) {
     this.currentQuestion.chosenSubAlternative = n;
 

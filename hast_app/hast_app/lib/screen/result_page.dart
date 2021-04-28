@@ -14,8 +14,8 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO: sätt text till den som matchar mängden poäng!
-    scoreText = text1;
     ResultModel result = context.watch<ResultModel>();
+    scoreText = result.text;
     score = result.score;
     /*switch(score){
       case (): {
@@ -24,36 +24,43 @@ class ResultPage extends StatelessWidget {
     }*/
 
     return Scaffold(
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-          Text('Score: $score',
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Score: $score',
               textAlign: TextAlign.center,
               style: new TextStyle(fontSize: 40.0, color: Colors.black)),
-          SizedBox(height: 50),
-          Container(
+            SizedBox(height: 50),
+            Container(
               width: MediaQuery.of(context).size.width - 100,
               child: Text('$scoreText',
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(fontSize: 20.0, color: Colors.black))),
-          SizedBox(height: 100),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.resolveWith(
-                  (Set<MaterialState> states) {
-                return Colors.white;
-              }),
-              backgroundColor: MaterialStateProperty.resolveWith(
-                  (Set<MaterialState> states) {
-                return Colors.red[800];
-              }),
+                textAlign: TextAlign.center,
+                style: new TextStyle(fontSize: 20.0, color: Colors.black)
+              )
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            child: Text('Home'),
-          )
-        ])));
+            SizedBox(height: 100),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.resolveWith(
+                  (Set<MaterialState> states) {
+                    return Colors.white;
+                  }
+                ),
+                backgroundColor: MaterialStateProperty.resolveWith(
+                  (Set<MaterialState> states) {
+                    return Colors.red[800];
+                  }
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text('Home'),
+            )
+          ]
+        )
+      )
+    );
   }
 }
