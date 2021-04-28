@@ -31,31 +31,54 @@ class QuizPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.read<QuizModel>().title),
       ),
-      body: Center(
+      body: Center(child: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('images/4.png'),
+            fit: BoxFit.cover
+          )
+        ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
           child: Consumer<QuizModel>(
             // TODO maybe it would be better to rebuild individual Text widgets
             // within the larger widgets?
-            builder: (context, model, child) => Column(children: [
-                _QuestionText(model.currentQuestion.question),
-                _CreateAnswers(
-                  _getColor, model.currentQuestion.alternatives),
-                  model.currentQuestion.chosenAlternative != -1
-                      ? Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                          child: Text("How much do you agree to the chosen statement?",
-                            style: new TextStyle(fontSize: 18)))
-                      : Text(""),
-                  model.currentQuestion.chosenAlternative != -1
-                    ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 128),
-                      child: _CreateFollowUpAnswers(
-                        model.currentQuestion.chosenAlternative,
-                        _getColor(
-                          model.currentQuestion.chosenAlternative),
-                        model.currentQuestion.subAlternatives))
-                    : Text(""),
+              builder: (context, model, child) => Column(children: [
+                Container(
+                  //color: Colors.pink,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 0.5,
+                        blurRadius: 1,
+                        offset: Offset(0, 2),)],
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    children: [
+                      _QuestionText(model.currentQuestion.question),
+                      _CreateAnswers(
+                        _getColor, model.currentQuestion.alternatives),
+                        model.currentQuestion.chosenAlternative != -1
+                            ? Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                child: Text("How much do you agree to the chosen statement?",
+                                  style: new TextStyle(fontSize: 18)))
+                            : Text(""),
+                        // TODO don't increase the size of the container start
+                        // with grey followup -> color on alternative chosen
+                        model.currentQuestion.chosenAlternative != -1
+                          ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 128),
+                            child: _CreateFollowUpAnswers(
+                              model.currentQuestion.chosenAlternative,
+                              _getColor(
+                                model.currentQuestion.chosenAlternative),
+                              model.currentQuestion.subAlternatives))
+                          : Text(""),])),
                 Spacer(),
                 Row(
                   children: <Widget>[
@@ -99,7 +122,7 @@ class QuizPage extends StatelessWidget {
           )
         )
       )
-    );
+    ));
   }
 }
 
@@ -168,7 +191,7 @@ class _QuestionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
+      //color: Colors.amber,
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Text(
