@@ -80,7 +80,7 @@ class QuizPage extends StatelessWidget {
                       style: TextButton.styleFrom(
                         primary: Colors.white,
                         backgroundColor: (model.currentNumber == 7)
-                        ? model.finished ? Colors.green[800] : Colors.grey
+                        ? (model.finished ? Colors.green[800] : Colors.grey)
                         : Colors.red[800],
                       ),
                       onPressed: () {
