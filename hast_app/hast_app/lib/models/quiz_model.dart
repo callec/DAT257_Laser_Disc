@@ -11,6 +11,7 @@ class QuizModel with ChangeNotifier {
   // TODO do we need a QuizContent class? or same title for 8 qs?
   QuizContent _quiz;
   int _questionNumber = 0;
+  int _answered = 0;
   String _questionTitle;
 
   List<String> _resultText;
@@ -21,6 +22,15 @@ class QuizModel with ChangeNotifier {
   int get currentNumber => _questionNumber;
   String get title => _questionTitle;
   List<String> get resultList => _resultText;
+  bool get finished {
+    for (QuestionContent q in this._questions) {
+      if (q.chosenSubAlternative == -1) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   QuizModel() {
     this.reset();
@@ -55,6 +65,7 @@ class QuizModel with ChangeNotifier {
       this.currentQuestion.chosenAlternative = -1;
     else
       this.currentQuestion.chosenAlternative = n;
+
     notifyListeners();
   }
 

@@ -80,13 +80,13 @@ class QuizPage extends StatelessWidget {
                       style: TextButton.styleFrom(
                         primary: Colors.white,
                         backgroundColor: (model.currentNumber == 7)
-                        ? Colors.green[800]
+                        ? model.finished ? Colors.green[800] : Colors.grey
                         : Colors.red[800],
                       ),
                       onPressed: () {
                         if (model.currentNumber <= 6) {
                           model.nextQuestion();
-                        } else if (model.currentNumber == 7) {
+                        } else if (model.currentNumber == 7 && model.finished) {
                           Navigator.pushNamed(context, '/result');
                         }
                       },
