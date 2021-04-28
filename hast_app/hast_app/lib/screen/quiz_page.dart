@@ -51,9 +51,8 @@ class QuizPage extends StatelessWidget {
                                 model.currentQuestion.chosenAlternative != -1
                                     ? _CreateFollowUpAnswers(
                                         model.currentQuestion.chosenAlternative,
-                                        _getColor(model
-                                            .currentQuestion.chosenAlternative),
-                                        model.currentQuestion.subAlternatives, model.currentQuestion)
+                                        _getColor,
+                                      model.currentQuestion)
                                     : Text(""),
                                 Spacer(),
                                 Row(
@@ -125,7 +124,7 @@ class _CreateAnswers extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
 
-      children: [
+      children: _buildAnswers()/*[
         Expanded(child: _AnswerText(question.alternatives[0], 0, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 0 ? 0 : -1 : 0))),
         Expanded(child: _AnswerText(question.alternatives[1], 1, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 1 ? 1 : -1 : 1))),
         Expanded(child: _AnswerText(question.alternatives[2], 2, colorFunction(alternativeBeenChosen ? question.chosenAlternative == 2 ? 2 : -1 : 2))),
@@ -139,24 +138,45 @@ class _CreateAnswers extends StatelessWidget {
         //sätt min färg
         //
 
-      ],
+      ],*/
     ));
   }
+
+  List<Widget> _buildAnswers(){
+    List<Widget> tempList = [];
+    for(int x = 0; x < question.alternatives.length; x++){
+      tempList.add(
+          Expanded(child:
+          _AnswerText(
+              question.alternatives[x],
+              x,
+              colorFunction(alternativeBeenChosen ? question.chosenAlternative == x ? x : -1 : x))
+          )
+      );
+      //if(har vi valt alternativ)
+      //    if(är det mitt alterntivt?)
+      //        sätt min färg
+      //    else
+      //        Sätt mig grå
+      //
+      //sätt min färg
+      //
+
+    }
+    return tempList;
+  }
+
 }
 
 /// Create the three alternatives used to answer questions.
 ///
 /// Has arguments three strings which shows that to display
 class _CreateFollowUpAnswers extends StatelessWidget {
-  final Color color;
-  final int a1;
-  final List<String> options;
+  final _ColorCallBack color;
+  final int multiplier;
   final QuestionContent question;
-  bool _subAlternativeBeenChosen;
 
-  _CreateFollowUpAnswers(this.a1, this.color, this.options, this.question){
-    _subAlternativeBeenChosen = question.chosenSubAlternative != -1;
-  }
+  _CreateFollowUpAnswers(this.multiplier, this.color, this.question);
 
   @override
   Widget build(BuildContext context) {
@@ -165,12 +185,38 @@ class _CreateFollowUpAnswers extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 1, 0, _subAlternativeBeenChosen ? question.chosenSubAlternative == 0 ? color : Colors.grey[200] :color , options[0])),
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 2, 1, _subAlternativeBeenChosen ? question.chosenSubAlternative == 1 ? color : Colors.grey[200] :color , options[1])),
-            Expanded(child: _FollowUpAnswerText(a1 * 3 + 3, 2,  _subAlternativeBeenChosen ? question.chosenSubAlternative == 2 ? color : Colors.grey[200] :color , options[2])),
-          ],
+          children: _buildSubAlternatives()/*[
+            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 1, 0, color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 0 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[0])),
+            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 2, 1, color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 1 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[1])),
+            Expanded(child: _FollowUpAnswerText(multiplier * 3 + 3, 2,  color(_subAlternativeBeenChosen ? question.chosenSubAlternative == 2 ? question.chosenAlternative : -1 : question.chosenAlternative) , options[2])),
+          ]*/,
         ));
+  }
+
+  List<Widget> _buildSubAlternatives(){
+    List<Widget> tempList = [];
+
+    bool _subAltBeenChosen = question.chosenSubAlternative != -1;
+
+    int alternativeNumber = question.chosenAlternative;
+    int subAlternativeNumber = question.chosenSubAlternative;
+    List<String> options = question.subAlternatives;
+
+
+
+    for(int x = 0; x < 3; x++){
+      tempList.add(
+          Expanded(
+              child: _FollowUpAnswerText(
+                  multiplier * 3 + (x+1),
+                  x,
+                  color(_subAltBeenChosen ?
+                      subAlternativeNumber == x ? alternativeNumber : -1 : alternativeNumber),
+                  options[x])));
+    }
+
+    return tempList;
+
   }
 }
 
@@ -263,7 +309,6 @@ class _FollowUpAnswerText extends StatelessWidget {
           onPressed: () {
             print('$number points');
             context.read<QuizModel>().setSubAlternative(index);
-            print('$index index');
           },
           child: Container(
               color: Colors.transparent,
