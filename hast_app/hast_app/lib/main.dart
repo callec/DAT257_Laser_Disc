@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hast_app/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/questionDrawer.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             // Define the default brightness and colors.
             brightness: Brightness.light,
-            primaryColor: Color.fromARGB(255, 138, 146, 151),
-            accentColor: Color.fromARGB(255,255, 49, 34),
+            primaryColor: hastGrey,
+            accentColor: hastRed,
+            backgroundColor: hastWhite,
 
             // Define the default font family.
             fontFamily: 'Georgia',

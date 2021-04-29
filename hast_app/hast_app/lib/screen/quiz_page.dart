@@ -81,7 +81,7 @@ class QuizPage extends StatelessWidget {
                                         primary: Colors.white,
                                         backgroundColor:
                                             (model.currentNumber == 7)
-                                                ? Colors.green[800]
+                                                ? Colors.green[600]
                                                 : Color.fromARGB(255,255, 49, 34),
                                       ),
                                       onPressed: () {
