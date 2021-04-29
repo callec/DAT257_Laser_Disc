@@ -15,6 +15,7 @@ class QuizModel with ChangeNotifier {
   QuestionContent get currentQuestion => _questions[_questionNumber];
   int get currentNumber => _questionNumber;
   String get title => _questionTitle;
+  int get numberOfQuestions => _questions.length;
 
   void nextQuestion() {
     if (_questionNumber < (_questions.length - 1)) ++_questionNumber;

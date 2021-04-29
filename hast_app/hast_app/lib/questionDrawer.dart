@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hast_app/models/quiz_model.dart';
-
-//import 'package:hast_app/question.dart';
-import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
 
 //Created by Erik, Louise and Sam
@@ -18,22 +15,9 @@ class QuestionDrawer extends StatefulWidget {
 }
 
 class _QuestionDrawerState extends State<QuestionDrawer> {
-  int _selectedDestination = 1;
-  final List<bool> _finishedQuestions = [
-    true,
-    true,
-    false,
-    false,
-    true,
-    true,
-    true,
-    false
-  ];
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
 
     return Row(
         children: [
@@ -52,9 +36,11 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
   Widget _buildOverviewDrawer(
       BuildContext context, ThemeData theme, QuizModel model) {
     return ListView.builder(
-        itemCount: _finishedQuestions.length + 1,
+        itemCount: model.numberOfQuestions + 1,
         padding: EdgeInsets.zero,
         itemBuilder: (context, i) {
+
+          //Create the title
           if (i == 0) {
             return Column(
               children: [
@@ -70,10 +56,15 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
               ],
             );
           }
+
+          // Create the Questions
+          // i - 1 is used to combat the shift problem with the title
           return ListTile(
+
             leading: Icon(
               Icons.label,
-              color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor,
+              color: model.currentNumber == i - 1
+                  ? theme.accentColor : theme.primaryColor,
             ),
             title: Text('Question ' + i.toString(),
                 style: TextStyle(fontFamily: theme.textTheme.bodyText2.fontFamily,
@@ -83,11 +74,5 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
             onTap: () => model.setQuestion(i - 1),
           );
         });
-  }
-
-  void selectDestination(int index) {
-    setState(() {
-      _selectedDestination = index;
-    });
   }
 }
