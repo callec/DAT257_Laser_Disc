@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
-import 'package:provider/provider.dart';
-import 'package:hast_app/questionDrawer.dart';
 import 'package:hast_app/models/quiz_model.dart';
-
-//import 'package:hast_app/screen/main_page.dart';
+import 'package:hast_app/QuestionDrawer.dart';
+import 'package:hast_app/screen/HomePage.dart';
 import 'package:hast_app/screen/quiz_page.dart';
-import 'MainPage.dart';
-
-//import 'question.dart';
+import 'package:provider/provider.dart';
 import 'result.dart';
 
 //Edited by Erik, Felix, Sam
@@ -43,12 +39,13 @@ class MyApp extends StatelessWidget {
             // text styling for headlines, titles, bodies of text, and more.
             textTheme: TextTheme(
               headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              headline4: TextStyle(fontSize: 40.0, color: Colors.black),
               headline6: TextStyle(fontSize: 24.0),
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),
           routes: {
-            '/': (context) => MainPage(),
+            '/': (context) => HomePage(),
             '/quiz': (context) => QuizPage(),
             '/result': (context) => ResultPage(),
             '/drawer': (context) => QuestionDrawer(title: "Hello"),

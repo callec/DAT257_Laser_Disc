@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hast_app/MainPage.dart';
+
+import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question.dart';
-import 'package:hast_app/questionDrawer.dart';
+import 'package:hast_app/QuestionDrawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
-//Created?
-//Edited by Erik, Felix, Sam
+import 'HomePage.dart';
+
+//Created Carl, Felix, Jacob
+//Edited by Erik, Felix, Sam, Henrik
 
 /// A function that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
@@ -17,24 +20,26 @@ class QuizPage extends StatelessWidget {
   Color _getColor(int n, [int intensity = 200]) {
     switch (n) {
       case 0:
-        return Color.fromARGB(255, 246, 207, 30);
+        return hastAlt1;
       case 1:
-        return Color.fromARGB(255, 255, 189, 84);
+        return hastAlt2;
       case 2:
-        return Color.fromARGB(255, 255, 151, 74);
+        return hastAlt3;
       case 3:
-        return Color.fromARGB(255, 255, 103, 86);
+        return hastAlt4;
       default:
-        return Colors.grey[intensity];
+        return altGrey;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
         appBar: AppBar(
-          title: hastLogga(),
-          backgroundColor: Colors.white,
+          title: HastLogga(),
+          backgroundColor: theme.backgroundColor,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
         body: Row(children: [
@@ -60,11 +65,11 @@ class QuizPage extends StatelessWidget {
                                   children: <Widget>[
                                     TextButton(
                                       style: TextButton.styleFrom(
-                                        primary: Colors.white,
+                                        primary: theme.backgroundColor,
                                         backgroundColor:
                                             (model.currentNumber == 0)
-                                                ? Colors.grey
-                                                : Color.fromARGB(255,255, 49, 34),
+                                                ? disabledGrey
+                                                : theme.accentColor,
                                       ),
                                       onPressed: () {
                                         if (model.currentNumber >= 1) {
@@ -81,8 +86,8 @@ class QuizPage extends StatelessWidget {
                                         primary: Colors.white,
                                         backgroundColor:
                                             (model.currentNumber == 7)
-                                                ? Colors.green[600]
-                                                : Color.fromARGB(255,255, 49, 34),
+                                                ? hastGreen
+                                                : theme.accentColor,
                                       ),
                                       onPressed: () {
                                         if (model.currentNumber <= 6) {
@@ -251,9 +256,7 @@ class _AnswerText extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: Text(
                 atext,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
+                style: Theme.of(context).textTheme.bodyText2,
               )),
         )),
       ]),
@@ -291,9 +294,7 @@ class _FollowUpAnswerText extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                   child: Text(
                     text,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ))),
         ));
   }

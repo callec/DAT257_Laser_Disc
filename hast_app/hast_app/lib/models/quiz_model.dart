@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hast_app/common/question.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 
-//Created?
+//Created Carl
 //Edited by Erik, Felix, Sam
 
 class QuizModel with ChangeNotifier {

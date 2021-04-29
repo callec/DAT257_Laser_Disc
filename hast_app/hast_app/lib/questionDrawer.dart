@@ -6,7 +6,7 @@ import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
 
 //Created by Erik, Louise and Sam
-//Edited by Sam, Louise and Erik
+//Edited by Sam, Louise, Erik and Felix
 
 class QuestionDrawer extends StatefulWidget {
   final String title;
@@ -75,7 +75,9 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
               Icons.label,
               color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor,
             ),
-            title: Text('Question ' + i.toString(), style: TextStyle(color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor)
+            title: Text('Question ' + i.toString(),
+                style: TextStyle(fontFamily: theme.textTheme.bodyText2.fontFamily,
+                    color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor)
             ),
             selected: model.currentNumber == i - 1,
             onTap: () => model.setQuestion(i - 1),

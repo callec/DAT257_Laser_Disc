@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+//Edited Sam, Felix, Erik
+
 class ResultPage extends StatelessWidget {
   int score = 0;
 
@@ -18,6 +21,7 @@ class ResultPage extends StatelessWidget {
         scoreText = text1;
       }
     }*/
+    final theme = Theme.of(context);
 
     return Scaffold(
         body: Center(
@@ -26,23 +30,23 @@ class ResultPage extends StatelessWidget {
                 children: <Widget>[
           Text('Score: $score',
               textAlign: TextAlign.center,
-              style: new TextStyle(fontSize: 40.0, color: Colors.black)),
+              style: theme.textTheme.headline4),
           SizedBox(height: 50),
           Container(
               width: MediaQuery.of(context).size.width - 100,
               child: Text('$scoreText',
                   textAlign: TextAlign.center,
-                  style: new TextStyle(fontSize: 20.0, color: Colors.black))),
+                  style: theme.textTheme.headline5)),
           SizedBox(height: 100),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.resolveWith(
                   (Set<MaterialState> states) {
-                return Colors.white;
+                return theme.backgroundColor;
               }),
               backgroundColor: MaterialStateProperty.resolveWith(
                   (Set<MaterialState> states) {
-                return Color.fromARGB(255,255, 49, 34);
+                return theme.accentColor;
               }),
             ),
             onPressed: () {

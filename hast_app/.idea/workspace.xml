@@ -40,12 +40,17 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../flutter" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hast_app/lib/screen" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ultim\Documents\GitHub\DAT257_projekt\hast_app\hast_app\lib\screen" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
@@ -88,26 +93,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="198" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1618480323662" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1618480118420">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1619699835110">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1618480118420" />
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1619620953715">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699835110" />
+    <state width="916" height="276" key="GridCell.Tab.0.bottom" timestamp="1619699924301">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619620953715" />
-    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1619620953715">
+    <state width="916" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699924301" />
+    <state width="916" height="276" key="GridCell.Tab.0.center" timestamp="1619699924300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619620953715" />
-    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1619620953715">
+    <state width="916" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699924300" />
+    <state width="916" height="276" key="GridCell.Tab.0.left" timestamp="1619699924300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619620953715" />
-    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1619620953715">
+    <state width="916" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699924300" />
+    <state width="916" height="276" key="GridCell.Tab.0.right" timestamp="1619699924300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619620953715" />
+    <state width="916" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699924300" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1618480396556">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
