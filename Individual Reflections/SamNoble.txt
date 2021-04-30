@@ -1,5 +1,6 @@
 Individual reflection - Sam Noble
 
+
 Week 1
 - What do I want to learn or understand better?
 I feel intrigued about using Scrum, I have never used it before but it seems promising. I would like to learn more about Scrum and how to set up a project like this. Also, I am excited to work with my team and learn how to create an app.
@@ -12,6 +13,7 @@ Right now my contribution towards using scrum is reading up on Scrum and trying 
 
 - What is my contribution towards the team’s deliveries?
 The whole team including myself has contributed with ideas that we could run with for this project. 
+
 
 Week 2
 - What do I want to learn or understand better?
@@ -26,8 +28,10 @@ I have never used scrum before but I have read up on it and I have contributed t
 - What is my contribution towards the team’s deliveries?
 I have contributed with a stakeholder whom the group has chosen to go forward with. Also I believe that I have been active in group meetings to help create an effective workflow. I will try to prepare myself further in regards to the chosen programming language.
 
+
 Week 3 (Easter)
-No reflection.
+- No reflection.
+
 
 Week 4
 - What do I want to learn or understand better?
@@ -41,6 +45,7 @@ My role this sprint has been to act as Timekeeper and “Bssare” which hopeful
 
 - What is my contribution towards the team’s deliveries?
 I have read up on Dart and built a test app in order to prepare myself for my task this sprint. This week my contribution was mainly towards completing one of the user stories.
+
 
 Week 5
 - What do I want to learn or understand better?
@@ -56,16 +61,38 @@ This week I have been active in meetings and offered input and solutions for our
 I have read up on Dart and built a test app in order to prepare myself for my task this sprint. This week my contribution was mainly towards helping to complete my groups designated user stories.
 
 
+Week 6
+- What do I want to learn or understand better?
+I want to continue to learn what flutter is capable of in terms of app development. I want to learn how to store data in a good way.
+
+- How can I help someone else, or the entire team, to learn something new?
+Our groups have learned different things in solving each user story. I can show others how my team approached and solved our problems. 
+
+- What is my contribution towards the team’s use of Scrum?
+This week I have been product owner and presented our product for our stake holders.
+
+- What is my contribution towards the team’s deliveries?
+I have been active in meetings and contributed in how we have solved our user stories and created a MVP that Hast has asked for.
 
 
+Week 7
+- What do I want to learn or understand better?
+
+- How can I help someone else, or the entire team, to learn something new?
+
+- What is my contribution towards the team’s use of Scrum?
+
+- What is my contribution towards the team’s deliveries?
 
 
+Week 8
+- What do I want to learn or understand better?
 
+- How can I help someone else, or the entire team, to learn something new?
 
+- What is my contribution towards the team’s use of Scrum?
 
-
-
-
+- What is my contribution towards the team’s deliveries?
 
 
 
