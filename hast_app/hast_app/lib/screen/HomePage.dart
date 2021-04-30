@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 //Created by Erik and Sam
-//Edited by Louise, Erik, Sam
+//Edited by Louise, Erik, Felix, Sam
 
-class MainPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return MaterialApp(
       title: 'Flutter Demo',
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('HAST - self reflection'), //title on top of the page
+            title: HastLogga(),
             automaticallyImplyLeading: false,
-            backgroundColor: Theme.of(context).accentColor,
+            backgroundColor: theme.backgroundColor,
             bottom: TabBar(
-              indicatorColor: Colors.white,
+              labelColor: theme.primaryColor,
+              indicatorColor: theme.accentColor,
               tabs: [
                 Tab(text: 'Home', icon: Icon(Icons.home)), //Our tabs
                 Tab(text: 'About the test', icon: Icon(Icons.help)),
@@ -62,27 +64,29 @@ class MainPage extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 200,
         child: Text(presentingText,
             textAlign: TextAlign.center,
-            style: new TextStyle(fontSize: 20.0, color: Colors.black)));
+            style: Theme.of(context).textTheme.headline6));
   }
 
   Widget _button(context) {
     //
-    return ElevatedButton(
+    return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
         onPressed: () {
-          Navigator.pushNamed(context, '/drawer');
+          Navigator.pushNamed(context, '/quiz');
         },
         child: Text("Start Self Reflection"));
   }
+
+
+
 }
 
-class toTest extends StatelessWidget {
-  @override
+class HastLogga extends StatelessWidget{
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Test"),
-      ),
-      body: Text("Här är första frågan."),
+    return Image.asset(
+      "assets/hastlogga.png",
+      fit: BoxFit.contain,
+      height: 45,
     );
   }
 }
+

@@ -332,7 +332,7 @@ class _QuestionText extends StatelessWidget {
 /// Arguments: answer text, a number, a function
 class _AnswerText extends StatelessWidget {
   final String atext;
-  Color color;
+  final Color color;
   final int number;
   final Function(int) followUpCallBack;
 
