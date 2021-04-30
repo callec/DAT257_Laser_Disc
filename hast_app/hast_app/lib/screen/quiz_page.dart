@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:hast_app/colors.dart';
-import 'package:hast_app/common/question.dart';
+import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/QuestionDrawer.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -87,10 +87,10 @@ class QuizPage extends StatelessWidget {
         : Text(""),
                 model.currentQuestion.chosenAlternative != -1
                 ? Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 128),
-    child: _CreateFollowUpAnswers(
-    _getColor,
-    model.currentQuestion)
+                    padding: const EdgeInsets.symmetric(horizontal: 128),
+                    child: _CreateFollowUpAnswers(
+                      _getColor,
+                      model.currentQuestion))
                 : Text(""),])),
                 Spacer(),
                 Row(
@@ -135,7 +135,8 @@ class QuizPage extends StatelessWidget {
           )
         )
       )
-    ));
+    ))
+    ]));
   }
 }
 
