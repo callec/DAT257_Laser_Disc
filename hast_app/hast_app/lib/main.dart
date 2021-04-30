@@ -6,6 +6,10 @@ import 'package:hast_app/screen/HomePage.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
 import 'result.dart';
+import 'MainPage.dart';
+//import 'question_content.dart';
+import 'screen/result_page.dart';
+import 'package:hast_app/models/result_model.dart';
 
 //Edited by Erik, Felix, Sam
 
@@ -18,12 +22,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          Provider(create: (context) => QuizModel()),
-          ChangeNotifierProvider(
-            create: (context) => QuizModel(),
-          )
-        ],
+      providers: [
+        Provider(create: (context) => ResultModel()),
+        ChangeNotifierProxyProvider<ResultModel, QuizModel>(
+          create: (context) => QuizModel(),
+          update: (context, result, quiz){
+            result.quizModel = quiz;
+            return quiz;
+          }
+
+        )
+      ],
         child: MaterialApp(
           theme: ThemeData(
             // Define the default brightness and colors.
@@ -44,13 +53,13 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),
-          routes: {
-            '/': (context) => HomePage(),
-            '/quiz': (context) => QuizPage(),
-            '/result': (context) => ResultPage(),
-            '/drawer': (context) => QuestionDrawer(title: "Hello"),
-          },
-        ));
+        routes: {
+          '/': (context) => HomePage(),
+          '/quiz': (context) => QuizPage(),
+          '/result': (context) => ResultPage(),
+        },
+      )
+    );
   }
 }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:hast_app/models/quiz_model.dart';
 
 //Created by Erik and Sam
 //Edited by Louise, Erik, Felix, Sam
@@ -6,6 +8,8 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var quizModel = context.watch<QuizModel>();
+
     final theme = Theme.of(context);
     return MaterialApp(
       title: 'Flutter Demo',
@@ -35,7 +39,7 @@ class HomePage extends StatelessWidget {
                         _description(
                             context, 'WELCOME! Presenting Information'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                        _button(context)
+                        _button(context, quizModel)
                       ]))),
               Center(
                   child: Container(
@@ -67,17 +71,15 @@ class HomePage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6));
   }
 
-  Widget _button(context) {
+  Widget _button(context, QuizModel quizModel) {
     //
     return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
         onPressed: () {
+          quizModel.reset();
           Navigator.pushNamed(context, '/quiz');
         },
         child: Text("Start Self Reflection"));
   }
-
-
-
 }
 
 class HastLogga extends StatelessWidget{
@@ -89,4 +91,3 @@ class HastLogga extends StatelessWidget{
     );
   }
 }
-
