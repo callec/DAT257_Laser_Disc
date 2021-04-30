@@ -5,14 +5,12 @@ import 'package:flutter/rendering.dart';
 
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
-import 'package:hast_app/QuestionDrawer.dart';
+import 'package:hast_app/screen/question_overview.dart';
+
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
-import 'HomePage.dart';
-
-//Created Carl, Felix, Jacob
-//Edited by Erik, Felix, Sam, Henrik
+import 'home_page.dart';
 
 /// A function that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);

@@ -1,11 +1,8 @@
-//import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/common/quiz_content.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 
-//Created Carl
-//Edited by Erik, Felix, Sam
 
 /// Handles the inner workings of a Quiz.
 ///

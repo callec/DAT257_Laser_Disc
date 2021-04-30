@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
-//Created by Erik and Sam
-//Edited by Louise, Erik, Felix, Sam
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

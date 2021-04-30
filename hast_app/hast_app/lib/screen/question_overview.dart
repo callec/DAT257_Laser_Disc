@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:provider/provider.dart';
 
-//Created by Erik, Louise and Sam
-//Edited by Sam, Louise, Erik and Felix
 
 class QuestionDrawer extends StatefulWidget {
   final String title;
