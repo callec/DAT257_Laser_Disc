@@ -8,7 +8,7 @@ class ResultModel{
     var questions = quizModel.questions;
     int totalScore = 0;
     for(var question in questions){
-      totalScore += question.chosenSubAlternative;
+      totalScore += (question.chosenSubAlternative + 1) + (question.chosenAlternative * 3);
     }
     return totalScore;
   }
