@@ -6,7 +6,7 @@
      topics.
 * how can I help someone else, or the entire team, to learn something new?
    * By sharing our previous knowledge of the topics we need to learn more
-     about, e.g. agile, scrum, KPIs. 
+     about, e.g. agile, scrum, KPIs.
 * what is my contribution towards the team’s use of Scrum?
    * Previous experience in agile, shared a small summary of scrum that was
      found online.
@@ -74,3 +74,20 @@ Week 4
      how it went. I still feel that we could be more productive but it
      is not easy to achieve as we need to consider the teams overall knowledge
      of development as well as arringing meetings when everyone is available.
+
+Week 5
+* what do I want to learn or understand better?
+   * I want to learn how to export data from a flutter application and
+     possible implement a database. I also want to learn how to make adaptive
+     UIs that changes when the resolution changes.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week mostly programming patterns and design of backend.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way.
+* what is my contribution towards the team’s deliveries?
+   * This week we have collaborated (as usual) and I am satisfied with how it
+     went. This week I tested a design pattern for the backend that worked out
+     well so we decided to implement it, as well as working together on the
+     use stories as usual.
