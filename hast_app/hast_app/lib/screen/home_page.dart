@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
 class HastLogga extends StatelessWidget{
   Widget build(BuildContext context) {
     return Image.asset(
-      "assets/hastlogga.png",
+      "assets/images/hastlogga.png",
       fit: BoxFit.contain,
       height: 45,
     );

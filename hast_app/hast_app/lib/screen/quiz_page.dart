@@ -50,7 +50,7 @@ class QuizPage extends StatelessWidget {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/4.png'),
+                image: AssetImage('assets/images/4.png'),
                 fit: BoxFit.cover
               )
             ),
