@@ -94,10 +94,10 @@ class QuestionFactory {
     questionList.insert(
         0,
         new QuestionContent(
-          number: 1,
-          question: question1_text,
-          alternatives: [option1_1, option1_2, option1_3, option1_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          1,
+          question1_text,
+          [option1_1, option1_2, option1_3, option1_4],
+          [subOption1, subOption2, subOption3],
         ));
 //            question1_text, option1_1, option1_2, option1_3, option1_4));
 
@@ -105,66 +105,66 @@ class QuestionFactory {
     questionList.insert(
         1,
         new QuestionContent(
-          number: 2,
-          question: question2_text,
-          alternatives: [option2_1, option2_2, option2_3, option2_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          2,
+          question2_text,
+          [option2_1, option2_2, option2_3, option2_4],
+          [subOption1, subOption2, subOption3],
         ));
 
     // Add question 3 text
     questionList.insert(
         2,
         new QuestionContent(
-          number: 3,
-          question: question1_text,
-          alternatives: [option1_1, option1_2, option1_3, option1_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          3,
+          question1_text,
+          [option1_1, option1_2, option1_3, option1_4],
+          [subOption1, subOption2, subOption3],
         ));
 
     // Add question 4 text
     questionList.insert(
         3,
         new QuestionContent(
-          number: 4,
-          question: question2_text,
-          alternatives: [option2_1, option2_2, option2_3, option2_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          4,
+          question2_text,
+          [option2_1, option2_2, option2_3, option2_4],
+          [subOption1, subOption2, subOption3],
         ));
     // Add question 5 text
     questionList.insert(
         4,
         new QuestionContent(
-          number: 5,
-          question: question1_text,
-          alternatives: [option1_1, option1_2, option1_3, option1_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          5,
+          question1_text,
+          [option1_1, option1_2, option1_3, option1_4],
+          [subOption1, subOption2, subOption3],
         ));
     // Add question 6 text
     questionList.insert(
         5,
         new QuestionContent(
-          number: 6,
-          question: question2_text,
-          alternatives: [option2_1, option2_2, option2_3, option2_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          6,
+          question2_text,
+          [option2_1, option2_2, option2_3, option2_4],
+          [subOption1, subOption2, subOption3],
         ));
     // Add question 7 text
     questionList.insert(
         6,
         new QuestionContent(
-          number: 7,
-          question: question1_text,
-          alternatives: [option1_1, option1_2, option1_3, option1_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          7,
+          question1_text,
+          [option1_1, option1_2, option1_3, option1_4],
+          [subOption1, subOption2, subOption3],
         ));
     // Add question 8 text
     questionList.insert(
         7,
         new QuestionContent(
-          number: 8,
-          question: question2_text,
-          alternatives: [option2_1, option2_2, option2_3, option2_4],
-          subAlternatives: [subOption1, subOption2, subOption3],
+          8,
+          question2_text,
+          [option2_1, option2_2, option2_3, option2_4],
+          [subOption1, subOption2, subOption3],
         ));
     return QuizContent(question_title, resultText, questionList);
   }

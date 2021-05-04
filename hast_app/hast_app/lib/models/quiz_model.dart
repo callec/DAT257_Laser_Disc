@@ -9,13 +9,13 @@ import 'package:hast_app/models/quiz_factory.dart';
 /// Keeps the titles, questions, and enables traversing between them.
 class QuizModel with ChangeNotifier {
   // TODO do we need a QuizContent class? or same title for 8 qs?
-  QuizContent _quiz;
-  int _questionNumber = 0;
-  int _answered = 0;
-  String _questionTitle;
+  late QuizContent _quiz;
+  late int _questionNumber = 0;
+  late int _answered = 0;
+  late String _questionTitle;
 
-  List<String> _resultText;
-  List<QuestionContent> _questions;
+  late List<String> _resultText;
+  late List<QuestionContent> _questions;
 
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
@@ -80,7 +80,10 @@ class QuizModel with ChangeNotifier {
 
   /// Set which subalternative has been chosen.
   void setSubAlternative(int n) {
-    this.currentQuestion.chosenSubAlternative = n;
+    if (this.currentQuestion.chosenSubAlternative == n)
+      this.currentQuestion.chosenSubAlternative = -1;
+    else
+      this.currentQuestion.chosenSubAlternative = n;
 
     notifyListeners();
   }

@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 
 
 class QuestionDrawer extends StatefulWidget {
-  final String title;
 
-  QuestionDrawer({Key key, this.title}) : super(key: key);
+  QuestionDrawer();
 
   @override
   _QuestionDrawerState createState() => _QuestionDrawerState();
@@ -65,7 +64,7 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
                   ? theme.accentColor : theme.primaryColor,
             ),
             title: Text('Question ' + i.toString(),
-                style: TextStyle(fontFamily: theme.textTheme.bodyText2.fontFamily,
+                style: TextStyle(fontFamily: theme.textTheme.bodyText2!.fontFamily,
                     color: model.currentNumber == i - 1 ? theme.accentColor : theme.primaryColor)
             ),
             selected: model.currentNumber == i - 1,

@@ -276,7 +276,7 @@ class _AnswerText extends StatelessWidget {
                 //setState(() => _followUpVisibility = !_followUpVisibility);
                 print('$number : answertext');
                 context.read<QuizModel>().setAlternative(number);
-                context.read<QuizModel>().setSubAlternative(null);
+                context.read<QuizModel>().setSubAlternative(-1);
               },
               child: Padding(
                 padding: EdgeInsets.fromLTRB(8, 8, 8, 8),

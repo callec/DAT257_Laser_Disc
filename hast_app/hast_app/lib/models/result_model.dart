@@ -2,7 +2,7 @@ import 'package:hast_app/models/quiz_model.dart';
 
 class ResultModel{
 
-  QuizModel quizModel;
+  late QuizModel quizModel;
 
   int get score {
     var questions = quizModel.questions;

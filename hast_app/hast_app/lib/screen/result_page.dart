@@ -4,16 +4,11 @@ import 'package:hast_app/models/result_model.dart';
 import 'package:provider/provider.dart';
 
 class ResultPage extends StatelessWidget {
-  int score = 0;
-
-  String scoreText;
-
   @override
   Widget build(BuildContext context) {
-    //TODO: sätt text till den som matchar mängden poäng!
     ResultModel result = context.watch<ResultModel>();
-    scoreText = result.text;
-    score = result.score;
+    String scoreText = result.text;
+    int score = result.score;
     final theme = Theme.of(context);
 
     return Scaffold(

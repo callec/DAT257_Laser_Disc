@@ -4,18 +4,18 @@ class QuestionContent {
   final String question;
   final List<String> alternatives;
   final List<String> subAlternatives;
-  int _chAlt;
-  int _chSAlt;
+  int _chAlt = -1;
+  int _chSAlt = -1;
 
-  int get chosenAlternative => this._chAlt == null ? -1 : this._chAlt;
+  int get chosenAlternative => this._chAlt;
   set chosenAlternative(int n) => this._chAlt = n;
-  int get chosenSubAlternative => this._chSAlt == null ? -1 : this._chSAlt;
+  int get chosenSubAlternative => this._chSAlt;
   set chosenSubAlternative(int n) => this._chSAlt = n;
 
-  QuestionContent({
+  QuestionContent(
     this.number,
     this.question,
     this.alternatives,
     this.subAlternatives,
-  });
+  );
 }
