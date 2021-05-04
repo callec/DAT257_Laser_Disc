@@ -1,8 +1,7 @@
-import 'package:hast_app/common/question_content.dart';
+import 'dart:convert';
 import 'package:hast_app/common/quiz_content.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
-
 
 class QuestionFactory {
 
@@ -10,7 +9,7 @@ class QuestionFactory {
     return rootBundle.loadString('ReflectionQuiz.json');
   }
 
-  static void getValue() async{
-    print(await getJson());
+  static Future<QuizContent> createStandardQuiz() async {
+    return QuizContent.fromJson(jsonDecode(await getJson()));
   }
 }
