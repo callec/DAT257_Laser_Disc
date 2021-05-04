@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -70,7 +71,10 @@ class HomePage extends StatelessWidget {
 
   Widget _button(context, QuizModel quizModel) {
     //
-    return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
+    return ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).accentColor)),
         onPressed: () {
           quizModel.reset();
           Navigator.pushNamed(context, '/quiz');
@@ -79,12 +83,11 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HastLogga extends StatelessWidget{
+class HastLogga extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/hastlogga.png",
-      fit: BoxFit.contain,
-      height: 45,
-    );
+    return
+      Image.asset("assets/images/hastlogga.png",
+          fit: BoxFit.contain, height: 45)
+    ;
   }
 }

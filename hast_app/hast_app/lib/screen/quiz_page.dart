@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -15,8 +14,13 @@ import 'home_page.dart';
 /// A function that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
 
-class QuizPage extends StatelessWidget {
+class QuizPage extends StatefulWidget {
   // maybe this can go into quiz_model?
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
+
+class _QuizPageState extends State<QuizPage> {
   Color _getColor(int n, [int intensity = 200]) {
     switch (n) {
       case 0:
@@ -32,6 +36,14 @@ class QuizPage extends StatelessWidget {
     }
   }
 
+  bool _drawerVisible = true;
+
+  void _openCloseDrawer() {
+    setState(() {
+      _drawerVisible = !_drawerVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -43,8 +55,11 @@ class QuizPage extends StatelessWidget {
         backgroundColor: theme.backgroundColor,
         automaticallyImplyLeading: false, //removes "go back arrow"
       ),
-      body: Row(children: [
-        QuestionDrawer(),
+      body: Row(children: [ Row(children: [Visibility(visible: _drawerVisible,
+          child: QuestionDrawer()), TextButton(onPressed: _openCloseDrawer /*TODO */, child: _drawerVisible == true ? Icon(Icons.arrow_back_ios) : Icon(Icons.arrow_forward_ios))
+      ],
+      ),
+
         Expanded(
           child: Center(child: Container(
             constraints: BoxConstraints.expand(),
@@ -60,8 +75,17 @@ class QuizPage extends StatelessWidget {
                 // TODO maybe it would be better to rebuild individual Text widgets
                 // within the larger widgets?
                 builder: (context, model, child) => Column(children: [
-                  Container(
+                Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  child: Container(
+
                     //color: Colors.pink,
+                    constraints: BoxConstraints( //TODO
+                      minWidth: 900,
+                      maxWidth: 1000,
+                      minHeight: 320,
+                      maxHeight: 320
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -72,63 +96,64 @@ class QuizPage extends StatelessWidget {
                           offset: Offset(0, 2),)],
                           borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: Column(
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                          child: Column(
                       children: [
                         _QuestionText(model.currentQuestion.question),
-                        _CreateAnswers(
-                          _getColor, model.currentQuestion),
-                        model.currentQuestion.chosenAlternative != -1
-                          ? Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                            child: Text("How much do you agree to the chosen statement?",
-                              style: new TextStyle(fontSize: 18)))
-                        : Text(""),
-                        model.currentQuestion.chosenAlternative != -1
-                          ? Padding(
+                        _CreateAnswers(_getColor, model.currentQuestion),
+                        model.currentQuestion.chosenAlternative != -1 ? Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                              child: Text("How much do you agree to the chosen statement?",
+                                style: new TextStyle(fontSize: 18))) : Text(""),
+                        model.currentQuestion.chosenAlternative != -1 ? Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 128),
                               child: _CreateFollowUpAnswers(
                                 _getColor,
                                 model.currentQuestion))
-                          : Text(""),])),
-                  Spacer(),
-                  Row(
-                    children: <Widget>[
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: theme.backgroundColor,
-                          backgroundColor: (model.currentNumber == 0)
-                              ? disabledGrey
-                              : theme.accentColor,
-                        ),
-                        onPressed: () {
-                          if (model.currentNumber >= 1) {
-                            model.prevQuestion();
-                          }
-                          },
-                        child: Text('Back'),
-                      ),
+                          : Text(""),
                       Spacer(),
-                      Text((model.currentNumber + 1).toString()),
-                      Spacer(),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Colors.white,
-                          backgroundColor: (model.currentNumber == 7)
-                              ? (model.finished ? hastGreen : disabledGrey)
-                              : theme.accentColor,
-                        ),
-                        onPressed: () {
-                          if (model.currentNumber <= 6) {
-                            model.nextQuestion();
-                          } else if (model.currentNumber == 7 && model.finished) {
-                            Navigator.pushNamed(context, '/result');
-                          }
-                        },
-                        child: Text(model.currentNumber < 7 ? 'Next' : 'Result'),
-                      ),
-                    ],
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 16), //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+                          child: Row(
+                          children: <Widget>[
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                primary: theme.backgroundColor,
+                                backgroundColor: (model.currentNumber == 0)
+                                    ? disabledGrey
+                                    : theme.accentColor,
+                              ),
+                              onPressed: () {
+                                if (model.currentNumber >= 1) {
+                                  model.prevQuestion();
+                                }
+                              },
+                              child: Text('Back'),
+                            ),
+                            Spacer(),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                primary: Colors.white,
+                                backgroundColor: (model.currentNumber == 7)
+                                    ? (model.finished ? hastGreen : disabledGrey)
+                                    : theme.accentColor,
+                              ),
+                              onPressed: () {
+                                if (model.currentNumber <= 6) {
+                                  model.nextQuestion();
+                                } else if (model.currentNumber == 7 && model.finished) {
+                                  Navigator.pushNamed(context, '/result');
+                                }
+                              },
+                              child: Text(model.currentNumber < 7 ? 'Next' : 'Result'),
+                            ),
+                          ],
+                        ))]
+                    )
+                    ),
                   )
-                ]
+                )]
             )
           )
         )
