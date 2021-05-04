@@ -15,7 +15,7 @@ class QuizModel with ChangeNotifier {
   late String _questionTitle;
 
   late List<String> _resultText;
-  late List<QuestionContent> _questions;
+  late List<QuestionContent> _questions = <QuestionContent>[];
 
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
@@ -39,12 +39,16 @@ class QuizModel with ChangeNotifier {
 
   /// Reset the quiz to the starting point.
   void reset(){
-    _quiz = QuestionFactory.createStandardQuiz();
-    print(_quiz.toJson());
-    _questions = _quiz.questions;
-    _questionTitle = _quiz.quizTitle;
-    _resultText = _quiz.resultText;
-    _questionNumber = 0;
+    QuestionFactory.createStandardQuiz().then((value) {
+      _quiz = value;
+      _questions = _quiz.questions;
+      _questionTitle = _quiz.quizTitle;
+      _resultText = _quiz.resultText;
+      _questionNumber = 0;
+
+      notifyListeners();
+    });
+
   }
 
   /// Change question forward.
