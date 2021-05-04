@@ -14,16 +14,16 @@ class ResultPage extends StatelessWidget {
     ResultModel result = context.watch<ResultModel>();
     List<QuestionContent> questions = result.quizModel.questions;
 
-    for(var question in questions){ //här har vi allt vi behöver för översikten
+    for (var question in questions) {
+      //här har vi allt vi behöver för översikten
       print(question.question);
-      print((question.chosenSubAlternative + 1) + (question.chosenAlternative * 3));
+      print((question.chosenSubAlternative + 1) +
+          (question.chosenAlternative * 3));
     }
 
     scoreText = result.text;
     score = result.score;
     final theme = Theme.of(context);
-
-
 
     return Scaffold(
         body: Center(
@@ -42,9 +42,25 @@ class ResultPage extends StatelessWidget {
                   style: theme.textTheme.headline5)),
           SizedBox(height: 100),
 
-
-
-
+          new Expanded(
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemCount: questions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      height: 40,
+                      //width: 100,
+                      //alignment: Alignment.center,
+                      child: Row(children: <Widget>[
+                        Spacer(flex: 2,),
+                        Expanded(child: Text(questions[index].question, textAlign: TextAlign.center,)
+                        ),
+                        Expanded(child: Text(((questions[index].chosenSubAlternative + 1) + (questions[index].chosenAlternative * 3)).toString() + "/12", textAlign: TextAlign.center)),
+                        Spacer(flex: 2,)
+                        ],
+                      ),
+                    );
+                  })),
 
           TextButton(
             style: ButtonStyle(
