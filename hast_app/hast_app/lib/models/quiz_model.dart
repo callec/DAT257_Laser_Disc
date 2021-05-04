@@ -40,6 +40,7 @@ class QuizModel with ChangeNotifier {
   /// Reset the quiz to the starting point.
   void reset(){
     _quiz = QuestionFactory.createStandardQuiz();
+    print(_quiz.toJson());
     _questions = _quiz.questions;
     _questionTitle = _quiz.quizTitle;
     _resultText = _quiz.resultText;

@@ -1,18 +1,23 @@
 import 'package:hast_app/common/question_content.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'quiz_content.g.dart';
 
 /// A single quiz is represented by this class
+@JsonSerializable(explicitToJson: true)
 class QuizContent {
-  final String _quizTitle;
-  final List<String> _resultText;
-  final List<QuestionContent> _questions;
-
-  String get quizTitle => _quizTitle;
-  List<String> get resultText => _resultText;
-  List<QuestionContent> get questions => _questions;
+  final String quizTitle;
+  final List<String> resultText;
+  final List<QuestionContent> questions;
 
   QuizContent(
-    this._quizTitle,
-    this._resultText,
-    this._questions
+    this.quizTitle,
+    this.resultText,
+    this.questions
   );
+
+  factory QuizContent.fromJson(Map<String, dynamic> json)
+    => _$QuizContentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuizContentToJson(this);
 }
