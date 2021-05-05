@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //Preload the background
+    precacheImage(AssetImage('assets/images/4.png'), context);
+
     //Creates the models and connects QuizModel to ResultModel
     return MultiProvider(
       providers: [
