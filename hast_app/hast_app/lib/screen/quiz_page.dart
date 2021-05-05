@@ -36,152 +36,200 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  bool _drawerVisible = true;
+  Icon _getDotIcon(int id, QuizModel model){
 
-  void _openCloseDrawer() {
-    setState(() {
-      _drawerVisible = !_drawerVisible;
-    });
-  }
+    bool isAnswered = model.questions[id].chosenSubAlternative == -1 ? false : true;
 
-  bool _isMobile = false;
-
-  void _changeLayout() {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
-
-    if (width > height){
-      setState(() {
-        _isMobile = false;
-      });
-    } else {
-      setState(() {
-        _isMobile = true;
-      });
+    Color color = Colors.grey[400];
+    if (id == model.currentNumber){
+      color = hastGrey;
     }
 
+    IconData icon = Icons.circle;
+    if (isAnswered){
+      icon = Icons.check_circle;
+      color = hastGreen;
+    } else{
+      icon = Icons.circle;
+    }
 
+    return Icon(icon, color: color);
   }
+
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        //title: Text(context.read<QuizModel>().title),
-        title: HastLogga(),
-        backgroundColor: theme.backgroundColor,
-        automaticallyImplyLeading: false, //removes "go back arrow"
-      ),
-      body: Row(children: [ Row(children: [Visibility(visible: _drawerVisible,
-          child: QuestionDrawer()), TextButton(onPressed: _openCloseDrawer /*TODO */, child: _drawerVisible == true ? Icon(Icons.arrow_back_ios) : Icon(Icons.arrow_forward_ios)),
-        VerticalDivider(
-          width: 1,
-          thickness: 1,
-        ),],
-      ),
-
-        Expanded(
-          child: Center(child: Container(
-            constraints: BoxConstraints.expand(),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/4.png'),
-                fit: BoxFit.cover
-              )
-            ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-              child: Consumer<QuizModel>(
-                // TODO maybe it would be better to rebuild individual Text widgets
-                // within the larger widgets?
-                builder: (context, model, child) => Column(children: [
-                Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+        appBar: AppBar(
+          //title: Text(context.read<QuizModel>().title),
+          title: HastLogga(),
+          backgroundColor: theme.backgroundColor,
+          automaticallyImplyLeading: false, //removes "go back arrow"
+        ),
+        body: Row(children: [
+          Expanded(
+              child: Center(
                   child: Container(
-
-                    //color: Colors.pink,
-                    constraints: BoxConstraints( //TODO
-                      minWidth: 900,
-                      maxWidth: 1000,
-                      minHeight: 320,
-                      maxHeight: 320
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          spreadRadius: 0.5,
-                          blurRadius: 1,
-                          offset: Offset(0, 2),)],
-                          borderRadius: BorderRadius.circular(5.0),
-                    ),
+                      constraints: BoxConstraints.expand(),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/4.png'),
+                              fit: BoxFit.cover)),
                       child: Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                          child: Column(
-                      children: [
-                        _QuestionText(model.currentQuestion.question),
-                        _CreateAnswers(_getColor, model.currentQuestion),
-                        model.currentQuestion.chosenAlternative != -1 ? Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                              child: Text("How much do you agree to the chosen statement?",
-                                style: new TextStyle(fontSize: 18))) : Text(""),
-                        model.currentQuestion.chosenAlternative != -1 ? Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 128),
-                              child: _CreateFollowUpAnswers(
-                                _getColor,
-                                model.currentQuestion))
-                          : Text(""),
-                      Spacer(),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 0, 8, 16), //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
-                          child: Row(
-                          children: <Widget>[
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                primary: theme.backgroundColor,
-                                backgroundColor: (model.currentNumber == 0)
-                                    ? disabledGrey
-                                    : theme.accentColor,
-                              ),
-                              onPressed: () {
-                                if (model.currentNumber >= 1) {
-                                  model.prevQuestion();
-                                }
-                              },
-                              child: Text('Back'),
-                            ),
-                            Spacer(),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                primary: Colors.white,
-                                backgroundColor: (model.currentNumber == 7)
-                                    ? (model.finished ? hastGreen : disabledGrey)
-                                    : theme.accentColor,
-                              ),
-                              onPressed: () {
-                                if (model.currentNumber <= 6) {
-                                  model.nextQuestion();
-                                } else if (model.currentNumber == 7 && model.finished) {
-                                  Navigator.pushNamed(context, '/result');
-                                }
-                              },
-                              child: Text(model.currentNumber < 7 ? 'Next' : 'Result'),
-                            ),
-                          ],
-                        ))]
-                    )
-                    ),
-                  )
-                )]
-            )
-          )
-        )
-      )
-    ))
-    ]));
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                          child: Consumer<QuizModel>(
+                              // TODO maybe it would be better to rebuild individual Text widgets
+                              // within the larger widgets?
+                              builder: (context, model, child) =>
+                                  Column(children: [
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            16, 16, 16, 16),
+                                        child: Container(
+                                          //color: Colors.pink,
+                                          constraints: BoxConstraints(
+                                              //TODO
+                                              minWidth: 900,
+                                              maxWidth: 1000,
+                                              minHeight: 320,
+                                              maxHeight: 400),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                spreadRadius: 0.5,
+                                                blurRadius: 1,
+                                                offset: Offset(0, 2),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      8, 0, 8, 0),
+                                              child: Column(children: [
+                                                _QuestionText(model
+                                                    .currentQuestion.question),
+                                                _CreateAnswers(_getColor,
+                                                    model.currentQuestion),
+                                                model.currentQuestion
+                                                            .chosenAlternative !=
+                                                        -1
+                                                    ? Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 16, 0, 0),
+                                                        child: Text(
+                                                            "How much do you agree to the chosen statement?",
+                                                            style:
+                                                                new TextStyle(
+                                                                    fontSize:
+                                                                        18)))
+                                                    : Text(""),
+                                                model.currentQuestion
+                                                            .chosenAlternative !=
+                                                        -1
+                                                    ? Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    128),
+                                                        child: _CreateFollowUpAnswers(
+                                                            _getColor,
+                                                            model
+                                                                .currentQuestion))
+                                                    : Text(""),
+                                                Spacer(),
+                                                Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(8, 0, 8, 16),
+                                                    //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+                                                    child: Row(
+                                                      children: <Widget>[
+                                                        TextButton(
+                                                          style: TextButton
+                                                              .styleFrom(
+                                                            primary: theme
+                                                                .backgroundColor,
+                                                            backgroundColor: (model
+                                                                        .currentNumber ==
+                                                                    0)
+                                                                ? disabledGrey
+                                                                : theme
+                                                                    .accentColor,
+                                                          ),
+                                                          onPressed: () {
+                                                            if (model
+                                                                    .currentNumber >=
+                                                                1) {
+                                                              model
+                                                                  .prevQuestion();
+                                                            }
+                                                          },
+                                                          child: Text('Back'),
+                                                        ),
+                                                        Spacer(),
+                                                        Row(children: [
+                                                          IconButton(icon: _getDotIcon(0, model), onPressed: () => model.setQuestion(0)),
+                                                            IconButton(icon: _getDotIcon(1, model), onPressed: () => model.setQuestion(1)),
+                                                            IconButton(icon: _getDotIcon(2, model), onPressed: () => model.setQuestion(2)),
+                                                            IconButton(icon: _getDotIcon(3, model), onPressed: () => model.setQuestion(3)),
+                                                            IconButton(icon: _getDotIcon(4, model), onPressed: () => model.setQuestion(4)),
+                                                            IconButton(icon: _getDotIcon(5, model), onPressed: () => model.setQuestion(5)),
+                                                            IconButton(icon: _getDotIcon(6, model), onPressed: () => model.setQuestion(6)),
+                                                          IconButton(icon: _getDotIcon(7, model), onPressed: () => model.setQuestion(7)),
+                                                        ],),
+                                                        Spacer(),
+                                                        TextButton(
+                                                          style: TextButton
+                                                              .styleFrom(
+                                                            primary:
+                                                                Colors.white,
+                                                            backgroundColor: (model
+                                                                        .currentNumber ==
+                                                                    7)
+                                                                ? (model.finished
+                                                                    ? hastGreen
+                                                                    : disabledGrey)
+                                                                : theme
+                                                                    .accentColor,
+                                                          ),
+                                                          onPressed: () {
+                                                            if (model
+                                                                    .currentNumber <=
+                                                                6) {
+                                                              model
+                                                                  .nextQuestion();
+                                                            } else if (model
+                                                                        .currentNumber ==
+                                                                    7 &&
+                                                                model
+                                                                    .finished) {
+                                                              Navigator
+                                                                  .pushNamed(
+                                                                      context,
+                                                                      '/result');
+                                                            }
+                                                          },
+                                                          child: Text(
+                                                              model.currentNumber <
+                                                                      7
+                                                                  ? 'Next'
+                                                                  : 'Result'),
+                                                        ),
+                                                      ],
+                                                    ))
+                                              ])),
+                                        ))
+                                  ]))))))
+        ]));
   }
 }
 
@@ -199,28 +247,27 @@ class _CreateAnswers extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
         child: Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-
-      children: _buildAnswers()
-    ));
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildAnswers()));
   }
 
-  List<Widget> _buildAnswers(){
+  List<Widget> _buildAnswers() {
     List<Widget> tempList = [];
     int alternativeNumber = question.chosenAlternative;
     bool alternativeBeenChosen = alternativeNumber != -1;
 
     //Build Answer boxes
-    for(int x = 0; x < question.alternatives.length; x++){
-      tempList.add(
-          Expanded(child:
-            _AnswerText(
+    for (int x = 0; x < question.alternatives.length; x++) {
+      tempList.add(Expanded(
+          child: _AnswerText(
               question.alternatives[x],
               x,
-              colorFunction(alternativeBeenChosen ? alternativeNumber == x ? x : -1 : x))
-          )
-      );
+              colorFunction(alternativeBeenChosen
+                  ? alternativeNumber == x
+                      ? x
+                      : -1
+                  : x))));
     }
     return tempList;
   }
@@ -246,7 +293,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
         ));
   }
 
-  List<Widget> _buildSubAlternatives(){
+  List<Widget> _buildSubAlternatives() {
     List<Widget> tempList = [];
 
     //Have a alternative been chosen?
@@ -257,19 +304,20 @@ class _CreateFollowUpAnswers extends StatelessWidget {
     List<String> options = question.subAlternatives;
 
     //Create three sub alternatives
-    for(int x = 0; x < 3; x++){
-      tempList.add(
-        Expanded(
+    for (int x = 0; x < 3; x++) {
+      tempList.add(Expanded(
           child: _FollowUpAnswerText(
-            alternativeNumber * 3 + (x+1),
-            x,
-            color(_subAltBeenChosen ?
-              subAlternativeNumber == x ? alternativeNumber : -1 : alternativeNumber),
+              alternativeNumber * 3 + (x + 1),
+              x,
+              color(_subAltBeenChosen
+                  ? subAlternativeNumber == x
+                      ? alternativeNumber
+                      : -1
+                  : alternativeNumber),
               options[x])));
     }
 
     return tempList;
-
   }
 }
 
@@ -315,23 +363,22 @@ class _AnswerText extends StatelessWidget {
       child: Column(children: [
         Expanded(
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: color,
-                onPrimary: Colors.black,
-              ),
-              onPressed: () {
-                //setState(() => _followUpVisibility = !_followUpVisibility);
-                print('$number : answertext');
-                context.read<QuizModel>().setAlternative(number);
-                context.read<QuizModel>().setSubAlternative(null);
-              },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                child: Text(
-                  atext,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )
-              ),
+          style: ElevatedButton.styleFrom(
+            primary: color,
+            onPrimary: Colors.black,
+          ),
+          onPressed: () {
+            //setState(() => _followUpVisibility = !_followUpVisibility);
+            print('$number : answertext');
+            context.read<QuizModel>().setAlternative(number);
+            context.read<QuizModel>().setSubAlternative(null);
+          },
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+              child: Text(
+                atext,
+                style: Theme.of(context).textTheme.bodyText2,
+              )),
         )),
       ]),
     );
