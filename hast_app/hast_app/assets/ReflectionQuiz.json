@@ -9,7 +9,6 @@
   ],
   "questions": [
     {
-      "number": 1,
       "question": "Reactivity vs. finding 'the space'",
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
@@ -19,7 +18,7 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
     },
-    {"number": 2,
+    {
       "question": "Relaxed or Stressed",
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
@@ -29,7 +28,6 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
-      "number": 3,
       "question": "Reactivity vs. finding 'the space'",
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
@@ -39,7 +37,7 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
     },
-    {"number": 4,
+    {
       "question": "Relaxed or Stressed",
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
@@ -49,7 +47,6 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
-      "number": 5,
       "question": "Reactivity vs. finding 'the space'",
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
@@ -59,7 +56,7 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
     },
-    {"number": 6,
+    {
       "question": "Relaxed or Stressed",
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
@@ -69,7 +66,6 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
-      "number": 7,
       "question": "Reactivity vs. finding 'the space'",
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
@@ -79,7 +75,7 @@
       ],
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
     },
-    {"number": 8,
+    {
       "question": "Relaxed or Stressed",
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",

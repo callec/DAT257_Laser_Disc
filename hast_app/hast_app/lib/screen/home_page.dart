@@ -72,7 +72,8 @@ class HomePage extends StatelessWidget {
     //
     return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
         onPressed: () {
-          quizModel.reset();
+          //quizModel.reset();
+          if (quizModel.answered != 0) quizModel.reset();
           Navigator.pushNamed(context, '/quiz');
         },
         child: Text("Start Self Reflection"));
