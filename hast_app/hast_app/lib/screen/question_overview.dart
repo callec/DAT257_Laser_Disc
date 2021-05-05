@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:provider/provider.dart';
 
-class QuestionDrawer extends StatefulWidget {
-  QuestionDrawer();
+/// Displays an overview of Questions in the Quiz
+/// for easy navigation between them
 
-  @override
-  _QuestionDrawerState createState() => _QuestionDrawerState();
-}
-
-class _QuestionDrawerState extends State<QuestionDrawer> {
+class QuestionDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -17,23 +13,24 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
     return Row(children: [
       Consumer<QuizModel>(
         builder: (context, model, child) => Drawer(
-            child: model.loading
+            child: model.loading // Display loading text if model is not ready
                 ? Text("Loading Questions...")
-                : _buildOverviewDrawer(context, theme, model)),
+                : _buildQuestionDrawer(context, theme, model)),
       ),
-      VerticalDivider(
+      /*VerticalDivider(
         width: 1,
         thickness: 1,
-      ),
+      ),*/
     ]);
   }
 
-  Widget _buildOverviewDrawer(
+  Widget _buildQuestionDrawer(
       BuildContext context, ThemeData theme, QuizModel model) {
     return ListView.builder(
         itemCount: model.numberOfQuestions + 1,
         padding: EdgeInsets.zero,
         itemBuilder: (context, i) {
+
           //Create the title
           if (i == 0) {
             return Column(
@@ -56,7 +53,7 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
           return ListTile(
             leading: Icon(
               Icons.label,
-              color: model.currentNumber == i - 1
+              color: model.currentNumber == i - 1 //check if this is currently selected
                   ? theme.accentColor
                   : theme.primaryColor,
             ),
@@ -66,6 +63,7 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
                     color: model.currentNumber == i - 1
                         ? theme.accentColor
                         : theme.primaryColor)),
+
             selected: model.currentNumber == i - 1,
             onTap: () => model.setQuestion(i - 1),
           );

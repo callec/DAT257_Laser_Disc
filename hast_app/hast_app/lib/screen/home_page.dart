@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
+/// This is the first page that is displayed to the User
+/// Here we can start the quiz or get information about the Quiz or HAST
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var quizModel = context.watch<QuizModel>();
 
     final theme = Theme.of(context);
+
+    //Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
       title: 'Flutter Demo',
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: HastLogga(),
+            title: HastLogo(),
             automaticallyImplyLeading: false,
             backgroundColor: theme.backgroundColor,
             bottom: TabBar(
@@ -28,28 +33,29 @@ class HomePage extends StatelessWidget {
             ),
           ),
           body: TabBarView(
+            //What will be displayed on each tab
             children: [
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _description(
+                        _presentText(
                             context, 'WELCOME! Presenting Information'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                        _button(context, quizModel)
+                        _startButton(context, quizModel)
                       ]))),
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _description(context, 'Answer honestly!!'),
+                        _presentText(context, 'Answer honestly!!'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
                       ]))),
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _description(context, 'Hast Info, good company'),
+                        _presentText(context, 'Hast Info, good company'),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
                       ]))),
             ],
@@ -59,8 +65,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _description(context, String presentingText) {
-    //information text on home-page
+  /// Displays information text on the home_page in a nice formatted way
+  Widget _presentText(context, String presentingText) {
     return Container(
         width: MediaQuery.of(context).size.width - 200,
         child: Text(presentingText,
@@ -68,9 +74,12 @@ class HomePage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6));
   }
 
-  Widget _button(context, QuizModel quizModel) {
-    //
-    return ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).accentColor)),
+
+  Widget _startButton(context, QuizModel quizModel) {
+    return ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).accentColor)),
         onPressed: () {
           quizModel.reset();
           Navigator.pushNamed(context, '/quiz');
@@ -79,7 +88,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HastLogga extends StatelessWidget{
+/// Widget representing the HAST logo
+class HastLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       "assets/images/hastlogga.png",

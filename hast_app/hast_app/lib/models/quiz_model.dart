@@ -11,7 +11,7 @@ class QuizModel with ChangeNotifier {
   // TODO do we need a QuizContent class? or same title for 8 qs?
   late QuizContent _quiz;
   late int _questionNumber = 0;
-  late int _answered = 0;
+  int _answered = 0;
   late String _questionTitle;
 
   late List<String> _resultText;
@@ -40,8 +40,10 @@ class QuizModel with ChangeNotifier {
   }
 
   /// Reset the quiz to the starting point.
+  /// Waits for the JSON file to decode, this is done asynchronous
   void reset(){
     loading = true;
+
     QuestionFactory.createStandardQuiz().then((value) {
       _quiz = value;
       _questions = _quiz.questions;
@@ -69,7 +71,7 @@ class QuizModel with ChangeNotifier {
     notifyListeners();
   }
 
-  //Updates current question in model if user clicks question in questionDrawer
+  /// Updates current question in model if user clicks question in questionDrawer
   void setQuestion(int n){
     if (n > - 1 && n < _questions.length) {
       _questionNumber = n;

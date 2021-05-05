@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'screen/result_page.dart';
 import 'package:hast_app/models/result_model.dart';
 
+/// Creates the application, defines theme,
+/// start Models and set up navigation routes
+
 void main() {
   runApp(MyApp());
 }
@@ -15,6 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //Creates the models and connects QuizModel to ResultModel
     return MultiProvider(
       providers: [
         Provider(create: (context) => ResultModel()),

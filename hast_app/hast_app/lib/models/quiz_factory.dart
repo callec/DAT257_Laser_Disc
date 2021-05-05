@@ -5,10 +5,12 @@ import 'dart:async';
 
 class QuestionFactory {
 
+  ///Load in Quiz JSON file
   static Future<String> getJson(){
     return rootBundle.loadString('ReflectionQuiz.json');
   }
 
+  ///Decode JSON file to a QuizContent object
   static Future<QuizContent> createStandardQuiz() async {
     return QuizContent.fromJson(jsonDecode(await getJson()));
   }

@@ -15,8 +15,12 @@ import 'home_page.dart';
 /// A function that takes an int and returns a Color.
 typedef _ColorCallBack = Color Function(int n, [int intensity]);
 
+/// Displays a single question, and its respective alternatives
+/// Also enables the navigation between questions
+
 class QuizPage extends StatelessWidget {
-  // maybe this can go into quiz_model?
+
+  /// Display color depending on alternative index
   Color _getColor(int n, [int intensity = 200]) {
     switch (n) {
       case 0:
@@ -38,18 +42,17 @@ class QuizPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        //title: Text(context.read<QuizModel>().title),
-        title: HastLogga(),
+        title: HastLogo(),
         backgroundColor: theme.backgroundColor,
         automaticallyImplyLeading: false, //removes "go back arrow"
       ),
       body: Row(children: [
         QuestionDrawer(),
-        Expanded(
+        Expanded( // The main area where question will be displayed
           child: Center(child: Container(
             constraints: BoxConstraints.expand(),
-            decoration: BoxDecoration(
-              image: DecorationImage(
+            decoration: BoxDecoration( //This is the background image
+              image: DecorationImage( //TODO, VERY SLOW LOADING TIME!
                 image: AssetImage('assets/images/4.png'),
                 fit: BoxFit.cover
               )
@@ -60,8 +63,7 @@ class QuizPage extends StatelessWidget {
                 // TODO maybe it would be better to rebuild individual Text widgets
                 // within the larger widgets?
                 builder: (context, model, child) => Column(children: [
-                  Container(
-                    //color: Colors.pink,
+                  Container( // This is the white box surrounding the alternatives
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -72,24 +74,21 @@ class QuizPage extends StatelessWidget {
                           offset: Offset(0, 2),)],
                           borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: Column(
+                    child: Column( //Displays alternatives if the model is finished loading
                       children: model.loading ? [Text("LOADING")] : [
-                        _QuestionText(model.currentQuestion.question),
-                        _CreateAnswers(
-                          _getColor, model.currentQuestion),
-                        model.currentQuestion.chosenAlternative != -1
-                          ? Padding(
+                        _QuestionText(model.currentQuestion.question), //Title
+                        _CreateAnswers(_getColor, model.currentQuestion),
+                        model.currentQuestion.chosenAlternative == -1 // Display sub alternatives
+                          ? Text("") : Column(children: [Padding(
                             padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                             child: Text("How much do you agree to the chosen statement?",
-                              style: new TextStyle(fontSize: 18)))
-                        : Text(""),
-                        model.currentQuestion.chosenAlternative != -1
-                          ? Padding(
+                                style: new TextStyle(fontSize: 18))),
+                          Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 128),
                               child: _CreateFollowUpAnswers(
-                                _getColor,
-                                model.currentQuestion))
-                          : Text(""),])),
+                                  _getColor,
+                                  model.currentQuestion))])
+                           ,])),
                   Spacer(),
                   Row(
                     children: <Widget>[
@@ -139,13 +138,11 @@ class QuizPage extends StatelessWidget {
 }
 
 /// Create a row of _AnswerText objects that are displayed on the screen.
-///
-/// Has arguments 4 strings and a function.
+/// Has arguments: color function and QuestionContent object
 class _CreateAnswers extends StatelessWidget {
   final QuestionContent question;
   final _ColorCallBack colorFunction;
 
-  //Send in question instead?
   _CreateAnswers(this.colorFunction, this.question);
 
   @override
@@ -168,7 +165,7 @@ class _CreateAnswers extends StatelessWidget {
     for(int x = 0; x < question.alternatives.length; x++){
       tempList.add(
           Expanded(child:
-            _AnswerText(
+            _AlternativeText(
               question.alternatives[x],
               x,
               colorFunction(alternativeBeenChosen ? alternativeNumber == x ? x : -1 : x))
@@ -180,8 +177,7 @@ class _CreateAnswers extends StatelessWidget {
 }
 
 /// Create the three alternatives used to answer questions.
-///
-/// Has arguments three strings which shows that to display
+/// Has arguments: color function and QuestionContent object
 class _CreateFollowUpAnswers extends StatelessWidget {
   final _ColorCallBack color;
   final QuestionContent question;
@@ -213,8 +209,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
     for(int x = 0; x < 3; x++){
       tempList.add(
         Expanded(
-          child: _FollowUpAnswerText(
-            alternativeNumber * 3 + (x+1),
+          child: _SubAlternativeText(
             x,
             color(_subAltBeenChosen ?
               subAlternativeNumber == x ? alternativeNumber : -1 : alternativeNumber),
@@ -227,7 +222,6 @@ class _CreateFollowUpAnswers extends StatelessWidget {
 }
 
 /// Displays the question on the screen
-///
 /// Takes a string of the question text as the argument
 class _QuestionText extends StatelessWidget {
   final String qtext;
@@ -237,29 +231,25 @@ class _QuestionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //color: Colors.amber,
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Text(
           qtext,
-          style: TextStyle(
-            fontSize: 24,
-          ),
+          style: Theme.of(context).textTheme.headline6,
         ),
       ),
     );
   }
 }
 
-/// Creates a single answertext object
-///
+/// Creates a single Alternative object
 /// Arguments: answer text, a number, a function
-class _AnswerText extends StatelessWidget {
+class _AlternativeText extends StatelessWidget {
   final String atext;
-  final Color color;
   final int number;
+  final Color color;
 
-  _AnswerText(this.atext, this.number, this.color);
+  _AlternativeText(this.atext, this.number, this.color);
 
   @override
   Widget build(BuildContext context) {
@@ -272,11 +262,10 @@ class _AnswerText extends StatelessWidget {
                 primary: color,
                 onPrimary: Colors.black,
               ),
-              onPressed: () {
-                //setState(() => _followUpVisibility = !_followUpVisibility);
-                print('$number : answertext');
+              onPressed: () { // Set chosen alternative in the QuizModel
                 context.read<QuizModel>().setAlternative(number);
                 context.read<QuizModel>().setSubAlternative(-1);
+                //print('$number : answertext');
               },
               child: Padding(
                 padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
@@ -291,16 +280,14 @@ class _AnswerText extends StatelessWidget {
   }
 }
 
-/// Creates a single FollowupAnswerText object
-///
-/// Argument: a string
-class _FollowUpAnswerText extends StatelessWidget {
-  final Color color;
-  final int number;
-  final String text;
+/// Creates a single SubAlternative object
+/// Argument: index (0,1,2), color and text
+class _SubAlternativeText extends StatelessWidget {
   final int index;
+  final Color color;
+  final String text;
 
-  _FollowUpAnswerText(this.number, this.index, this.color, this.text);
+  _SubAlternativeText(this.index, this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -311,8 +298,7 @@ class _FollowUpAnswerText extends StatelessWidget {
             primary: color,
             onPrimary: Colors.black,
           ),
-          onPressed: () {
-            print('$number points');
+          onPressed: () { //Set sub alternative in model
             context.read<QuizModel>().setSubAlternative(index);
           },
           child: Container(

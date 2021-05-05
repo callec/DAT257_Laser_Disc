@@ -18,8 +18,10 @@ class QuizContent {
     this.questions
   );
 
+  ///USed to deserialize a JSON string to a QuizContent object
   factory QuizContent.fromJson(Map<String, dynamic> json)
     => _$QuizContentFromJson(json);
 
+  ///This method is used to serialize the object to a JSON string
   Map<String, dynamic> toJson() => _$QuizContentToJson(this);
 }

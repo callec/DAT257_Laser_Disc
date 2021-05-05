@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:provider/provider.dart';
 
+/// Displays the score from the Quiz and a conclusion text
+
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ResultModel result = context.watch<ResultModel>();
-    String scoreText = result.text;
-    int score = result.score;
+    final ResultModel _result = context.watch<ResultModel>(); // Load Result model
+    final String _scoreText = _result.text;
+    final int _score = _result.score;
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -16,13 +18,13 @@ class ResultPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Score: $score',
+            Text('Score: $_score',
               textAlign: TextAlign.center,
               style: theme.textTheme.headline4),
           SizedBox(height: 50),
           Container(
               width: MediaQuery.of(context).size.width - 100,
-              child: Text('$scoreText',
+              child: Text('$_scoreText',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headline5)),
           SizedBox(height: 100),
