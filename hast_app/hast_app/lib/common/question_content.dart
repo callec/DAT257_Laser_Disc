@@ -5,7 +5,6 @@ part 'question_content.g.dart';
 /// A single Question is represented by this class.
 @JsonSerializable()
 class QuestionContent {
-  final int number;
   final String question;
   final List<String> alternatives;
   final List<String> subAlternatives;
@@ -23,7 +22,6 @@ class QuestionContent {
   set chosenSubAlternative(int n) => this._chSAlt = n;
 
   QuestionContent(
-    this.number,
     this.question,
     this.alternatives,
     this.subAlternatives,

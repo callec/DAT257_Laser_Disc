@@ -19,6 +19,7 @@ class QuizModel with ChangeNotifier {
 
   bool loading = true;
 
+  int get answered => _answered;
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
   int get currentNumber => _questionNumber;
@@ -81,10 +82,13 @@ class QuizModel with ChangeNotifier {
 
   /// Set which alternative has been chosen.
   void setAlternative(int n) {
-    if (this.currentQuestion.chosenAlternative == n)
+    if (this.currentQuestion.chosenAlternative == n) {
+      --_answered;
       this.currentQuestion.chosenAlternative = -1;
-    else
+    } else {
       this.currentQuestion.chosenAlternative = n;
+      ++_answered;
+    }
 
     notifyListeners();
   }
