@@ -44,6 +44,25 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
+  bool _isMobile = false;
+
+  void _changeLayout() {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    if (width > height){
+      setState(() {
+        _isMobile = false;
+      });
+    } else {
+      setState(() {
+        _isMobile = true;
+      });
+    }
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -56,8 +75,11 @@ class _QuizPageState extends State<QuizPage> {
         automaticallyImplyLeading: false, //removes "go back arrow"
       ),
       body: Row(children: [ Row(children: [Visibility(visible: _drawerVisible,
-          child: QuestionDrawer()), TextButton(onPressed: _openCloseDrawer /*TODO */, child: _drawerVisible == true ? Icon(Icons.arrow_back_ios) : Icon(Icons.arrow_forward_ios))
-      ],
+          child: QuestionDrawer()), TextButton(onPressed: _openCloseDrawer /*TODO */, child: _drawerVisible == true ? Icon(Icons.arrow_back_ios) : Icon(Icons.arrow_forward_ios)),
+        VerticalDivider(
+          width: 1,
+          thickness: 1,
+        ),],
       ),
 
         Expanded(
