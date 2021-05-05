@@ -17,6 +17,8 @@ class QuizModel with ChangeNotifier {
   late List<String> _resultText;
   late List<QuestionContent> _questions = <QuestionContent>[];
 
+  bool loading = true;
+
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
   int get currentNumber => _questionNumber;
@@ -39,6 +41,7 @@ class QuizModel with ChangeNotifier {
 
   /// Reset the quiz to the starting point.
   void reset(){
+    loading = true;
     QuestionFactory.createStandardQuiz().then((value) {
       _quiz = value;
       _questions = _quiz.questions;
@@ -46,6 +49,7 @@ class QuizModel with ChangeNotifier {
       _resultText = _quiz.resultText;
       _questionNumber = 0;
 
+      loading = false;
       notifyListeners();
     });
 

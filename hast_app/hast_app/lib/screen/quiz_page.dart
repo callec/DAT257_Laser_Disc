@@ -73,7 +73,7 @@ class QuizPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
-                      children: model.questions.isEmpty ? [Text("LOADING")] : [
+                      children: model.loading ? [Text("LOADING")] : [
                         _QuestionText(model.currentQuestion.question),
                         _CreateAnswers(
                           _getColor, model.currentQuestion),

@@ -17,7 +17,7 @@ class _QuestionDrawerState extends State<QuestionDrawer> {
     return Row(children: [
       Consumer<QuizModel>(
         builder: (context, model, child) => Drawer(
-            child: model.questions.isEmpty
+            child: model.loading
                 ? Text("Loading Questions...")
                 : _buildOverviewDrawer(context, theme, model)),
       ),
