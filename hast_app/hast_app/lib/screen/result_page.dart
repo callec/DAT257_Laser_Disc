@@ -46,76 +46,89 @@ class ResultPage extends StatelessWidget {
                   style: theme.textTheme.headline5)),
           SizedBox(height: 20),
 
+
           new Expanded(
               child: Theme(
                   data: Theme.of(context).copyWith(
                       dividerColor: theme.accentColor
                   ),
-                    child:
+                      child: Padding(
+                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12, right: MediaQuery.of(context).size.width * 0.12),
+                        child: ListView(
+                            children: <Widget>[
+                              IgnorePointer(child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
 
-                     DataTable(
-                      columns: const <DataColumn>[
-                        DataColumn(
+                                  child: DataTable(
+                                    columns: const <DataColumn>[
+                                      DataColumn(
 
-                          label: Text(
-                            'Question',
-                            style: TextStyle(fontStyle: FontStyle.italic),
+                                        label: Text(
+                                          'Question',
+                                          style: TextStyle(fontStyle: FontStyle.italic),
 
-                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        label: Text(
+                                          'Text',
+                                          style: TextStyle(fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        label: Text(
+                                          'Score',
+                                          style: TextStyle(fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                    ],
+                                    rows:
+                                    questions // Loops through dataColumnText, each iteration assigning the value to element
+                                        .map(
+
+                                      ((element) => DataRow(
+
+                                        cells: <DataCell>[
+
+                                          DataCell(Text("      "+element.number.toString(),)),
+                                          DataCell(Text(element.question)),
+                                          DataCell(Text(((element.chosenSubAlternative+1)+element.chosenAlternative*3).toString()+"/12")),
+                                          //Extracting from Map element the value
+
+                                        ],
+                                      )),
+                                    )
+                                        .toList(),
+                                  )))
+
+                            ]
                         ),
-                        DataColumn(
-                          label: Text(
-                            'Text',
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text(
-                            'Score',
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
-                      rows:
-                      questions // Loops through dataColumnText, each iteration assigning the value to element
-                          .map(
-
-                        ((element) => DataRow(
-
-                          cells: <DataCell>[
-
-                            DataCell(Text("      "+element.number.toString(),)),
-                            DataCell(Text(element.question)),
-                            DataCell(Text(((element.chosenSubAlternative+1)+element.chosenAlternative*3).toString()+"/12")),
-                            //Extracting from Map element the value
-
-                          ],
-                        )),
                       )
-                          .toList(),
-                      )
+                        ,
+                    )),
 
+          SizedBox(height: 20,),
 
-                    
-                  ),
-          ),
+          SizedBox(
+            width: 100,
+            height: 40,
+            child: TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.resolveWith(
+                        (Set<MaterialState> states) {
+                      return theme.backgroundColor;
+                    }),
+                backgroundColor: MaterialStateProperty.resolveWith(
+                        (Set<MaterialState> states) {
+                      return theme.accentColor;
+                    }),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text('Home'),
 
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.resolveWith(
-                  (Set<MaterialState> states) {
-                return theme.backgroundColor;
-              }),
-              backgroundColor: MaterialStateProperty.resolveWith(
-                  (Set<MaterialState> states) {
-                return theme.accentColor;
-              }),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            child: Text('Home'),
-
+            )
           ),
                   SizedBox(height: 20),
         ])));
