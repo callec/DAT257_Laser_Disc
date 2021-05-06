@@ -4,10 +4,9 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 
 class QuestionFactory {
-
   ///Load in Quiz JSON file
-  static Future<String> getJson(){
-    return rootBundle.loadString('ReflectionQuiz.json');
+  static Future<String> getJson() {
+    return rootBundle.loadString('assets/ReflectionQuiz.json');
   }
 
   ///Decode JSON file to a QuizContent object
