@@ -6,14 +6,12 @@ import 'package:provider/provider.dart';
 
 class ResultPage extends StatelessWidget {
   int score = 0;
-
   String scoreText;
 
   @override
   Widget build(BuildContext context) {
     ResultModel result = context.watch<ResultModel>();
-    List<QuestionContent> questions = result.quizModel.questions;
-
+    List<QuestionContent> questions = result.quizModel.questions; //list used to access score per question, question title and question number, for the overview.
 
     scoreText = result.text;
     score = result.score;
@@ -47,16 +45,16 @@ class ResultPage extends StatelessWidget {
           SizedBox(height: 20),
 
 
-          new Expanded(
+          new Expanded( //the overview
               child: Theme(
                   data: Theme.of(context).copyWith(
                       dividerColor: theme.accentColor
                   ),
-                      child: Padding(
+                      child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
                         padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12, right: MediaQuery.of(context).size.width * 0.12),
-                        child: ListView(
+                        child: ListView( //wrapped in a listView to be scrollable.
                             children: <Widget>[
-                              IgnorePointer(child: SingleChildScrollView(
+                              IgnorePointer(child: SingleChildScrollView( //wrapped in a IgnorePointer to remove clickable event.
                                   scrollDirection: Axis.vertical,
 
                                   child: DataTable(
@@ -86,11 +84,11 @@ class ResultPage extends StatelessWidget {
                                     questions // Loops through dataColumnText, each iteration assigning the value to element
                                         .map(
 
-                                      ((element) => DataRow(
+                                      ((element) => DataRow( //fills the dataTable with data from the list.
 
                                         cells: <DataCell>[
 
-                                          DataCell(Text("      "+element.number.toString(),)),
+                                          DataCell(Text("      "+element.number.toString())),
                                           DataCell(Text(element.question)),
                                           DataCell(Text(((element.chosenSubAlternative+1)+element.chosenAlternative*3).toString()+"/12")),
                                           //Extracting from Map element the value
@@ -109,7 +107,7 @@ class ResultPage extends StatelessWidget {
 
           SizedBox(height: 20,),
 
-          SizedBox(
+          SizedBox( //button wrapped in sizeBox to be able to change its size.
             width: 100,
             height: 40,
             child: TextButton(
@@ -141,7 +139,6 @@ class HastLogga extends StatelessWidget{
       "assets/images/hastlogga.png",
       fit: BoxFit.contain,
       height: 45,
-
     );
   }
 }

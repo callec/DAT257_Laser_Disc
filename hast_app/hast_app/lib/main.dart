@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         )
       ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             // Define the default brightness and colors.
             brightness: Brightness.light,
