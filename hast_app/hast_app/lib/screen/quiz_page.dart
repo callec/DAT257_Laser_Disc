@@ -51,8 +51,8 @@ class QuizPage extends StatelessWidget {
         Expanded( // The main area where question will be displayed
           child: Center(child: Container(
             constraints: BoxConstraints.expand(),
-            decoration: BoxDecoration( //This is the background image
-              image: DecorationImage( //TODO, VERY SLOW LOADING TIME!
+            decoration: BoxDecoration( //The background image, already preached
+              image: DecorationImage(
                 image: AssetImage('assets/images/4.png'),
                 fit: BoxFit.cover
               )
