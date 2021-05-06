@@ -69,6 +69,13 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    bool _isMobile = false;
+
+    if (MediaQuery.of(context).size.height > MediaQuery.of(context).size.width){
+      _isMobile = true;
+    } else
+      _isMobile = false;
+
     return Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
@@ -102,7 +109,7 @@ class _QuizPageState extends State<QuizPage> {
                                               minWidth: 900,
                                               maxWidth: 1000,
                                               minHeight: 320,
-                                              maxHeight: 400),
+                                              maxHeight: _isMobile ? MediaQuery.of(context).size.height - 200 : 500),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             boxShadow: [
@@ -124,13 +131,13 @@ class _QuizPageState extends State<QuizPage> {
                                                 _QuestionText(model
                                                     .currentQuestion.question),
                                                 _CreateAnswers(_getColor,
-                                                    model.currentQuestion),
-                                                Spacer(),
+                                                    model.currentQuestion, _isMobile),
+                                                /*Spacer(),*/
                                                 Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0), // TODO to restore old layout - remove this and uncomment commented code
                                                     child: Text("How much do you agree to the chosen statement?",
                                                         style: new TextStyle(fontSize:
                                                         18))),
-                                                Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
+                                                Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
                                                     child: _CreateFollowUpAnswers(_getColor, model.currentQuestion)), //TODO remove to here
                                                 /*model.currentQuestion.chosenAlternative != -1
                                                     ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
@@ -220,17 +227,35 @@ class _QuizPageState extends State<QuizPage> {
 class _CreateAnswers extends StatelessWidget {
   final QuestionContent question;
   final _ColorCallBack colorFunction;
+  bool _mobile = false;
 
   //Send in question instead?
-  _CreateAnswers(this.colorFunction, this.question);
+  _CreateAnswers(this.colorFunction, this.question, this._mobile);
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-        child: Row(
+    if (_mobile){
+      return Expanded(
+        child: GridView.count(
+            crossAxisCount: 2,
+            children: _buildAnswers()),
+      );
+    } else {
+      return IntrinsicHeight(
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: _buildAnswers()
+          ));
+    }
+
+
+
+      /*Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _buildAnswers()));
+            children: _buildAnswers()));*/
   }
 
   List<Widget> _buildAnswers() {
@@ -241,14 +266,8 @@ class _CreateAnswers extends StatelessWidget {
     //Build Answer boxes
     for (int x = 0; x < question.alternatives.length; x++) {
       tempList.add(Expanded(
-          child: _AnswerText(
-              question.alternatives[x],
-              x,
-              colorFunction(alternativeBeenChosen
-                  ? alternativeNumber == x
-                      ? x
-                      : -1
-                  : x))));
+          child: _AnswerText(question.alternatives[x], x,
+              colorFunction(alternativeBeenChosen ? (alternativeNumber == x ? x : -1) : x))));
     }
     return tempList;
   }
