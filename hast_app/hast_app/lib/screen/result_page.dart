@@ -14,53 +14,91 @@ class ResultPage extends StatelessWidget {
     ResultModel result = context.watch<ResultModel>();
     List<QuestionContent> questions = result.quizModel.questions;
 
-    for (var question in questions) {
-      //här har vi allt vi behöver för översikten
-      print(question.question);
-      print((question.chosenSubAlternative + 1) +
-          (question.chosenAlternative * 3));
-    }
 
     scoreText = result.text;
     score = result.score;
     final theme = Theme.of(context);
 
     return Scaffold(
+
+        appBar: AppBar(
+          //title: Text(context.read<QuizModel>().title),
+          title: HastLogga(),
+          automaticallyImplyLeading: false,
+          backgroundColor: theme.backgroundColor,
+        ),
+
         body: Center(
+
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-          Text('Your score: $score' + "/96",
+                  SizedBox(height: 30),
+          Text('Your score is: $score' + "/96",
               //The final score after a evaluation.
               textAlign: TextAlign.center,
               style: theme.textTheme.headline4),
-          SizedBox(height: 50),
+          SizedBox(height: 30),
           Container(
               width: MediaQuery.of(context).size.width - 100,
               child: Text('$scoreText', //the corresponding text for the score
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headline5)),
-          SizedBox(height: 100),
+          SizedBox(height: 20),
 
           new Expanded(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  itemCount: questions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      height: 40,
-                      //width: 100,
-                      //alignment: Alignment.center,
-                      child: Row(children: <Widget>[
-                        Spacer(flex: 2,),
-                        Expanded(child: Text(questions[index].question, textAlign: TextAlign.center,)
+              child: Theme(
+                  data: Theme.of(context).copyWith(
+                      dividerColor: theme.accentColor
+                  ),
+                    child:
+
+                     DataTable(
+                      columns: const <DataColumn>[
+                        DataColumn(
+
+                          label: Text(
+                            'Question',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+
+                          ),
                         ),
-                        Expanded(child: Text(((questions[index].chosenSubAlternative + 1) + (questions[index].chosenAlternative * 3)).toString() + "/12", textAlign: TextAlign.center)),
-                        Spacer(flex: 2,)
-                        ],
-                      ),
-                    );
-                  })),
+                        DataColumn(
+                          label: Text(
+                            'Text',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Score',
+                            style: TextStyle(fontStyle: FontStyle.italic),
+                          ),
+                        ),
+                      ],
+                      rows:
+                      questions // Loops through dataColumnText, each iteration assigning the value to element
+                          .map(
+
+                        ((element) => DataRow(
+
+                          cells: <DataCell>[
+
+                            DataCell(Text("      "+element.number.toString(),)),
+                            DataCell(Text(element.question)),
+                            DataCell(Text(((element.chosenSubAlternative+1)+element.chosenAlternative*3).toString()+"/12")),
+                            //Extracting from Map element the value
+
+                          ],
+                        )),
+                      )
+                          .toList(),
+                      )
+
+
+                    
+                  ),
+          ),
 
           TextButton(
             style: ButtonStyle(
@@ -77,7 +115,20 @@ class ResultPage extends StatelessWidget {
               Navigator.pushNamed(context, '/');
             },
             child: Text('Home'),
-          )
+
+          ),
+                  SizedBox(height: 20),
         ])));
+
+  }
+}
+class HastLogga extends StatelessWidget{
+  Widget build(BuildContext context) {
+    return Image.asset(
+      "assets/images/hastlogga.png",
+      fit: BoxFit.contain,
+      height: 45,
+
+    );
   }
 }
