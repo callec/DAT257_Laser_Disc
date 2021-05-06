@@ -40,12 +40,9 @@ class _QuizPageState extends State<QuizPage> {
 
     bool isAnswered = model.questions[id].chosenSubAlternative == -1 ? false : true;
 
-    Color color = Colors.grey[400];
-    if (id == model.currentNumber){
-      color = hastGrey;
-    }
-
     IconData icon = Icons.circle;
+    Color color = Colors.grey[400];
+
     if (isAnswered){
       icon = Icons.check_circle;
       color = hastGreen;
@@ -53,8 +50,19 @@ class _QuizPageState extends State<QuizPage> {
       icon = Icons.circle;
     }
 
+    if (id == model.currentNumber){
+
+      if (isAnswered){
+        color = hastDarkGreen;
+      } else {
+        color = hastGrey;
+      }
+    }
+
     return Icon(icon, color: color);
   }
+
+
 
 
   @override
@@ -117,60 +125,33 @@ class _QuizPageState extends State<QuizPage> {
                                                     .currentQuestion.question),
                                                 _CreateAnswers(_getColor,
                                                     model.currentQuestion),
-                                                model.currentQuestion
-                                                            .chosenAlternative !=
-                                                        -1
-                                                    ? Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 16, 0, 0),
-                                                        child: Text(
-                                                            "How much do you agree to the chosen statement?",
-                                                            style:
-                                                                new TextStyle(
-                                                                    fontSize:
-                                                                        18)))
-                                                    : Text(""),
-                                                model.currentQuestion
-                                                            .chosenAlternative !=
-                                                        -1
-                                                    ? Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal:
-                                                                    128),
-                                                        child: _CreateFollowUpAnswers(
-                                                            _getColor,
-                                                            model
-                                                                .currentQuestion))
-                                                    : Text(""),
                                                 Spacer(),
+                                                Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0), // TODO to restore old layout - remove this and uncomment commented code
+                                                    child: Text("How much do you agree to the chosen statement?",
+                                                        style: new TextStyle(fontSize:
+                                                        18))),
+                                                Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
+                                                    child: _CreateFollowUpAnswers(_getColor, model.currentQuestion)), //TODO remove to here
+                                                /*model.currentQuestion.chosenAlternative != -1
+                                                    ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                                        child: Text("How much do you agree to the chosen statement?",
+                                                            style: new TextStyle(fontSize:
+                                                                        18))) : Text(""),
+                                                model.currentQuestion.chosenAlternative != -1
+                                                    ? Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
+                                                        child: _CreateFollowUpAnswers(_getColor, model.currentQuestion))
+                                                    : Text(""),*/
                                                 Padding(
                                                     padding: const EdgeInsets
                                                         .fromLTRB(8, 0, 8, 16),
                                                     //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
                                                     child: Row(
                                                       children: <Widget>[
-                                                        TextButton(
-                                                          style: TextButton
-                                                              .styleFrom(
-                                                            primary: theme
-                                                                .backgroundColor,
-                                                            backgroundColor: (model
-                                                                        .currentNumber ==
-                                                                    0)
-                                                                ? disabledGrey
-                                                                : theme
-                                                                    .accentColor,
-                                                          ),
+                                                        TextButton(style: TextButton.styleFrom(primary: theme.backgroundColor,
+                                                            backgroundColor: (model.currentNumber == 0) ? disabledGrey : theme.accentColor),
                                                           onPressed: () {
-                                                            if (model
-                                                                    .currentNumber >=
-                                                                1) {
-                                                              model
-                                                                  .prevQuestion();
+                                                            if (model.currentNumber >= 1) {
+                                                              model.prevQuestion();
                                                             }
                                                           },
                                                           child: Text('Back'),
@@ -407,7 +388,7 @@ class _FollowUpAnswerText extends StatelessWidget {
           ),
           onPressed: () {
             print('$number points');
-            context.read<QuizModel>().setSubAlternative(index);
+            (context.read<QuizModel>().currentQuestion.chosenAlternative == -1) ? null : context.read<QuizModel>().setSubAlternative(index);
           },
           child: Container(
               color: Colors.transparent,
