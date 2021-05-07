@@ -92,14 +92,20 @@ class _QuizPageState extends State<QuizPage> {
                                   _getColor, model.currentQuestion),
                               //TODO Out-commented code will make sub-alternatives invisible/visible
                               /*model.currentQuestion.chosenAlternative != -1
-                                                    ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                                                        child: Text("How much do you agree to the chosen statement?",
-                                                            style: new TextStyle(fontSize:
-                                                                        18))) : Text(""),
-                                                model.currentQuestion.chosenAlternative != -1
-                                                    ? Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
-                                                        child: _CreateFollowUpAnswers(_getColor, model.currentQuestion))
-                                                    : Text(""),*/
+                                  ? Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 16, 0, 0),
+                                      child: Text(
+                                          "How much do you agree to the chosen statement?",
+                                          style: new TextStyle(fontSize: 18)))
+                                  : Text(""),
+                              model.currentQuestion.chosenAlternative != -1
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 128),
+                                      child: _CreateFollowUpAnswers(
+                                          _getColor, model.currentQuestion))
+                                  : Text(""),*/
                               Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(8, 0, 8, 16),
@@ -124,6 +130,7 @@ class _CreateProgressIndicators extends StatelessWidget {
     return Row(children: _buildProgressIndicators());
   }
 
+  // Provide the progress indicator dots with icon and color
   Icon _getDotIcon(int id) {
     bool isAnswered =
         _model.questions[id].chosenSubAlternative == -1 ? false : true;
@@ -150,14 +157,14 @@ class _CreateProgressIndicators extends StatelessWidget {
   }
 
   List<Widget> _buildProgressIndicators() {
-    List<Widget> list = [];
+    List<Widget> progressBar = [];
 
     for (int i = 0; i < 8; i++) {
-      list.add(IconButton(
+      progressBar.add(IconButton(
           icon: _getDotIcon(i), onPressed: () => _model.setQuestion(i)));
     }
 
-    return list;
+    return progressBar;
   }
 }
 
