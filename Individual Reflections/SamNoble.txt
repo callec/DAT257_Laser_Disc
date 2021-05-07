@@ -77,12 +77,16 @@ I have been active in meetings and contributed in how we have solved our user st
 
 Week 7
 - What do I want to learn or understand better?
+I want to learn how to manage datafiles in flutter. This sprint another group solved this so I'm thinking of reviewing their work.
 
 - How can I help someone else, or the entire team, to learn something new?
+This week I dont feel like I've learned something specific. This being said, I have informed about some of the challenges my group faced this sprint and how we hadled them.
 
 - What is my contribution towards the team’s use of Scrum?
+This sprint I was 2:nd "bullshit detector" which means that I contributed to keep the meetings on track.
 
 - What is my contribution towards the team’s deliveries?
+I have been involved in solving two of this weeks user stories and explored how to solve future user stories.
 
 
 Week 8
