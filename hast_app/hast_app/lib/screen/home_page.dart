@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
 /// This is the first page that is displayed to the User
 /// Here we can start the quiz or get information about the Quiz or HAST
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
     final theme = Theme.of(context);
 
-    //Here we display 3 tabs (home, about the test and about HAST)
+    // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
       title: 'Flutter Demo',
       home: DefaultTabController(
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            //What will be displayed on each tab
+            // What will be displayed on each tab
             children: [
               Center(
                   child: Container(
@@ -73,7 +73,6 @@ class HomePage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headline6));
   }
-
 
   Widget _startButton(context, QuizModel quizModel) {
     return ElevatedButton(

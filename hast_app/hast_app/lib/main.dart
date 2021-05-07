@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             textTheme: TextTheme(
               headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
               headline4: TextStyle(fontSize: 40.0, color: Colors.black),
-              headline6: TextStyle(fontSize: 24.0),
+              headline6: TextStyle(fontSize: 20.0),
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),

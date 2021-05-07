@@ -1,10 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:provider/provider.dart';
 
 /// Displays an overview of Questions in the Quiz
 /// for easy navigation between them
-
 class QuestionDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,6 @@ class QuestionDrawer extends StatelessWidget {
         itemCount: model.numberOfQuestions + 1,
         padding: EdgeInsets.zero,
         itemBuilder: (context, i) {
-
           //Create the title
           if (i == 0) {
             return Column(
