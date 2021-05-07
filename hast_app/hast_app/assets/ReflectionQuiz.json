@@ -10,6 +10,7 @@
   "questions": [
     {
       "question": "Reactivity vs. finding 'the space'",
+      "number": 1,
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
         "You see that you react in ways that don’t work in many situations. You don’t feel good about it, but you have no idea how to change your behaviour.",
@@ -20,6 +21,7 @@
     },
     {
       "question": "Relaxed or Stressed",
+      "number": 2,
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
         "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",
@@ -29,6 +31,7 @@
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
       "question": "Reactivity vs. finding 'the space'",
+      "number": 3,
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
         "You see that you react in ways that don’t work in many situations. You don’t feel good about it, but you have no idea how to change your behaviour.",
@@ -39,6 +42,7 @@
     },
     {
       "question": "Relaxed or Stressed",
+      "number": 4,
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
         "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",
@@ -48,6 +52,7 @@
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
       "question": "Reactivity vs. finding 'the space'",
+      "number": 5,
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
         "You see that you react in ways that don’t work in many situations. You don’t feel good about it, but you have no idea how to change your behaviour.",
@@ -58,6 +63,7 @@
     },
     {
       "question": "Relaxed or Stressed",
+      "number": 6,
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
         "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",
@@ -67,6 +73,7 @@
       "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]},
     {
       "question": "Reactivity vs. finding 'the space'",
+      "number": 7,
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
         "You see that you react in ways that don’t work in many situations. You don’t feel good about it, but you have no idea how to change your behaviour.",
@@ -77,6 +84,7 @@
     },
     {
       "question": "Relaxed or Stressed",
+      "number": 8,
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
         "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",

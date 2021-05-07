@@ -135,7 +135,7 @@ class _CreateProgressIndicators extends StatelessWidget {
         _model.questions[id].chosenSubAlternative == -1 ? false : true;
 
     IconData icon = Icons.circle;
-    Color color = Colors.grey[400];
+    Color color = Colors.grey;
 
     if (isAnswered) {
       icon = Icons.check_circle;
@@ -168,8 +168,6 @@ class _CreateProgressIndicators extends StatelessWidget {
 }
 
 /// The row containing the back/next buttons and the progress indicator dots
-///
-///
 class _CreateNextBackRow extends StatelessWidget {
   final QuizModel _model;
 
@@ -286,17 +284,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
     List<String> options = question.subAlternatives;
 
     //Create three sub alternatives
-    for (int x = 0; x < 3; x++) {
-      tempList.add(Expanded(
-          child: _FollowUpAnswerText(
-              alternativeNumber * 3 + (x + 1),
-              x,
-              color(_subAltBeenChosen
-                  ? subAlternativeNumber == x
-                      ? alternativeNumber
-                      : -1
-                  : alternativeNumber),
-    for(int x = 0; x < 3; x++){
+    for(int x = 0; x < 3; x++) {
       tempList.add(
         Expanded(
           child: _SubAlternativeText(

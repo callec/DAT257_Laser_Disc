@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
+import 'package:hast_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
 
 /// Displays the score from the Quiz and a conclusion text
@@ -18,7 +19,7 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
-          title: HastLogga(),
+          title: HastLogo(),
           automaticallyImplyLeading: false,
           backgroundColor: theme.backgroundColor,
         ),
@@ -95,15 +96,5 @@ class ResultPage extends StatelessWidget {
 
               SizedBox(height: 20),
         ])));
-  }
-}
-
-class HastLogga extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/hastlogga.png",
-      fit: BoxFit.contain,
-      height: 45,
-    );
   }
 }
