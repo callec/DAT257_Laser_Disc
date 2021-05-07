@@ -36,23 +36,110 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  Icon _getDotIcon(int id, QuizModel model){
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-    bool isAnswered = model.questions[id].chosenSubAlternative == -1 ? false : true;
+    return Scaffold(
+        appBar: AppBar(
+          //title: Text(context.read<QuizModel>().title),
+          title: HastLogga(),
+          backgroundColor: theme.backgroundColor,
+          automaticallyImplyLeading: false, //removes "go back arrow"
+        ),
+        body: Center(
+            child: Container(
+                //Background image
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                constraints: BoxConstraints.expand(),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/4.png'),
+                        fit: BoxFit.cover)),
+                child: Column(children: [
+                  Container(
+                    // This is the white box!
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                    constraints: BoxConstraints(
+                        //Size of the white box
+                        minWidth: 900,
+                        maxWidth: 1000,
+                        minHeight: 320,
+                        maxHeight: 400),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            spreadRadius: 0.5,
+                            blurRadius: 1,
+                            offset: Offset(0, 2))
+                      ],
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: Consumer<QuizModel>(
+                        // TODO maybe it would be better to rebuild individual Text widgets
+                        // within the larger widgets?
+                        builder: (context, model, child) => Column(children: [
+                              // Question and alternatives
+                              _QuestionText(model.currentQuestion.question),
+                              _CreateAnswers(_getColor, model.currentQuestion),
+                              Spacer(),
+                              Text(
+                                  "How much do you agree to the chosen statement?",
+                                  style: new TextStyle(fontSize: 18)),
+                              _CreateFollowUpAnswers(
+                                  _getColor, model.currentQuestion),
+                              //TODO Out-commented code will make sub-alternatives invisible/visible
+                              /*model.currentQuestion.chosenAlternative != -1
+                                                    ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                                        child: Text("How much do you agree to the chosen statement?",
+                                                            style: new TextStyle(fontSize:
+                                                                        18))) : Text(""),
+                                                model.currentQuestion.chosenAlternative != -1
+                                                    ? Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
+                                                        child: _CreateFollowUpAnswers(_getColor, model.currentQuestion))
+                                                    : Text(""),*/
+                              Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 0, 8, 16),
+                                  //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+                                  child: _CreateNextBackRow(model))
+                            ])),
+                  )
+                ]))));
+  }
+}
+
+/// Create a row of IconButtons that display progress
+///
+///
+class _CreateProgressIndicators extends StatelessWidget {
+  final QuizModel _model;
+
+  _CreateProgressIndicators(this._model);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: _buildProgressIndicators());
+  }
+
+  Icon _getDotIcon(int id) {
+    bool isAnswered =
+        _model.questions[id].chosenSubAlternative == -1 ? false : true;
 
     IconData icon = Icons.circle;
     Color color = Colors.grey[400];
 
-    if (isAnswered){
+    if (isAnswered) {
       icon = Icons.check_circle;
       color = hastGreen;
-    } else{
+    } else {
       icon = Icons.circle;
     }
 
-    if (id == model.currentNumber){
-
-      if (isAnswered){
+    if (id == _model.currentNumber) {
+      if (isAnswered) {
         color = hastDarkGreen;
       } else {
         color = hastGrey;
@@ -62,162 +149,65 @@ class _QuizPageState extends State<QuizPage> {
     return Icon(icon, color: color);
   }
 
+  List<Widget> _buildProgressIndicators() {
+    List<Widget> list = [];
 
+    for (int i = 0; i < 8; i++) {
+      list.add(IconButton(
+          icon: _getDotIcon(i), onPressed: () => _model.setQuestion(i)));
+    }
 
+    return list;
+  }
+}
+
+/// The row containing the back/next buttons and the progress indicator dots
+///
+///
+class _CreateNextBackRow extends StatelessWidget {
+  final QuizModel _model;
+
+  _CreateNextBackRow(this._model);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    bool _isMobile = false;
-
-    if (MediaQuery.of(context).size.height > MediaQuery.of(context).size.width){
-      _isMobile = true;
-    } else
-      _isMobile = false;
-
-    return Scaffold(
-        appBar: AppBar(
-          //title: Text(context.read<QuizModel>().title),
-          title: HastLogga(),
-          backgroundColor: theme.backgroundColor,
-          automaticallyImplyLeading: false, //removes "go back arrow"
+    return Row(
+      children: <Widget>[
+        ElevatedButton(
+          style: TextButton.styleFrom(
+              primary: Theme.of(context).backgroundColor,
+              backgroundColor: (_model.currentNumber == 0)
+                  ? disabledGrey
+                  : Theme.of(context).accentColor),
+          onPressed: () {
+            if (_model.currentNumber >= 1) {
+              _model.prevQuestion();
+            }
+          },
+          child: Text('Back'),
         ),
-        body: Row(children: [
-          Expanded(
-              child: Center(
-                  child: Container(
-                      constraints: BoxConstraints.expand(),
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/4.png'),
-                              fit: BoxFit.cover)),
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                          child: Consumer<QuizModel>(
-                              // TODO maybe it would be better to rebuild individual Text widgets
-                              // within the larger widgets?
-                              builder: (context, model, child) =>
-                                  Column(children: [
-                                    Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            16, 16, 16, 16),
-                                        child: Container(
-                                          //color: Colors.pink,
-                                          constraints: BoxConstraints(
-                                              //TODO
-                                              minWidth: 900,
-                                              maxWidth: 1000,
-                                              minHeight: 320,
-                                              maxHeight: _isMobile ? MediaQuery.of(context).size.height - 200 : 500),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey,
-                                                spreadRadius: 0.5,
-                                                blurRadius: 1,
-                                                offset: Offset(0, 2),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(5.0),
-                                          ),
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      8, 0, 8, 0),
-                                              child: Column(children: [
-                                                _QuestionText(model
-                                                    .currentQuestion.question),
-                                                _CreateAnswers(_getColor,
-                                                    model.currentQuestion, _isMobile),
-                                                /*Spacer(),*/
-                                                Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0), // TODO to restore old layout - remove this and uncomment commented code
-                                                    child: Text("How much do you agree to the chosen statement?",
-                                                        style: new TextStyle(fontSize:
-                                                        18))),
-                                                Padding(padding: const EdgeInsets.symmetric(horizontal: 0),
-                                                    child: _CreateFollowUpAnswers(_getColor, model.currentQuestion)), //TODO remove to here
-                                                /*model.currentQuestion.chosenAlternative != -1
-                                                    ? Padding(padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                                                        child: Text("How much do you agree to the chosen statement?",
-                                                            style: new TextStyle(fontSize:
-                                                                        18))) : Text(""),
-                                                model.currentQuestion.chosenAlternative != -1
-                                                    ? Padding(padding: const EdgeInsets.symmetric(horizontal: 128),
-                                                        child: _CreateFollowUpAnswers(_getColor, model.currentQuestion))
-                                                    : Text(""),*/
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(8, 0, 8, 16),
-                                                    //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        TextButton(style: TextButton.styleFrom(primary: theme.backgroundColor,
-                                                            backgroundColor: (model.currentNumber == 0) ? disabledGrey : theme.accentColor),
-                                                          onPressed: () {
-                                                            if (model.currentNumber >= 1) {
-                                                              model.prevQuestion();
-                                                            }
-                                                          },
-                                                          child: Text('Back'),
-                                                        ),
-                                                        Spacer(),
-                                                        Row(children: [
-                                                          IconButton(icon: _getDotIcon(0, model), onPressed: () => model.setQuestion(0)),
-                                                            IconButton(icon: _getDotIcon(1, model), onPressed: () => model.setQuestion(1)),
-                                                            IconButton(icon: _getDotIcon(2, model), onPressed: () => model.setQuestion(2)),
-                                                            IconButton(icon: _getDotIcon(3, model), onPressed: () => model.setQuestion(3)),
-                                                            IconButton(icon: _getDotIcon(4, model), onPressed: () => model.setQuestion(4)),
-                                                            IconButton(icon: _getDotIcon(5, model), onPressed: () => model.setQuestion(5)),
-                                                            IconButton(icon: _getDotIcon(6, model), onPressed: () => model.setQuestion(6)),
-                                                          IconButton(icon: _getDotIcon(7, model), onPressed: () => model.setQuestion(7)),
-                                                        ],),
-                                                        Spacer(),
-                                                        TextButton(
-                                                          style: TextButton
-                                                              .styleFrom(
-                                                            primary:
-                                                                Colors.white,
-                                                            backgroundColor: (model
-                                                                        .currentNumber ==
-                                                                    7)
-                                                                ? (model.finished
-                                                                    ? hastGreen
-                                                                    : disabledGrey)
-                                                                : theme
-                                                                    .accentColor,
-                                                          ),
-                                                          onPressed: () {
-                                                            if (model
-                                                                    .currentNumber <=
-                                                                6) {
-                                                              model
-                                                                  .nextQuestion();
-                                                            } else if (model
-                                                                        .currentNumber ==
-                                                                    7 &&
-                                                                model
-                                                                    .finished) {
-                                                              Navigator
-                                                                  .pushNamed(
-                                                                      context,
-                                                                      '/result');
-                                                            }
-                                                          },
-                                                          child: Text(
-                                                              model.currentNumber <
-                                                                      7
-                                                                  ? 'Next'
-                                                                  : 'Result'),
-                                                        ),
-                                                      ],
-                                                    ))
-                                              ])),
-                                        ))
-                                  ]))))))
-        ]));
+        Spacer(),
+        // Progress indication (dots)
+        _CreateProgressIndicators(_model),
+        Spacer(),
+        ElevatedButton(
+          style: TextButton.styleFrom(
+            primary: Colors.white,
+            backgroundColor: (_model.currentNumber == 7)
+                ? (_model.finished ? hastGreen : disabledGrey)
+                : Theme.of(context).accentColor,
+          ),
+          onPressed: () {
+            if (_model.currentNumber <= 6) {
+              _model.nextQuestion();
+            } else if (_model.currentNumber == 7 && _model.finished) {
+              Navigator.pushNamed(context, '/result');
+            }
+          },
+          child: Text(_model.currentNumber < 7 ? 'Next' : 'Result'),
+        ),
+      ],
+    );
   }
 }
 
@@ -227,32 +217,19 @@ class _QuizPageState extends State<QuizPage> {
 class _CreateAnswers extends StatelessWidget {
   final QuestionContent question;
   final _ColorCallBack colorFunction;
-  bool _mobile = false;
 
   //Send in question instead?
-  _CreateAnswers(this.colorFunction, this.question, this._mobile);
+  _CreateAnswers(this.colorFunction, this.question);
 
   @override
   Widget build(BuildContext context) {
-    if (_mobile){
-      return Expanded(
-        child: GridView.count(
-            crossAxisCount: 2,
-            children: _buildAnswers()),
-      );
-    } else {
-      return IntrinsicHeight(
-          child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
+    return IntrinsicHeight(
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _buildAnswers()));
 
-              children: _buildAnswers()
-          ));
-    }
-
-
-
-      /*Row(
+    /*Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: _buildAnswers()));*/
@@ -266,8 +243,12 @@ class _CreateAnswers extends StatelessWidget {
     //Build Answer boxes
     for (int x = 0; x < question.alternatives.length; x++) {
       tempList.add(Expanded(
-          child: _AnswerText(question.alternatives[x], x,
-              colorFunction(alternativeBeenChosen ? (alternativeNumber == x ? x : -1) : x))));
+          child: _AnswerText(
+              question.alternatives[x],
+              x,
+              colorFunction(alternativeBeenChosen
+                  ? (alternativeNumber == x ? x : -1)
+                  : x))));
     }
     return tempList;
   }
@@ -407,7 +388,9 @@ class _FollowUpAnswerText extends StatelessWidget {
           ),
           onPressed: () {
             print('$number points');
-            (context.read<QuizModel>().currentQuestion.chosenAlternative == -1) ? null : context.read<QuizModel>().setSubAlternative(index);
+            (context.read<QuizModel>().currentQuestion.chosenAlternative == -1)
+                ? null
+                : context.read<QuizModel>().setSubAlternative(index);
           },
           child: Container(
               color: Colors.transparent,
