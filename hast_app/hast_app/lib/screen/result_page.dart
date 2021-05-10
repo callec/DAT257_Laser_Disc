@@ -28,9 +28,9 @@ class ResultPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
           SizedBox(height: 30),
-          Text('Your score is: $_score' + "/96", //The final score after a evaluation.
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headline4),
+              Text('Your score is: $_score' + '/' + '${questions.length * 12}', //The final score after a evaluation.
+                textAlign: TextAlign.center,
+                style: theme.textTheme.headline4),
           SizedBox(height: 30),
           Container(
               width: MediaQuery.of(context).size.width - 100,
