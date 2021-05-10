@@ -63,7 +63,7 @@ class QuizPage extends StatelessWidget {
                         minWidth: 900,
                         maxWidth: 1000,
                         minHeight: 320,
-                        maxHeight: 400),
+                        maxHeight: 440),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -135,7 +135,7 @@ class _CreateProgressIndicators extends StatelessWidget {
         _model.questions[id].chosenSubAlternative == -1 ? false : true;
 
     IconData icon = Icons.circle;
-    Color color = Colors.grey;
+    Color color = dotGrey;
 
     if (isAnswered) {
       icon = Icons.check_circle;
@@ -158,7 +158,7 @@ class _CreateProgressIndicators extends StatelessWidget {
   List<Widget> _buildProgressIndicators() {
     List<Widget> progressBar = [];
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < _model.numberOfQuestions; i++) {
       progressBar.add(IconButton(
           icon: _getDotIcon(i), onPressed: () => _model.setQuestion(i)));
     }

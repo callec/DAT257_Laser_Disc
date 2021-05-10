@@ -13,5 +13,6 @@ const hastAlt2 = Color.fromARGB(255, 255, 189, 84);
 const hastAlt3 = Color.fromARGB(255, 255, 151, 74);
 const hastAlt4 = Color.fromARGB(255, 255, 103, 86);
 const altGrey = Color(0xFFEEEEEE);
+const dotGrey = Color.fromARGB(255, 189, 189, 189);
 
 const disabledGrey = Colors.grey;
