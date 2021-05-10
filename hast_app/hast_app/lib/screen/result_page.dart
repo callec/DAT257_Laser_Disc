@@ -66,7 +66,7 @@ class ResultPage extends StatelessWidget {
                       questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
                         //fills the dataTable with data from the list.
                         cells: <DataCell>[
-                          DataCell(Text("      " + '1')),//element.number.toString())),
+                          DataCell(Text("      " + element.number.toString())),
                           DataCell(Text(element.question)),
                           DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
                         ],
