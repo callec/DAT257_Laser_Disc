@@ -75,6 +75,7 @@ Week 4
      is not easy to achieve as we need to consider the teams overall knowledge
      of development as well as arringing meetings when everyone is available.
 
+
 Week 5
 * what do I want to learn or understand better?
    * I want to learn how to export data from a flutter application and
@@ -91,3 +92,26 @@ Week 5
      went. This week I tested a design pattern for the backend that worked out
      well so we decided to implement it, as well as working together on the
      use stories as usual.
+
+
+Week 6
+* what do I want to learn or understand better?
+   * As we didn't touch exporting data last week i still want to understand
+     that. To increase my knowledge I have however read more about it and I
+     have implemented JSON support together with Erik to make it easier to
+     export the relevant data.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week design decisions and technical documentation as well
+     as providing feedback during code reviews.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way. I don't know how relevant it is towards scrum but every week
+     we do a feedback session at the end of sprint meeting where we change the
+     roles little by little according to what better fit our needs.
+* what is my contribution towards the team’s deliveries?
+   * This week we have collaborated (as usual) and I am satisfied with how it
+     went. Me and Erik implemented JSON support (reading from file atm) and we
+     started the technical documentation, I have also started implementing
+     unit tests for our application. Teamwise I have helped out by doing code
+     reviews and testing the other groups' code.
