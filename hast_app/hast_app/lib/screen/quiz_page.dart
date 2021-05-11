@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/screen/question_overview.dart';
+import 'package:hast_app/screen/responsive_quiz_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -45,6 +46,7 @@ class QuizPage extends StatelessWidget {
           backgroundColor: theme.backgroundColor,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
+
         body: Center(
             child: Container(
                 // Background image, already precached
@@ -55,15 +57,22 @@ class QuizPage extends StatelessWidget {
                         image: AssetImage('assets/images/4.png'),
                         fit: BoxFit.cover)),
                 child: Column(children: [
+
+
                   Container(
                     // This is the white box!
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                    constraints: BoxConstraints(
+
+                    constraints: ResponsiveQuizPage.isLargeScreen(context)
+                    ? BoxConstraints(
                         //Size of the white box
                         minWidth: 900,
                         maxWidth: 1000,
                         minHeight: 320,
-                        maxHeight: 440),
+                        maxHeight: 440) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 400, maxHeight: 800)
+                    ,
+
+
                     decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: [
@@ -101,17 +110,24 @@ class QuizPage extends StatelessWidget {
                               model.currentQuestion.chosenAlternative != -1
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 128),
+                                          horizontal: 20),
                                       child: _CreateFollowUpAnswers(
                                           _getColor, model.currentQuestion))
                                   : Text(""),
+
+
                               Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8, 0, 8, 16),
+                                   padding:
+                                       const EdgeInsets.only(left: 4, right: 4, bottom: 16),
                                   //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
                                   child: _CreateNextBackRow(model))
+
+
                             ])),
                   )
+
+
+
                 ]))));
   }
 }
@@ -159,10 +175,9 @@ class _CreateProgressIndicators extends StatelessWidget {
     List<Widget> progressBar = [];
 
     for (int i = 0; i < _model.numberOfQuestions; i++) {
-      progressBar.add(IconButton(
+      progressBar.add( IconButton(
           icon: _getDotIcon(i), onPressed: () => _model.setQuestion(i)));
     }
-
     return progressBar;
   }
 }
