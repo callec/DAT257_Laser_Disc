@@ -61,8 +61,6 @@ class QuizModel with ChangeNotifier {
   /// Change question forward.
   void nextQuestion() {
     if (_questionNumber < (_questions.length - 1)) ++_questionNumber;
-    this.setAlternative(1); // TODO remove later
-    this.setSubAlternative(1);
 
     notifyListeners();
   }
