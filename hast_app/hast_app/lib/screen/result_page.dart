@@ -11,90 +11,131 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ResultModel _result = context.watch<ResultModel>(); // Load Result model
     //list used to access score per question, question title and question number, for the overview.
-    List<QuestionContent> questions = _result.quizModel.questions;
-    final String _scoreText = _result.text;
-    final int _score = _result.score;
-    final theme = Theme.of(context);
+    List<QuestionContent> _questions = _result.questions;
+    final _theme = Theme.of(context);
 
     return Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
           automaticallyImplyLeading: false,
-          backgroundColor: theme.backgroundColor,
+          backgroundColor: _theme.backgroundColor,
         ),
-        body: Center(child:
-        Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-          SizedBox(height: 30),
-              Text('Your score is: $_score' + '/' + '${questions.length * 12}', //The final score after a evaluation.
-                textAlign: TextAlign.center,
-                style: theme.textTheme.headline4),
+        body: Center(
+          child:
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 30),
+                _PointsAndText(_result, _theme),
+                SizedBox(height: 20),
+                _ResultOverview(_result, _theme),
+                SizedBox(height: 20),
+                //_HomeButton(_theme),
+                SizedBox(height: 20),
+        ])));
+  }
+}
+
+class _PointsAndText extends StatelessWidget {
+  final ResultModel _model;
+  final theme;
+  late final int _score;
+  late final String _scoreText;
+  late final int _numberOfQuestions;
+
+  _PointsAndText(this._model, this.theme) {
+    _score = _model.score;
+    _scoreText = _model.text;
+    _numberOfQuestions = _model.questions.length;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        children: [
+          Text('Your score is: $_score' + '/' + '${_numberOfQuestions * 12}', //The final score after a evaluation.
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headline4),
           SizedBox(height: 30),
           Container(
-              width: MediaQuery.of(context).size.width - 100,
-              child: Text('$_scoreText',
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.headline5)),
-          SizedBox(height: 20),
+            width: MediaQuery.of(context).size.width - 100,
+            child: Text('$_scoreText',
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headline5)),
+    ]);
+  }
+}
 
-          new Expanded(child: //the overview
-          Theme(
-            data: Theme.of(context).copyWith(dividerColor: theme.accentColor),
-            child:
-            Padding( //to get the overview in the middle and proper adjust when the window size is changed.
-              padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.12,
-                  right: MediaQuery.of(context).size.width * 0.12),
-              child:
-              ListView( //wrapped in a listView to be scrollable.
-                  children: <Widget>[
-                IgnorePointer(child: //wrapped in a IgnorePointer to remove clickable event.
-                SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child:
-                    DataTable( columns: const <DataColumn>[
-                      DataColumn(
-                        label: Text('Question', style: TextStyle(fontStyle: FontStyle.italic))),
-                      DataColumn(
-                        label: Text('Text', style: TextStyle(fontStyle: FontStyle.italic))),
-                      DataColumn(
-                        label: Text('Score', style: TextStyle(fontStyle: FontStyle.italic))),
-                          ],
-                      rows:
-                      questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
-                        //fills the dataTable with data from the list.
-                        cells: <DataCell>[
-                          DataCell(Text("      " + element.number.toString())),
-                          DataCell(Text(element.question)),
-                          DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
-                        ],
-                      ))).toList())))
-              ]
-              )))),
+class _ResultOverview extends StatelessWidget {
+  final _theme;
+  final ResultModel _model;
+  late final List<QuestionContent> _questions;
 
-          SizedBox(
-            height: 20),
+  _ResultOverview(this._model, this._theme) {
+    this._questions = _model.questions;
+  }
 
-         SizedBox(//button wrapped in sizeBox to be able to change its size.
-           width: 100, height: 40,
-             child: TextButton(
-               style: ButtonStyle(
-                 foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-                    return theme.backgroundColor;
-                  }),
-                 backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-                    return theme.accentColor;
-                  }),
-                ),
-               onPressed: () {
-                 Navigator.pushNamed(context, '/');
-                },
-               child: Text('Home'),
-              )),
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(child: //the overview
+      Theme(
+        data: Theme.of(context).copyWith(dividerColor: _theme.accentColor),
+        child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
+          padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.12,
+            right: MediaQuery.of(context).size.width * 0.12),
+          child: ListView( //wrapped in a listView to be scrollable.
+            children: <Widget>[
+            IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
+              child: DataTable( columns: const <DataColumn>[
+                DataColumn(
+                  label: Text('Question', style: TextStyle(fontStyle: FontStyle.italic))),
+                DataColumn(
+                  label: Text('Text', style: TextStyle(fontStyle: FontStyle.italic))),
+                DataColumn(
+                  label: Text('Score', style: TextStyle(fontStyle: FontStyle.italic))),
+              ],
+              rows: _questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
+                //fills the dataTable with data from the list.
+                cells: <DataCell>[
+                  DataCell(Text("      " + element.number.toString())),
+                  DataCell(Text(element.question)),
+                  DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
+                ],
+              ))).toList()))
+            ]
+          )
+        )
+      )
+    );
+  }
+}
 
-              SizedBox(height: 20),
-        ])));
+class _HomeButton extends StatelessWidget {
+  final _theme;
+
+  _HomeButton(this._theme);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SizedBox(//button wrapped in sizeBox to be able to change its size.
+        width: 100, height: 40,
+        child: TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+              return _theme.backgroundColor;
+            }),
+            backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+              return _theme.accentColor;
+            }),
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/');
+          },
+          child: Text('Home'),
+        )
+    );
   }
 }

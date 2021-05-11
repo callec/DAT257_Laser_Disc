@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<ResultModel, QuizModel>(
           create: (context) => QuizModel(),
           update: (context, result, quiz){
-            result.quizModel = quiz!;
+            result.setModel(quiz!);
             return quiz;
           }
 
