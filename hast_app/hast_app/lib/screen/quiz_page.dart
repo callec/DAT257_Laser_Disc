@@ -69,7 +69,7 @@ class QuizPage extends StatelessWidget {
                         minWidth: 900,
                         maxWidth: 1000,
                         minHeight: 320,
-                        maxHeight: 440) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 400, maxHeight: 800)
+                        maxHeight: 540) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 400, maxHeight: 800)
                     ,
 
 
@@ -92,7 +92,7 @@ class QuizPage extends StatelessWidget {
                               // Question and alternatives
                               _QuestionText(model.currentQuestion.question),
                               _CreateAnswers(_getColor, model.currentQuestion),
-                              Spacer(),
+                              //Spacer(), Vi vill inte ha mellanrum mellan fråga och subfråga
                               /*Text(
                                   "How much do you agree to the chosen statement?",
                                   style: new TextStyle(fontSize: 18)),
@@ -116,6 +116,7 @@ class QuizPage extends StatelessWidget {
                                   : Text(""),
 
 
+                              Spacer(),
                               Padding(
                                    padding:
                                        const EdgeInsets.only(left: 4, right: 4, bottom: 16),
@@ -241,12 +242,19 @@ class _CreateAnswers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
-        child: Row(
+        child:
+        ResponsiveQuizPage.isLargeScreen(context)
+        ? Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
 
       children: _buildAnswers()
-    ));
+    )
+            : Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: _buildAnswers()));
   }
 
   List<Widget> _buildAnswers() {
