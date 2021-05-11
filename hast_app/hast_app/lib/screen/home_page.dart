@@ -12,12 +12,15 @@ class HomePage extends StatelessWidget {
   String query;
 
   HomePage(this.query) {
-    print(query);
+    print("current query:" + query);
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {
-    var quizModel = context.watch<QuizModel>();
+    var quizModel = Provider.of<QuizModel>(context, listen: false);
 
     quizModel.loadQuiz(query);
 

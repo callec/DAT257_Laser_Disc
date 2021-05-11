@@ -19,6 +19,9 @@ class QuizModel with ChangeNotifier {
 
   bool loading = true;
 
+  String loadedFile = "";
+
+
   int get answered => _answered;
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
@@ -42,6 +45,9 @@ class QuizModel with ChangeNotifier {
   }
 
   void loadQuiz(String query) {
+    if(loadedFile == query) return;
+
+    print("Loading $query...");
     loading = true;
 
     QuestionFactory.createQuiz(query).then((value) {
@@ -51,7 +57,10 @@ class QuizModel with ChangeNotifier {
       _resultText = _quiz.resultText;
       _questionNumber = 0;
 
+      print("Loading $query complete...");
+
       loading = false;
+      loadedFile = query;
       notifyListeners();
     });
   }
