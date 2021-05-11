@@ -37,7 +37,23 @@ class QuizModel with ChangeNotifier {
   }
 
   QuizModel() {
-    this.reset();
+
+    /*this.reset();*/
+  }
+
+  void loadQuiz(String query) {
+    loading = true;
+
+    QuestionFactory.createQuiz(query).then((value) {
+      _quiz = value;
+      _questions = _quiz.questions;
+      _questionTitle = _quiz.quizTitle; //TODO något spökar
+      _resultText = _quiz.resultText;
+      _questionNumber = 0;
+
+      loading = false;
+      notifyListeners();
+    });
   }
 
   /// Reset the quiz to the starting point.

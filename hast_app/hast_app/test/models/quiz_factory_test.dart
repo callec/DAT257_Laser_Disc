@@ -10,7 +10,7 @@ void main() {
 
     test('Make sure that the file loads', () async {
       // if `getJson()` runs successfully consider the test complete.
-      await QuestionFactory.getJson();
+      await QuestionFactory.getJson("ReflectionQuiz");
     });
 
     test('Assert that the Factory returns a QuizContent', () async {

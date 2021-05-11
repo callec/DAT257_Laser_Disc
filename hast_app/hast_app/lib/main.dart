@@ -23,20 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-    var url = Uri.base;
-    print(url);
-
-    Map<String, String> queries = url.queryParameters;
-    print(queries);
-
-    try{
-      String query = queries.values.first; // TODO
-      print(query);
-    } catch (e) {
-      print('Det gick fel!');
-    }
-
+    
     //Precache the background
     precacheImage(AssetImage('assets/images/4.png'), context);
 

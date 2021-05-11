@@ -19,6 +19,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var quizModel = context.watch<QuizModel>();
 
+    quizModel.loadQuiz(query);
+
     final theme = Theme.of(context);
 
     // Here we display 3 tabs (home, about the test and about HAST)
