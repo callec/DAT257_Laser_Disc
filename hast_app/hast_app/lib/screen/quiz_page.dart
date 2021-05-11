@@ -56,6 +56,7 @@ class QuizPage extends StatelessWidget {
                     image: DecorationImage(
                         image: AssetImage('assets/images/4.png'),
                         fit: BoxFit.cover)),
+                child: SingleChildScrollView(
                 child: Column(children: [
 
 
@@ -69,7 +70,7 @@ class QuizPage extends StatelessWidget {
                         minWidth: 900,
                         maxWidth: 1000,
                         minHeight: 320,
-                        maxHeight: 540) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 400, maxHeight: 800)
+                        maxHeight: 540) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 330, maxHeight: 750)
                     ,
 
 
@@ -119,7 +120,7 @@ class QuizPage extends StatelessWidget {
                               Spacer(),
                               Padding(
                                    padding:
-                                       const EdgeInsets.only(left: 4, right: 4, bottom: 16),
+                                       const EdgeInsets.only(left: 0, right: 0, bottom: 16), //ändrade från 4 till 0 och varningen försvann på webben
                                   //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
                                   child: _CreateNextBackRow(model))
 
@@ -129,7 +130,7 @@ class QuizPage extends StatelessWidget {
 
 
 
-                ]))));
+                ])))));
   }
 }
 
