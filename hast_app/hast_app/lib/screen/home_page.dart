@@ -8,12 +8,16 @@ import 'package:hast_app/models/quiz_model.dart';
 /// This is the first page that is displayed to the User
 /// Here we can start the quiz or get information about the Quiz or HAST
 class HomePage extends StatelessWidget {
+
+  String query;
+
+  HomePage(this.query){
+    print(query);
+  }
+
   @override
   Widget build(BuildContext context) {
     var quizModel = context.watch<QuizModel>();
-
-
-
 
     final theme = Theme.of(context);
 
