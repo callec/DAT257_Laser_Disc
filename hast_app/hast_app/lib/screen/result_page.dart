@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
@@ -22,18 +24,21 @@ class ResultPage extends StatelessWidget {
           backgroundColor: _theme.backgroundColor,
         ),
         body: Center(
-          child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 30),
-                _PointsAndText(_result, _theme),
-                SizedBox(height: 20),
-                _ResultOverview(_result, _theme),
-                SizedBox(height: 20),
-                //_HomeButton(_theme),
-                SizedBox(height: 20),
-        ])));
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: 1000,//MediaQuery.of(context).size.height * 2, // TODO make sure this fits every result text
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 30),
+                  _PointsAndText(_result, _theme),
+                  //SizedBox(height: 20),
+                  Spacer(),
+                  _ResultOverview(_result, _theme),
+                  //SizedBox(height: 20),
+                  //_HomeButton(_theme),
+                  //SizedBox(height: 20),
+        ])))));
   }
 }
 
@@ -52,18 +57,22 @@ class _PointsAndText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Padding( //to get the overview in the middle and proper adjust when the window size is changed.
+      padding: EdgeInsets.only(
+      left: MediaQuery.of(context).size.width * 0.12,
+      right: MediaQuery.of(context).size.width * 0.12),
+      child: Column(
         children: [
           Text('Your score is: $_score' + '/' + '${_numberOfQuestions * 12}', //The final score after a evaluation.
             textAlign: TextAlign.center,
             style: theme.textTheme.headline4),
           SizedBox(height: 30),
           Container(
-            width: MediaQuery.of(context).size.width - 100,
+            //width: MediaQuery.of(context).size.width - 100,
             child: Text('$_scoreText',
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify, // TODO which is the best? TextAlign.center or justify?
               style: theme.textTheme.headline5)),
-    ]);
+    ]));
   }
 }
 
