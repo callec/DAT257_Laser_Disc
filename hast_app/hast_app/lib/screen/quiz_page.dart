@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
+import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/question_overview.dart';
 
 import 'package:provider/provider.dart';
@@ -38,7 +39,9 @@ class QuizPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
+    return WillPopScope(onWillPop: () => Future.value(false),
+    child:
+      Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
@@ -112,7 +115,7 @@ class QuizPage extends StatelessWidget {
                                   child: _CreateNextBackRow(model))
                             ])),
                   )
-                ]))));
+                ])))));
   }
 }
 
@@ -205,7 +208,7 @@ class _CreateNextBackRow extends StatelessWidget {
             if (_model.currentNumber <= 6) {
               _model.nextQuestion();
             } else if (_model.currentNumber == 7 && _model.finished) {
-              Navigator.pushNamed(context, '/result');
+              Navigator.pushNamed(context, ResultRoute);
             }
           },
           child: Text(_model.currentNumber < 7 ? 'Next' : 'Result'),

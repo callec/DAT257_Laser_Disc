@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
+import 'routing/route_names.dart';
 import 'screen/result_page.dart';
 import 'package:hast_app/models/result_model.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:hast_app/routing/router.dart' as router;
 
 /// Creates the application, defines theme,
 /// start Models and set up navigation routes
@@ -18,6 +23,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    var url = Uri.base;
+    print(url);
+
+    Map<String, String> queries = url.queryParameters;
+    print(queries);
+
+    try{
+      String query = queries.values.first; // TODO
+      print(query);
+    } catch (e) {
+      print('Det gick fel!');
+    }
+
     //Precache the background
     precacheImage(AssetImage('assets/images/4.png'), context);
 
@@ -59,11 +78,13 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),
-        routes: {
+        onGenerateRoute: router.generateRoute,
+        initialRoute: HomeRoute,
+        /*routes: {
           '/': (context) => HomePage(),
           '/quiz': (context) => QuizPage(),
           '/result': (context) => ResultPage(),
-        },
+        },*/
       )
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
+import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,8 @@ class ResultPage extends StatelessWidget {
     final int _score = _result.score;
     final theme = Theme.of(context);
 
-    return Scaffold(
+    return WillPopScope(onWillPop: () => Future.value(false),
+    child: Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
@@ -89,12 +91,12 @@ class ResultPage extends StatelessWidget {
                   }),
                 ),
                onPressed: () {
-                 Navigator.pushNamed(context, '/');
+                 Navigator.pushNamed(context, HomeRoute);
                 },
                child: Text('Home'),
               )),
 
               SizedBox(height: 20),
-        ])));
+        ]))));
   }
 }

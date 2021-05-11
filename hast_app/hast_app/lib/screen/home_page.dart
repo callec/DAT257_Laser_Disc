@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hast_app/routing/route_names.dart';
+import 'dart:html';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
@@ -9,6 +11,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var quizModel = context.watch<QuizModel>();
+
+
+
 
     final theme = Theme.of(context);
 
@@ -82,7 +87,7 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           //quizModel.reset();
           if (quizModel.answered != 0) quizModel.reset();
-          Navigator.pushNamed(context, '/quiz');
+          Navigator.pushNamed(context, QuizRoute);
         },
         child: Text("Start Self Reflection"));
   }
