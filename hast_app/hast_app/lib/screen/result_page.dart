@@ -1,18 +1,19 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Displays the score from the Quiz and a conclusion text
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ResultModel _result = context.watch<ResultModel>(); // Load Result model
-    //list used to access score per question, question title and question number, for the overview.
-    List<QuestionContent> _questions = _result.questions;
+    // list used to access score per question, question title and question number, for the overview.
+    final _url = 'https://youtu.be/eZTS4cL4Euo'; // TODO set to HAST link
+    final _buttonText = 'HAST International'; // TODO set text to HAST specified
     final _theme = Theme.of(context);
 
     return Scaffold(
@@ -31,9 +32,9 @@ class ResultPage extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 30),
                   _PointsAndText(_result, _theme),
-                  //SizedBox(height: 20),
+                  SizedBox(height: 20),
                   //Spacer(),
-                  _HastButton(_theme),
+                  _HastButton(_theme, _buttonText, _url),
                   _ResultOverview(_result, _theme),
                   //SizedBox(height: 20),
                   //_HomeButton(_theme),
@@ -42,6 +43,7 @@ class ResultPage extends StatelessWidget {
   }
 }
 
+/// Displays points out of max and corresponding text
 class _PointsAndText extends StatelessWidget {
   final ResultModel _model;
   final theme;
@@ -76,6 +78,8 @@ class _PointsAndText extends StatelessWidget {
   }
 }
 
+/// The column with question number, title, and amount of points for
+/// your answer.
 class _ResultOverview extends StatelessWidget {
   final _theme;
   final ResultModel _model;
@@ -91,59 +95,68 @@ class _ResultOverview extends StatelessWidget {
       Theme(
         data: Theme.of(context).copyWith(dividerColor: _theme.accentColor),
         child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
-            padding: EdgeInsets.only(
-                left: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.12,
-                right: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.12),
+          padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.width * 0.12,
+            right: MediaQuery.of(context).size.width * 0.12),
             child: ListView( //wrapped in a listView to be scrollable.
-                children: <Widget>[
-                  IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
-                      child: DataTable(columns: const <DataColumn>[
-                        DataColumn(
-                            label: Text('Question',
-                                style: TextStyle(fontStyle: FontStyle.italic))),
-                        DataColumn(
-                            label: Text('Text',
-                                style: TextStyle(fontStyle: FontStyle.italic))),
-                        DataColumn(
-                            label: Text('Score',
-                                style: TextStyle(fontStyle: FontStyle.italic))),
+              children: <Widget>[
+                IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
+                  child: DataTable(columns: const <DataColumn>[
+                    DataColumn(
+                      label: Text('Question',
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic
+                        ))),
+                    DataColumn(
+                      label: Text('Text',
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic
+                        ))),
+                    DataColumn(
+                      label: Text('Score',
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic
+                        ))),
                       ],
-                          rows: _questions.map(((element) =>
-                              DataRow( // Loops through dataColumnText, each iteration assigning the value to element
-                                //fills the dataTable with data from the list.
-                                cells: <DataCell>[
-                                  DataCell(Text(
-                                      "      " + element.number.toString())),
-                                  DataCell(Text(element.question)),
-                                  DataCell(Text(
-                                      ((element.chosenSubAlternative + 1) +
-                                          element.chosenAlternative * 3)
+                      rows: _questions.map(((element) => DataRow(
+                        // Loops through dataColumnText, each iteration assigning the value to element
+                        // fills the dataTable with data from the list.
+                        cells: <DataCell>[
+                          DataCell(Text("      " + element.number.toString())),
+                          DataCell(Text(element.question)),
+                          DataCell(Text(
+                              ((element.chosenSubAlternative + 1)
+                                  + element.chosenAlternative * 3)
                                           .toString() + "/12"))
                                 ],
-                              ))).toList()))
-                ]
+                              )
+                      )).toList()
+                  )
+                )
+              ]
             )
         )
-    )
+      )
     );
   }
 }
 
+/// A button that redirects to a specified link
 class _HastButton extends StatelessWidget {
-  final _theme;
+  /// Directs you to a specified page, requires url_launch package
+  void _launchURL(url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 
-  _HastButton(this._theme);
+  final _theme;
+  final _text;
+  final _url;
+
+  _HastButton(this._theme, this._text, this._url);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(//button wrapped in sizeBox to be able to change its size.
-        width: 100, height: 40,
+        width: 150, height: 40,
         child: TextButton(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
@@ -155,13 +168,15 @@ class _HastButton extends StatelessWidget {
           ),
           onPressed: () {
             // TODO redirect to HAST
+            _launchURL(_url);
           },
-          child: Text('HAST International'),
+          child: Text(_text),
         )
     );
   }
 }
 
+/// Button that redirects you to the start page
 class _HomeButton extends StatelessWidget {
   final _theme;
 
