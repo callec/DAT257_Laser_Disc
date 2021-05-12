@@ -44,25 +44,14 @@ class QuizModel with ChangeNotifier {
     /*this.reset();*/
   }
 
-  void loadQuiz(String query) {
-    if(loadedFile == query) return;
+  void loadQuiz(QuizContent quiz) {
 
-    print("Loading $query...");
-    loading = true;
-
-    QuizFactory.createQuiz(query).then((value) {
-      _quiz = value;
-      _questions = _quiz.questions;
-      _questionTitle = _quiz.quizTitle; //TODO något spökar
-      _resultText = _quiz.resultText;
-      _questionNumber = 0;
-
-      print("Loading $query complete...");
-
-      loading = false;
-      loadedFile = query;
-      notifyListeners();
-    });
+    _quiz = quiz;
+    _questions = _quiz.questions;
+    _questionTitle = _quiz.quizTitle;
+    _resultText = _quiz.resultText;
+    _questionNumber = 0;
+    loading = false;
   }
 
   /// Reset the quiz to the starting point.

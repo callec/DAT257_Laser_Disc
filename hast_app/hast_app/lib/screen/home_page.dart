@@ -133,8 +133,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: MaterialStateProperty.all<Color>(
                   Theme.of(context).accentColor)),
           onPressed: () {
-            //quizModel.reset();
-            if (quizModel.answered != 0) quizModel.reset();
+            quizModel.loadQuiz(quiz);
             Navigator.pushNamed(context, QuizRoute);
           },
           child: Text("Start Self Reflection"));
