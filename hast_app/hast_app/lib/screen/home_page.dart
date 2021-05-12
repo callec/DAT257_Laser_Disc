@@ -17,20 +17,21 @@ class HomePage extends StatelessWidget {
 
   late QuizContent quiz;
 
-  HomePage(this.query) {
+  HomePage(this.query)  {
     print("current query:" + query);
+    tryLoadingFile(query);
+
+  }
+  void tryLoadingFile(String fileName) async{
     try{
-      QuizFactory.createQuiz(query).then((value) => {
-          quiz = value,
-          print("SUCCESS LOADING FILE...")
-      }).catchError((e){
-        print("ERROR LOADING FILE... BRUH");
-      });
-    }catch (e){
-      print("ERROR LOADING FILE...");
+      quiz = await QuizFactory.createQuiz(fileName);
+      print("SUCCESS LOADING FILE...");
+    }catch(err){
+      print("FAIL LOADING FILE...");
     }
 
   }
+
 
   @override
   Widget build(BuildContext context) {

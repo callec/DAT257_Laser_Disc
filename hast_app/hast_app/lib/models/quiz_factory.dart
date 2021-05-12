@@ -9,7 +9,19 @@ class QuizFactory {
     return rootBundle.loadString('assets/$fileName.json');
   }
 
+  static Future<void> printOrderMessage(fileName) async{
+    var order = await getJson(fileName);
+
+    /*try{
+
+      print('Success loading file');
+    }catch(err){
+      print("Error loading file...");
+    }*/
+  }
+
   static Future<QuizContent> createQuiz(String fileName) async {
+
     return QuizContent.fromJson(jsonDecode(await getJson(fileName)));
   }
 
