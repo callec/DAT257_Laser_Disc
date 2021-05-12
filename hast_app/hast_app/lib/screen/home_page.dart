@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hast_app/common/question_content.dart';
+import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/quiz_content.dart';
 import 'package:hast_app/routing/route_names.dart';
-import 'dart:html';
+import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/models/quiz_factory.dart';
@@ -11,27 +11,44 @@ import 'package:hast_app/models/quiz_factory.dart';
 
 /// This is the first page that is displayed to the User
 /// Here we can start the quiz or get information about the Quiz or HAST
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
-  String query;
+  final String query;
 
+  HomePage(this.query);
+
+  @override
+  _HomePageState createState() => _HomePageState(query);
+}
+
+class _HomePageState extends State<HomePage> {
   late QuizContent quiz;
 
-  HomePage(this.query)  {
+  bool isQuizLoaded = false;
+  bool errorOccurred = false;
+
+  _HomePageState(String query){
     print("current query:" + query);
     tryLoadingFile(query);
-
   }
+
   void tryLoadingFile(String fileName) async{
     try{
       quiz = await QuizFactory.createQuiz(fileName);
+      setState(() {
+        isQuizLoaded = true;
+        errorOccurred = false;
+      });
       print("SUCCESS LOADING FILE...");
     }catch(err){
       print("FAIL LOADING FILE...");
+      setState(() {
+        isQuizLoaded = false;
+        errorOccurred = true;
+      });
     }
 
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +82,15 @@ class HomePage extends StatelessWidget {
             // What will be displayed on each tab
             children: [
               Center(
-                  child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
-                      child: Column(children: [
-                        _presentText(
-                            context, 'WELCOME! Presenting Information'),
-                        Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                        _startButton(context, quizModel)
-                      ]))),
+                  child: errorOccurred ? UndefinedPage() : _homePageHomePage(context, quizModel)),
               Center(
-                  child: Container(
+                  child: isQuizLoaded ? Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _presentText(context, 'Answer honestly!!'),
+                        _presentText(context, quiz.quizInfo),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
-                      ]))),
+                      ])) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading..."))
+              ),
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
@@ -103,17 +114,37 @@ class HomePage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6));
   }
 
+
+  Widget _homePageHomePage(context, QuizModel quizModel) {
+    return Container(
+        margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
+        child: Column(children: [
+          _presentText(
+              context, 'WELCOME! this is a quiz about ${isQuizLoaded ? quiz.quizTitle : "LOADING..."}'),
+          Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
+          _startButton(context, quizModel)
+        ]));
+  }
+
   Widget _startButton(context, QuizModel quizModel) {
-    return ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).accentColor)),
-        onPressed: () {
-          //quizModel.reset();
-          if (quizModel.answered != 0) quizModel.reset();
-          Navigator.pushNamed(context, QuizRoute);
-        },
-        child: Text("Start Self Reflection"));
+    if (isQuizLoaded){
+      return ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Theme.of(context).accentColor)),
+          onPressed: () {
+            //quizModel.reset();
+            if (quizModel.answered != 0) quizModel.reset();
+            Navigator.pushNamed(context, QuizRoute);
+          },
+          child: Text("Start Self Reflection"));
+    } else {
+      return ElevatedButton(
+          style: TextButton.styleFrom(
+              backgroundColor: disabledGrey),
+          onPressed: null,
+          child: Text("Start Self Reflection"));
+    }
   }
 }
 
