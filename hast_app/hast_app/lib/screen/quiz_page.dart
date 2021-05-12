@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/screen/question_overview.dart';
-import 'package:hast_app/screen/responsive_quiz_page.dart';
+import 'package:hast_app/screen/responsive_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -18,7 +18,6 @@ typedef _ColorCallBack = Color Function(int n, [int intensity]);
 /// Displays a single question, and its respective alternatives
 /// Also enables the navigation between questions
 class QuizPage extends StatelessWidget {
-
   /// Display color depending on alternative index
   Color _getColor(int n, [int intensity = 200]) {
     switch (n) {
@@ -46,7 +45,6 @@ class QuizPage extends StatelessWidget {
           backgroundColor: theme.backgroundColor,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
-
         body: Center(
             child: Container(
                 // Background image, already precached
@@ -57,86 +55,97 @@ class QuizPage extends StatelessWidget {
                         image: AssetImage('assets/images/4.png'),
                         fit: BoxFit.cover)),
                 child: SingleChildScrollView(
-                child: Column(children: [
-
+                    child: Column(children: [
                   // Flexible(child:
-
-                  Container(
+                      Container(
                     // This is the white box!
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-
-                    constraints: ResponsiveQuizPage.isLargeScreen(context)
-                    ? BoxConstraints(
-                        //Size of the white box
-                        minWidth: MediaQuery.of(context).size.width * 0.5,
-                        maxWidth: MediaQuery.of(context).size.width * 0.9,
-                        minHeight: MediaQuery.of(context).size.height * 0.4,
-                        maxHeight: MediaQuery.of(context).size.height * 0.7)
-                        : BoxConstraints(
-                        minWidth: MediaQuery.of(context).size.width,
-                        maxWidth: MediaQuery.of(context).size.width,
-                        minHeight: MediaQuery.of(context).size.height,
-                        maxHeight: MediaQuery.of(context).size.height)
-                    ,
-
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                        constraints: ResponsivePage.isLargeScreen(context)
+                          ? BoxConstraints(
+                            //Size of the white box
+                            minWidth: MediaQuery.of(context).size.width * 0.5,
+                            maxWidth: MediaQuery.of(context).size.width * 0.6,
+                            minHeight: MediaQuery.of(context).size.height * 0.4,
+                            maxHeight: MediaQuery.of(context).size.height * 0.7
+                          )
+                          : BoxConstraints(
+                            minWidth: MediaQuery.of(context).size.width,
+                            maxWidth: MediaQuery.of(context).size.width,
+                            minHeight: MediaQuery.of(context).size.height,
+                            maxHeight: MediaQuery.of(context).size.height),
+                        decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
                             color: Colors.grey,
                             spreadRadius: 0.5,
                             blurRadius: 1,
                             offset: Offset(0, 2))
-                      ],
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                //child: SingleChildScrollView(
-                    child: Consumer<QuizModel>(
-                        // TODO maybe it would be better to rebuild individual Text widgets
-                        // within the larger widgets?
-                        builder: (context, model, child) => Column(
-                            children: model.loading ? [Text("LOADING")] : [
-                              // Question and alternatives
-                              _QuestionText(model.currentQuestion.question),
-                              _CreateAnswers(_getColor, model.currentQuestion),
-                              //Spacer(), //Vi vill inte ha mellanrum mellan fråga och subfråga
-                              /*Text(
-                                  "How much do you agree to the chosen statement?",
-                                  style: new TextStyle(fontSize: 18)),
-                              _CreateFollowUpAnswers(
-                                  _getColor, model.currentQuestion),*/
-                              //TODO Out-commented code will make sub-alternatives invisible/visible
-                              model.currentQuestion.chosenAlternative != -1
-                                  ? Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 16, 0, 0),
-                                      child: Text(
-                                          "Is your situation worse, better, or exactly as the chosen statement describes?",
-                                          style: new TextStyle(fontSize: 18)))
-                                  : Text(""),
-                              model.currentQuestion.chosenAlternative != -1
-                                  ? Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20),
-                                      child: _CreateFollowUpAnswers(
-                                          _getColor, model.currentQuestion))
-                                  : Text(""),
-
-
-                              Spacer(),
-                              Padding(
-                                   padding:
-                                       const EdgeInsets.only(left: 0, right: 0, bottom: 16), //ändrade från 4 till 0 och varningen försvann på webben
-                                  //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
-
-                                  child: _CreateNextBackRow(model))
-
-
-                            ])),
-                  )
-
-
-
+                          ],
+                        borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Consumer<QuizModel>(
+                          // TODO maybe it would be better to rebuild individual Text widgets
+                          // within the larger widgets?
+                          builder: (context, model, child) =>
+                            SingleChildScrollView(
+                                child: Column(
+                                    children: model.loading
+                                        ? [Text("LOADING")]
+                                        : [ // Question and alternatives
+                                            _QuestionText(
+                                                model.currentQuestion.question),
+                                            _CreateAnswers(_getColor,
+                                                model.currentQuestion),
+                                            //TODO The following id-statements are incredible ugly atm.
+                                            model.currentQuestion.chosenAlternative != -1
+                                                ? Visibility(
+                                                    visible: true,
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                                        child: Text("Is your situation worse, better, or exactly as the chosen statement describes?",
+                                                            style: new TextStyle(fontSize: 18)
+                                                        )))
+                                                : Visibility(
+                                                    visible: false,
+                                                    maintainSize: true,
+                                                    maintainAnimation: true,
+                                                    maintainState: true,
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                                        child: Text(
+                                                            "Is your situation worse, better, or exactly as the chosen statement describes?",
+                                                            style: new TextStyle(fontSize: 18)))),
+                                            model.currentQuestion.chosenAlternative != -1
+                                                ? Visibility(
+                                                    visible: true,
+                                                    child: Padding(
+                                                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                                                        child: _CreateFollowUpAnswers(
+                                                            _getColor,
+                                                            model.currentQuestion)))
+                                                : Visibility(
+                                                    visible: false,
+                                                    maintainSize: true,
+                                                    maintainAnimation: true,
+                                                    maintainState: true,
+                                                    child: Padding(
+                                                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                                                        child: _CreateFollowUpAnswers(
+                                                            _getColor,
+                                                            model.currentQuestion))),
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0,
+                                                    right: 0,
+                                                    bottom: 16),
+                                                //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+                                                child:
+                                                    _CreateNextBackRow(model))
+                                          ]))),
+                      )
                 ])))));
   }
 }
@@ -184,7 +193,7 @@ class _CreateProgressIndicators extends StatelessWidget {
     List<Widget> progressBar = [];
 
     for (int i = 0; i < _model.numberOfQuestions; i++) {
-      progressBar.add( IconButton(
+      progressBar.add(IconButton(
           icon: _getDotIcon(i), onPressed: () => _model.setQuestion(i)));
     }
     return progressBar;
@@ -217,8 +226,9 @@ class _CreateNextBackRow extends StatelessWidget {
         Spacer(),
         // Progress indication (dots)
 
-        ResponsiveQuizPage.isMiniScreen(context)
-            ? Spacer() : _CreateProgressIndicators(_model),
+        ResponsivePage.isSmallScreen(context)
+            ? Spacer()
+            : _CreateProgressIndicators(_model),
 
         Spacer(),
         ElevatedButton(
@@ -253,19 +263,15 @@ class _CreateAnswers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
-        child:
-        ResponsiveQuizPage.isLargeScreen(context)
-        ? Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
-
-      children: _buildAnswers()
-    )
-            : Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-
-            children: _buildAnswers()));
+        child: ResponsivePage.isLargeScreen(context)
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildAnswers())
+            : Column( //when the page becomes smaller than 800 width the questions are in a column instead
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildAnswers()));
   }
 
   List<Widget> _buildAnswers() {
@@ -274,10 +280,9 @@ class _CreateAnswers extends StatelessWidget {
     bool alternativeBeenChosen = alternativeNumber != -1;
 
     //Build Answer boxes
-    for(int x = 0; x < question.alternatives.length; x++){
-      tempList.add(
-          Expanded(child:
-            _AlternativeText(
+    for (int x = 0; x < question.alternatives.length; x++) {
+      tempList.add(Expanded(
+          child: _AlternativeText(
               question.alternatives[x],
               x,
               colorFunction(alternativeBeenChosen
@@ -318,13 +323,15 @@ class _CreateFollowUpAnswers extends StatelessWidget {
     List<String> options = question.subAlternatives;
 
     //Create three sub alternatives
-    for(int x = 0; x < 3; x++) {
-      tempList.add(
-        Expanded(
+    for (int x = 0; x < 3; x++) {
+      tempList.add(Expanded(
           child: _SubAlternativeText(
-            x,
-            color(_subAltBeenChosen ?
-              subAlternativeNumber == x ? alternativeNumber : -1 : alternativeNumber),
+              x,
+              color(_subAltBeenChosen
+                  ? subAlternativeNumber == x
+                      ? alternativeNumber
+                      : -1
+                  : alternativeNumber),
               options[x])));
     }
 
@@ -370,22 +377,22 @@ class _AlternativeText extends StatelessWidget {
       child: Column(children: [
         Expanded(
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: color,
-                onPrimary: Colors.black,
-              ),
-              onPressed: () { // Set chosen alternative in the QuizModel
-                context.read<QuizModel>().setAlternative(number);
-                context.read<QuizModel>().setSubAlternative(-1);
-                //print('$number : answertext');
-              },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                child: Text(
-                  atext,
-                  style: Theme.of(context).textTheme.bodyText2,
-                )
-              ),
+          style: ElevatedButton.styleFrom(
+            primary: color,
+            onPrimary: Colors.black,
+          ),
+          onPressed: () {
+            // Set chosen alternative in the QuizModel
+            context.read<QuizModel>().setAlternative(number);
+            context.read<QuizModel>().setSubAlternative(-1);
+            //print('$number : answertext');
+          },
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+              child: Text(
+                atext,
+                style: Theme.of(context).textTheme.bodyText2,
+              )),
         )),
       ]),
     );
