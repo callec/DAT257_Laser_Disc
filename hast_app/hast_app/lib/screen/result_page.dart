@@ -1,5 +1,4 @@
-import 'dart:js';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
@@ -33,7 +32,8 @@ class ResultPage extends StatelessWidget {
                   SizedBox(height: 30),
                   _PointsAndText(_result, _theme),
                   //SizedBox(height: 20),
-                  Spacer(),
+                  //Spacer(),
+                  _HastButton(_theme),
                   _ResultOverview(_result, _theme),
                   //SizedBox(height: 20),
                   //_HomeButton(_theme),
@@ -91,32 +91,73 @@ class _ResultOverview extends StatelessWidget {
       Theme(
         data: Theme.of(context).copyWith(dividerColor: _theme.accentColor),
         child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
-          padding: EdgeInsets.only(
-            left: MediaQuery.of(context).size.width * 0.12,
-            right: MediaQuery.of(context).size.width * 0.12),
-          child: ListView( //wrapped in a listView to be scrollable.
-            children: <Widget>[
-            IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
-              child: DataTable( columns: const <DataColumn>[
-                DataColumn(
-                  label: Text('Question', style: TextStyle(fontStyle: FontStyle.italic))),
-                DataColumn(
-                  label: Text('Text', style: TextStyle(fontStyle: FontStyle.italic))),
-                DataColumn(
-                  label: Text('Score', style: TextStyle(fontStyle: FontStyle.italic))),
-              ],
-              rows: _questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
-                //fills the dataTable with data from the list.
-                cells: <DataCell>[
-                  DataCell(Text("      " + element.number.toString())),
-                  DataCell(Text(element.question)),
-                  DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
-                ],
-              ))).toList()))
-            ]
-          )
+            padding: EdgeInsets.only(
+                left: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.12,
+                right: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.12),
+            child: ListView( //wrapped in a listView to be scrollable.
+                children: <Widget>[
+                  IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
+                      child: DataTable(columns: const <DataColumn>[
+                        DataColumn(
+                            label: Text('Question',
+                                style: TextStyle(fontStyle: FontStyle.italic))),
+                        DataColumn(
+                            label: Text('Text',
+                                style: TextStyle(fontStyle: FontStyle.italic))),
+                        DataColumn(
+                            label: Text('Score',
+                                style: TextStyle(fontStyle: FontStyle.italic))),
+                      ],
+                          rows: _questions.map(((element) =>
+                              DataRow( // Loops through dataColumnText, each iteration assigning the value to element
+                                //fills the dataTable with data from the list.
+                                cells: <DataCell>[
+                                  DataCell(Text(
+                                      "      " + element.number.toString())),
+                                  DataCell(Text(element.question)),
+                                  DataCell(Text(
+                                      ((element.chosenSubAlternative + 1) +
+                                          element.chosenAlternative * 3)
+                                          .toString() + "/12"))
+                                ],
+                              ))).toList()))
+                ]
+            )
         )
-      )
+    )
+    );
+  }
+}
+
+class _HastButton extends StatelessWidget {
+  final _theme;
+
+  _HastButton(this._theme);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(//button wrapped in sizeBox to be able to change its size.
+        width: 100, height: 40,
+        child: TextButton(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+              return _theme.backgroundColor;
+            }),
+            backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+              return _theme.accentColor;
+            }),
+          ),
+          onPressed: () {
+            // TODO redirect to HAST
+          },
+          child: Text('HAST International'),
+        )
     );
   }
 }
