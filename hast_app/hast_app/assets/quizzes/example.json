@@ -4,82 +4,82 @@
   "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?",
   "subAlternatives": ["Worse", "Exactly", "Better"],
   "resultText": [
-    "1. THESE FOUR FIELD CONTAINS THE TEXTS RELATED TO THE DIFFERENT RESULTS",
-    "2. ",
-    "3. ",
-    "4. "
+    "0 - 1/4 of total score",
+    "1/4 - 2/4 of total score",
+    "2/4 - 3/4 of total score",
+    "3/4  - 4/4 of total score"
   ],
   "questions": [
     {
       "question": "THIS IS THE FIRST QUESTIONS TITLE",
       "alternatives": [
-        "",
-        "",
-        "",
-        ""
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "Relaxed or Stressed",
+      "question": "THIS IS THE SECOND QUESTIONS TITLE",
       "alternatives": [
-        "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
-        "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",
-        "You have reached a place where you feel relaxed a lot of the time, even if you feel stressed now and again. You are alert for when you have stressful thinking and can move relatively easily beyond stress into relaxation.",
-        "You are relaxed, yet responsive to what happens in life and you seem to be able to handle big and small challenges with grace and ease. Others wonder how you can be so productive and yet so relaxed."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "Distracted or Focused",
+      "question": "THIS IS THE THIRD QUESTIONS TITLE",
       "alternatives": [
-        "You are constantly distracted by people and technology. You rarely have a chance to focus on doing your work. Sometimes you think your life is controlled by others and you don’t see this improving anytime soon.",
-        "You are easily distracted, you rarely so ‘no’ to distractions and interruptions. You know you it would help if you were less distracted, but you have not really considered what will make the difference to enable you focus.",
-        "You are mostly focused and clear. You say ‘no’ to human interruptions, and you allow technology to serve you rather than being a slave to its distractions. You find yourself in a “state of flow” from time to time, which enables you to do good work.",
-        "You are focused and clear and you live in a state of flow most of the time, which you maximize and lever to do your best work consistently. You also experience this flow or focus in your life outside of work."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "Quiet-minded or busy minded",
+      "question": "THIS IS THE FOURTH QUESTIONS TITLE",
       "alternatives": [
-        "You are very busy-minded. You have lots of thinking going on inside your head. Sometimes you feel like a hamster on a wheel or a ‘headless chicken’. You forget things, find it difficult to concentrate, and sometimes find it hard to relax after work or even get to sleep at night.",
-        "You spend a lot of your time caught up in your thinking. A lot of your thoughts are judgements about yourself, others and life, and how things ‘should be’ or ‘needs to be better’ so you can be happier. Sometimes you find a relief from your busy mind, but you don’t know how to bring peace of mind into your everyday life.",
-        "You experience a quiet mind most of the time. You realise what is happening to you when you become busy-minded and have ways to create some space and get quiet which supports clarity and creativity at work and in life.",
-        "You experience “peace of mind” and ease even in busy and chaotic situations. You continually access that deeper part of your innate capacity that enables a quieter mind, so you experience insight and wisdom, make clear decisions and take inspired actions."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "A calendar that makes you smile, or ‘lose it’.",
+      "question": "THIS IS THE FIFTH QUESTIONS TITLE",
       "alternatives": [
-        "Your calendar does not work for you! It is either so overwhelming you don’t look at it, or, you don’t see the point in having one because it just does not work! Your days, at work are driven by other people’s demands on your time, interruptions and urgent requests.",
-        "You feel out of control when you look at your calendar and wonder how am I going to manage to do all this? It seems like you are constantly behind the curve trying to catch up, but feel you never do.",
-        "You have a calendar that works well. You are not overbooked because you planned your week in advance You have time to get your vital work done. You also have time to deal with urgent issues that show up. You are content with your calendar and feel like it is a tool that works well for you.",
-        "You look at your calendar and you smile; it is exactly the way you love it! You see plenty of time to do your most fascinating, motivating and purposeful tasks, meetings that add value, as well as having reminders that support all areas of your work and life."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "An empty inbox vs. out of control email",
+      "question": "THIS IS THE SIXTH QUESTIONS TITLE",
       "alternatives": [
-        "You have given up! You dislike email, check it frequently, and it is the latest and loudest that triggers you into action. You might have hundreds or even thousands of mails in your inbox, many unread.",
-        "From time to time you try to get the stream of emails under control. No matter what you try, you miss responding to important mails or cannot find key emails when you need them.",
-        "Your mail works OK. You respond mostly on time during your workday. However, your email is more of a disruption and distraction than a great tool that works for you.",
-        "Your email works really well for you. You only check mail a couple of times a day and your inbox is empty regularly. You have the exact systems and processes which work for you. You respond in time and miss nothing."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "Resilient vs. upset by people, events and circumstances",
+      "question": "THIS IS THE SEVENTH QUESTIONS TITLE",
       "alternatives": [
-        "You find many difficult situations hard to deal with. You get hurt and stuck frequently and tell your friends how hard ‘life’ is. You can get really upset by what people say or do and sometimes harbor resentments or ignore people who do not have the same opinion as you.",
-        "You know there are some people and situations that make you feel unhappy, frustrated and irritated. And it is not always easy to get past these things. You know that it this is a waste of energy, but you don’t understand how you can escape from these feelings.",
-        "You have reached a place where you are comfortable that you can handle most people and situations in life. Now and again your foundations get rocked as you deal with ‘challenging’ life circumstances, changes or people.",
-        "You are rarely upset. You know that are not bound by circumstances or situations in life, and nothing outside of you can make you feel any particular way, no matter what the circumstances looks like. You experience freedom, peace of mind, ease and grace, no matter what is happening in life."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     },
     {
-      "question": "Results",
+      "question": "THIS IS THE EIGHT QUESTIONS TITLE",
       "alternatives": [
-        "You often feel that it is easier for other people to accomplish things in life than you do.",
-        "You work really hard, but often think you are not enough.",
-        "You know that with willpower, hard work and discipline you can create good results.",
-        "Wisdom, ease and flow is your source of results beyond the ordinary. You know where to look to access that place."
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
       ]
     }
   ]

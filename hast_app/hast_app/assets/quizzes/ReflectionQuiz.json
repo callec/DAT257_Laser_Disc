@@ -81,6 +81,24 @@
         "You know that with willpower, hard work and discipline you can create good results.",
         "Wisdom, ease and flow is your source of results beyond the ordinary. You know where to look to access that place."
       ]
+    },
+    {
+      "question": "Work-Life Balance",
+      "alternatives": [
+        "Your entire life, every day and hour are filled with work at your job or at home. You experience resentment, frustration, and even hopelessness. You have no time to pursue your interests – so you never feel relaxed or refreshed.",
+        "Your work pressures make it impossible for you to plan and take relaxing and rejuvenating time off from your business or work, even if you need it. You miss out on a lot of what you would love to do for yourself and others.",
+        "You have reached a place where you enjoy a good work-life balance. You enjoy your work while having a satisfying lifestyle.",
+        "Your growing productivity, clarity and creativity reduces your work time, while producing the results you want. You also have the time and freedom to create and live a life you love."
+      ]
+    },
+    {
+      "question": "Relationship to yourself ",
+      "alternatives": [
+        "You are insecure and feel that whatever you do is just never quite good enough. You are hard on yourself.",
+        "You feel that “you are as you are” and there is not much one can do about it.",
+        "You experience that you have good and not so good sides and you are working on yourself to be better.",
+        "You have found peace in your relationship to yourself. Every day you appreciate who you are in life for yourself and others."
+      ]
     }
   ]
 }

@@ -59,5 +59,4 @@ flutter:
     # TO ADD MORE QUIZZES, ADD JSON FILE NAMES HERE
     # FOR EXAMPLE: " - assets/quizzes/[Name of file].json "
     - assets/quizzes/ReflectionQuiz.json
-    - assets/quizzes/10.json
     - assets/quizzes/example.json
