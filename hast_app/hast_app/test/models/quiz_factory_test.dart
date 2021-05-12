@@ -10,11 +10,11 @@ void main() {
 
     test('Make sure that the file loads', () async {
       // if `getJson()` runs successfully consider the test complete.
-      await QuestionFactory.getJson("ReflectionQuiz");
+      await QuizFactory.getJson("ReflectionQuiz");
     });
 
     test('Assert that the Factory returns a QuizContent', () async {
-      var q = await QuestionFactory.createStandardQuiz();
+      var q = await QuizFactory.createStandardQuiz();
       expect(q.runtimeType, QuizContent);
     });
   });

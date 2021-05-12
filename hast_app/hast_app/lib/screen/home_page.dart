@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hast_app/common/question_content.dart';
+import 'package:hast_app/common/quiz_content.dart';
 import 'package:hast_app/routing/route_names.dart';
 import 'dart:html';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
+import 'package:hast_app/models/quiz_factory.dart';
+
 
 /// This is the first page that is displayed to the User
 /// Here we can start the quiz or get information about the Quiz or HAST
@@ -11,18 +15,28 @@ class HomePage extends StatelessWidget {
 
   String query;
 
+  late QuizContent quiz;
+
   HomePage(this.query) {
     print("current query:" + query);
+    try{
+      QuizFactory.createQuiz(query).then((value) => {
+          quiz = value,
+          print("SUCCESS LOADING FILE...")
+      }).catchError((e){
+        print("ERROR LOADING FILE... BRUH");
+      });
+    }catch (e){
+      print("ERROR LOADING FILE...");
+    }
 
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     var quizModel = Provider.of<QuizModel>(context, listen: false);
 
-    quizModel.loadQuiz(query);
+    //quizModel.loadQuiz(query);
 
     final theme = Theme.of(context);
 

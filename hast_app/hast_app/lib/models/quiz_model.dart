@@ -50,7 +50,7 @@ class QuizModel with ChangeNotifier {
     print("Loading $query...");
     loading = true;
 
-    QuestionFactory.createQuiz(query).then((value) {
+    QuizFactory.createQuiz(query).then((value) {
       _quiz = value;
       _questions = _quiz.questions;
       _questionTitle = _quiz.quizTitle; //TODO något spökar
@@ -70,7 +70,7 @@ class QuizModel with ChangeNotifier {
   void reset(){
     loading = true;
 
-    QuestionFactory.createStandardQuiz().then((value) {
+    QuizFactory.createStandardQuiz().then((value) {
       _quiz = value;
       _questions = _quiz.questions;
       _questionTitle = _quiz.quizTitle;

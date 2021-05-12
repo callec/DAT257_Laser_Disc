@@ -3,7 +3,7 @@ import 'package:hast_app/common/quiz_content.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 
-class QuestionFactory {
+class QuizFactory {
   ///Load in Quiz JSON file
   static Future<String> getJson(String fileName) {
     return rootBundle.loadString('assets/$fileName.json');
