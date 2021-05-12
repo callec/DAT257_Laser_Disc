@@ -59,6 +59,7 @@ class QuizPage extends StatelessWidget {
                 child: SingleChildScrollView(
                 child: Column(children: [
 
+                  // Flexible(child:
 
                   Container(
                     // This is the white box!
@@ -67,12 +68,16 @@ class QuizPage extends StatelessWidget {
                     constraints: ResponsiveQuizPage.isLargeScreen(context)
                     ? BoxConstraints(
                         //Size of the white box
-                        minWidth: 900,
-                        maxWidth: 1000,
-                        minHeight: 320,
-                        maxHeight: 540) : BoxConstraints(minWidth: 900, maxWidth: 1000, minHeight: 330, maxHeight: 750)
+                        minWidth: MediaQuery.of(context).size.width * 0.5,
+                        maxWidth: MediaQuery.of(context).size.width * 0.9,
+                        minHeight: MediaQuery.of(context).size.height * 0.4,
+                        maxHeight: MediaQuery.of(context).size.height * 0.7)
+                        : BoxConstraints(
+                        minWidth: MediaQuery.of(context).size.width,
+                        maxWidth: MediaQuery.of(context).size.width,
+                        minHeight: MediaQuery.of(context).size.height,
+                        maxHeight: MediaQuery.of(context).size.height)
                     ,
-
 
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -85,6 +90,7 @@ class QuizPage extends StatelessWidget {
                       ],
                       borderRadius: BorderRadius.circular(5.0),
                     ),
+                //child: SingleChildScrollView(
                     child: Consumer<QuizModel>(
                         // TODO maybe it would be better to rebuild individual Text widgets
                         // within the larger widgets?
@@ -93,7 +99,7 @@ class QuizPage extends StatelessWidget {
                               // Question and alternatives
                               _QuestionText(model.currentQuestion.question),
                               _CreateAnswers(_getColor, model.currentQuestion),
-                              //Spacer(), Vi vill inte ha mellanrum mellan fråga och subfråga
+                              //Spacer(), //Vi vill inte ha mellanrum mellan fråga och subfråga
                               /*Text(
                                   "How much do you agree to the chosen statement?",
                                   style: new TextStyle(fontSize: 18)),
@@ -105,7 +111,7 @@ class QuizPage extends StatelessWidget {
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 16, 0, 0),
                                       child: Text(
-                                          "How much do you agree to the chosen statement?",
+                                          "Is your situation worse, better, or exactly as the chosen statement describes?",
                                           style: new TextStyle(fontSize: 18)))
                                   : Text(""),
                               model.currentQuestion.chosenAlternative != -1
@@ -122,6 +128,7 @@ class QuizPage extends StatelessWidget {
                                    padding:
                                        const EdgeInsets.only(left: 0, right: 0, bottom: 16), //ändrade från 4 till 0 och varningen försvann på webben
                                   //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+
                                   child: _CreateNextBackRow(model))
 
 
@@ -209,7 +216,10 @@ class _CreateNextBackRow extends StatelessWidget {
         ),
         Spacer(),
         // Progress indication (dots)
-        _CreateProgressIndicators(_model),
+
+        ResponsiveQuizPage.isMiniScreen(context)
+            ? Spacer() : _CreateProgressIndicators(_model),
+
         Spacer(),
         ElevatedButton(
           style: TextButton.styleFrom(
