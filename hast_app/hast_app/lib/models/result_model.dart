@@ -27,11 +27,14 @@ class ResultModel{
     int s = this.score;
     int index;
 
-    if (s <= 30) {
+    //TODO hmmmm MAYBE LOOK AT IN THE FUTURE
+    int interval = ((quizModel.numberOfQuestions * 12) / 4) as int;
+
+    if (s <= interval) {
       index = 0;
-    } else if (s <= 60) {
+    } else if (s <= 2*interval) {
       index = 1;
-    } else if (s <= 90) {
+    } else if (s <= 3*interval) {
       index = 2;
     } else {
       index = 3;

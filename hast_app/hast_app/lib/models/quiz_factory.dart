@@ -6,18 +6,7 @@ import 'dart:async';
 class QuizFactory {
   ///Load in Quiz JSON file
   static Future<String> getJson(String fileName) {
-    return rootBundle.loadString('assets/$fileName.json');
-  }
-
-  static Future<void> printOrderMessage(fileName) async{
-    var order = await getJson(fileName);
-
-    /*try{
-
-      print('Success loading file');
-    }catch(err){
-      print("Error loading file...");
-    }*/
+    return rootBundle.loadString('assets/quizzes/$fileName.json');
   }
 
   static Future<QuizContent> createQuiz(String fileName) async {

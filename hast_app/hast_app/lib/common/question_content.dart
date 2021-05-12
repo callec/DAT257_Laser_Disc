@@ -7,7 +7,6 @@ part 'question_content.g.dart';
 class QuestionContent {
   final String question;
   final List<String> alternatives;
-  final List<String> subAlternatives;
 
   int _chAlt = -1;
   int _chSAlt = -1;
@@ -23,8 +22,7 @@ class QuestionContent {
 
   QuestionContent(
     this.question,
-    this.alternatives,
-    this.subAlternatives,
+    this.alternatives
   );
 
   factory QuestionContent.fromJson(Map<String, dynamic> json)

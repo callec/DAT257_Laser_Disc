@@ -9,14 +9,12 @@ part of 'question_content.dart';
 QuestionContent _$QuestionContentFromJson(Map<String, dynamic> json) {
   return QuestionContent(
     json['question'] as String,
-    (json['alternatives'] as List<dynamic>).map((e) => e as String).toList(),
-    (json['subAlternatives'] as List<dynamic>).map((e) => e as String).toList(),
+    (json['alternatives'] as List<dynamic>).map((e) => e as String).toList()
   );
 }
 
 Map<String, dynamic> _$QuestionContentToJson(QuestionContent instance) =>
     <String, dynamic>{
       'question': instance.question,
-      'alternatives': instance.alternatives,
-      'subAlternatives': instance.subAlternatives,
+      'alternatives': instance.alternatives
     };

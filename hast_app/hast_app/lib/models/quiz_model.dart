@@ -13,6 +13,8 @@ class QuizModel with ChangeNotifier {
 
   late List<String> _resultText;
   late List<QuestionContent> _questions = <QuestionContent>[];
+  late String _subAltText;
+  late List<String> _subAlternatives;
 
   bool loading = true;
 
@@ -22,6 +24,11 @@ class QuizModel with ChangeNotifier {
   String get title => _questionTitle;
   int get numberOfQuestions => _questions.length;
   List<String> get resultList => _resultText;
+
+  String get subAltText => _subAltText;
+  List<String> get subAlternatives => _subAlternatives;
+
+
   bool get finished {
     for (QuestionContent q in this._questions) {
       if (q.chosenSubAlternative == -1) {
@@ -40,6 +47,9 @@ class QuizModel with ChangeNotifier {
     _questions = _quiz.questions;
     _questionTitle = _quiz.quizTitle;
     _resultText = _quiz.resultText;
+    _subAltText = quiz.subAltText;
+    _subAlternatives = quiz.subAlternatives;
+
 
     _reset();
 

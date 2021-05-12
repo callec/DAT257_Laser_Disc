@@ -97,8 +97,7 @@ class QuizPage extends StatelessWidget {
                                   ? Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 16, 0, 0),
-                                      child: Text(
-                                          "How much do you agree to the chosen statement?",
+                                      child: Text("${model.subAltText}",
                                           style: new TextStyle(fontSize: 18)))
                                   : Text(""),
                               model.currentQuestion.chosenAlternative != -1
@@ -106,7 +105,7 @@ class QuizPage extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 128),
                                       child: _CreateFollowUpAnswers(
-                                          _getColor, model.currentQuestion))
+                                          _getColor, model))
                                   : Text(""),
                               Padding(
                                   padding:
@@ -261,9 +260,12 @@ class _CreateAnswers extends StatelessWidget {
 /// Has arguments: color function and QuestionContent object
 class _CreateFollowUpAnswers extends StatelessWidget {
   final _ColorCallBack color;
-  final QuestionContent question;
+  final QuizModel model;
+  late final QuestionContent question;
 
-  _CreateFollowUpAnswers(this.color, this.question);
+  _CreateFollowUpAnswers(this.color, this.model){
+    question = model.currentQuestion;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +286,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
 
     int alternativeNumber = question.chosenAlternative;
     int subAlternativeNumber = question.chosenSubAlternative;
-    List<String> options = question.subAlternatives;
+    List<String> options = model.subAlternatives;
 
     //Create three sub alternatives
     for(int x = 0; x < 3; x++) {
