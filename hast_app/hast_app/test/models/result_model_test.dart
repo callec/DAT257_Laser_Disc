@@ -41,7 +41,7 @@ void main() {
       expect(_r.score, _score);
     });
 
-    test('`text` gives different text depending on score', () {
+    /*test('`text` gives different text depending on score', () {
       // TODO don't like initialising two ResultModels, separate setup? how?
       // first ResultModel
       for (int i = 0; i < _r.quizModel.numberOfQuestions; ++i) {
@@ -65,6 +65,6 @@ void main() {
       print(_r.text);
       print(_r2.text);
       expect(_r.text != _r2.text, true);
-    });
+    });*/
   });
 }
