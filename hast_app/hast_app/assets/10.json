@@ -1,6 +1,6 @@
 {
-  "quizTitle": "Lifestyle and Work Assessment",
-  "quizInfo": "This is quiz about lifestyle and work, glhf",
+  "quizTitle": "10 QUESTIONS - WHAT HARRY POTTER ANIMAL ARE YOU?!",
+  "quizInfo": "This is quiz hf",
   "resultText": [
     "Perhaps you feel a little down or ‘feel’ like a failure. Life is hard, most things feel like it is a struggle. We know that from here it is difficult for you to get your head above water and see the possibilities for yourself and your life. In our signature programme, we create the conditions for our clients to operate from a place of strength, calm, clarity, creativity and resilience for both the short term and the long term, as we believe that without unleashing these and our other human capacities, hard work, or external productivity tools, no matter how sophisticated, will never be enough.",
     "A lot of hard work, but no leverage, very little traction or results. Sometimes it is just all a little too frustrating. Thriving — both professionally and personally — isn’t about requiring the external world around us to be exactly as we want it to be. It’s about creating pathways of connection to our inner resources, those treasures inside us that enable us to handle whatever the external world throws our way. In our signature programme, we help you access your amazing inner capacities, unleash them and leverage them to create great results at work and a life you thrive in.",
@@ -80,6 +80,26 @@
     },
     {
       "question": "Results",
+      "alternatives": [
+        "You often feel that it is easier for other people to accomplish things in life than you do.",
+        "You work really hard, but often think you are not enough.",
+        "You know that with willpower, hard work and discipline you can create good results.",
+        "Wisdom, ease and flow is your source of results beyond the ordinary. You know where to look to access that place."
+      ],
+      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+    },
+    {
+      "question": "Resilient vs. upset by people, events and circumstances",
+      "alternatives": [
+        "You find many difficult situations hard to deal with. You get hurt and stuck frequently and tell your friends how hard ‘life’ is. You can get really upset by what people say or do and sometimes harbor resentments or ignore people who do not have the same opinion as you.",
+        "You know there are some people and situations that make you feel unhappy, frustrated and irritated. And it is not always easy to get past these things. You know that it this is a waste of energy, but you don’t understand how you can escape from these feelings.",
+        "You have reached a place where you are comfortable that you can handle most people and situations in life. Now and again your foundations get rocked as you deal with ‘challenging’ life circumstances, changes or people.",
+        "You are rarely upset. You know that are not bound by circumstances or situations in life, and nothing outside of you can make you feel any particular way, no matter what the circumstances looks like. You experience freedom, peace of mind, ease and grace, no matter what is happening in life."
+      ],
+      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+    },
+    {
+      "question": "asdasdasdasdasdasd",
       "alternatives": [
         "You often feel that it is easier for other people to accomplish things in life than you do.",
         "You work really hard, but often think you are not enough.",

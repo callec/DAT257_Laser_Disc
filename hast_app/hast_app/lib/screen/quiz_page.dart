@@ -200,18 +200,18 @@ class _CreateNextBackRow extends StatelessWidget {
         ElevatedButton(
           style: TextButton.styleFrom(
             primary: Colors.white,
-            backgroundColor: (_model.currentNumber == 7)
+            backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
                 ? (_model.finished ? hastGreen : disabledGrey)
                 : Theme.of(context).accentColor,
           ),
           onPressed: () {
-            if (_model.currentNumber <= 6) {
+            if (_model.currentNumber <= _model.numberOfQuestions - 2) {
               _model.nextQuestion();
-            } else if (_model.currentNumber == 7 && _model.finished) {
+            } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
               Navigator.pushNamed(context, ResultRoute);
             }
           },
-          child: Text(_model.currentNumber < 7 ? 'Next' : 'Result'),
+          child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
         ),
       ],
     );

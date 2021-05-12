@@ -6,7 +6,6 @@ part 'question_content.g.dart';
 @JsonSerializable()
 class QuestionContent {
   final String question;
-  final int number;
   final List<String> alternatives;
   final List<String> subAlternatives;
 
@@ -24,7 +23,6 @@ class QuestionContent {
 
   QuestionContent(
     this.question,
-    this.number,
     this.alternatives,
     this.subAlternatives,
   );

@@ -16,6 +16,7 @@ class ResultPage extends StatelessWidget {
     final String _scoreText = _result.text;
     final int _score = _result.score;
     final theme = Theme.of(context);
+    int questionNumber = 0;
 
     return WillPopScope(onWillPop: () => Future.value(false),
     child: Scaffold(
@@ -68,7 +69,7 @@ class ResultPage extends StatelessWidget {
                       questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
                         //fills the dataTable with data from the list.
                         cells: <DataCell>[
-                          DataCell(Text("      " + element.number.toString())),
+                          DataCell(Text("      " + (++questionNumber).toString())),
                           DataCell(Text(element.question)),
                           DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
                         ],
