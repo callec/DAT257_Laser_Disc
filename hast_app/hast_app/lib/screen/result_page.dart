@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
@@ -21,6 +23,15 @@ class ResultPage extends StatelessWidget {
     double _fixedHeight = 1000; // TODO set to relevant value with embed
     var _large = _windowHeight > _fixedHeight;
 
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+        'HAST-embed',
+            (int viewId) => IFrameElement()
+          ..width = '640'
+          ..height = '360'
+          ..src = 'https://www.youtube.com/embed/eZTS4cL4Euo'
+          ..style.border = 'none');
+
     return Scaffold(
         appBar: AppBar(
           title: HastLogo(),
@@ -40,7 +51,7 @@ class ResultPage extends StatelessWidget {
                       SizedBox(height: 30),
                       _PointsAndText(_result, _theme),
                       SizedBox(height: 20),
-                      //_Embed(_data),
+                      //_Embed(),
                       _HastButton(_theme, _buttonText, _url),
                       _large ? Spacer() : SizedBox(height: 20,),
                       _large ? _scrollButton(_scrollController) : _ResultOverview(_result, _theme),
@@ -95,14 +106,15 @@ class ResultPage extends StatelessWidget {
 
 /// Embedded HTML
 class _Embed extends StatelessWidget {
-  final String _data;
-
-  _Embed(this._data);
-
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return SizedBox(
+        width: 640,
+        height: 360,
+        child: HtmlElementView(
+          viewType: 'HAST-embed',
+        )
+    );
   }
 }
 
