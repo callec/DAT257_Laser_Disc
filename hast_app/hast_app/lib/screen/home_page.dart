@@ -9,7 +9,8 @@ import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 
 
-/// This is the first page that is displayed to the User
+/// This is the first page that is displayed to the User.
+/// We load the Quiz from the URL query parameters
 /// Here we can start the quiz or get information about the Quiz or HAST
 class HomePage extends StatefulWidget {
 
@@ -29,19 +30,19 @@ class _HomePageState extends State<HomePage> {
 
   _HomePageState(String query){
     print("current query:" + query);
-    tryLoadingFile(query);
+    _tryLoadingFile(query);
   }
 
-  void tryLoadingFile(String fileName) async{
+  /// Load the Quiz file from the query parameters
+  /// If we fail loading the file, errors will be displayed
+  void _tryLoadingFile(String fileName) async{
     try{
       quiz = await QuizFactory.createQuiz(fileName);
       setState(() {
         isQuizLoaded = true;
         errorOccurred = false;
       });
-      print("SUCCESS LOADING FILE...");
     }catch(err){
-      print("FAIL LOADING FILE...");
       setState(() {
         isQuizLoaded = false;
         errorOccurred = true;
@@ -53,9 +54,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var quizModel = Provider.of<QuizModel>(context, listen: false);
-
-    //quizModel.loadQuiz(query);
-
     final theme = Theme.of(context);
 
     // Here we display 3 tabs (home, about the test and about HAST)
@@ -79,10 +77,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           body: TabBarView(
-            // What will be displayed on each tab
+            // What will be displayed on each tab (Home, About test, About us)
             children: [
               Center(
                   child: errorOccurred ? UndefinedPage() : _homePageHomePage(context, quizModel)),
+
               Center(
                   child: isQuizLoaded ? Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
@@ -91,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
                       ])) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading..."))
               ),
+
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             style: Theme.of(context).textTheme.headline6));
   }
 
-
+  /// Displays a welcoming text and a start button IF we managed to load a Quiz
   Widget _homePageHomePage(context, QuizModel quizModel) {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
@@ -126,6 +126,8 @@ class _HomePageState extends State<HomePage> {
         ]));
   }
 
+  /// The button used to start the Quiz
+  /// Displays a grayed out button if the Quiz is currently loading
   Widget _startButton(context, QuizModel quizModel) {
     if (isQuizLoaded){
       return ElevatedButton(

@@ -4,30 +4,23 @@ import 'package:hast_app/common/quiz_content.dart';
 
 
 /// Handles the inner workings of a Quiz.
-///
-/// Keeps the titles, questions, and enables traversing between them.
+/// Stores the title, questions, and enables traversing between them.
+
+
 class QuizModel with ChangeNotifier {
   late QuizContent _quiz;
-  late int _questionNumber = 0;
-  late String _questionTitle;
 
-  late List<String> _resultText;
-  late List<QuestionContent> _questions = <QuestionContent>[];
-  late String _subAltText;
-  late List<String> _subAlternatives;
+  int _questionNumber = 0;
+  List<QuestionContent> _questions = <QuestionContent>[];
 
-  bool loading = true;
+  bool quizLoaded = false;
+
 
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
+
   int get currentNumber => _questionNumber;
-  String get title => _questionTitle;
   int get numberOfQuestions => _questions.length;
-  List<String> get resultList => _resultText;
-
-  String get subAltText => _subAltText;
-  List<String> get subAlternatives => _subAlternatives;
-
 
   bool get finished {
     for (QuestionContent q in this._questions) {
@@ -35,29 +28,29 @@ class QuizModel with ChangeNotifier {
         return false;
       }
     }
-
     return true;
   }
 
-  void loadQuiz(QuizContent quiz) {
+  String get title => _quiz.quizTitle;
 
-    loading = true;
+  String get subAltText => _quiz.subAltText;
+  List<String> get subAlternatives => _quiz.subAlternatives;
+
+  List<String> get resultList => _quiz.resultText;
+
+
+  /// Inject a new Quiz into the model
+  void loadQuiz(QuizContent quiz) {
 
     _quiz = quiz;
     _questions = _quiz.questions;
-    _questionTitle = _quiz.quizTitle;
-    _resultText = _quiz.resultText;
-    _subAltText = quiz.subAltText;
-    _subAlternatives = quiz.subAlternatives;
-
 
     _reset();
 
-    loading = false;
+    quizLoaded = true;
   }
 
   /// Reset the quiz to the starting point.
-  /// Waits for the JSON file to decode, this is done asynchronous
   void _reset(){
     _questions.forEach((element) {
       element.chosenAlternative = -1;
@@ -99,7 +92,7 @@ class QuizModel with ChangeNotifier {
     notifyListeners();
   }
 
-  /// Set which subalternative has been chosen.
+  /// Set which sub alternative has been chosen.
   void setSubAlternative(int n) {
     if (this.currentQuestion.chosenSubAlternative == n)
       this.currentQuestion.chosenSubAlternative = -1;

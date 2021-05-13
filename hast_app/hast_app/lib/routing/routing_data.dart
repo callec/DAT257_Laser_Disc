@@ -1,3 +1,6 @@
+
+/// Stores a Route and its query parameters
+
 class RoutingData {
   final String route;
   final Map<String, String> _queryParameters;

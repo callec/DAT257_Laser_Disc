@@ -13,7 +13,7 @@ class QuestionDrawer extends StatelessWidget {
     return Row(children: [
       Consumer<QuizModel>(
         builder: (context, model, child) => Drawer(
-            child: model.loading // Display loading text if model is not ready
+            child: model.quizLoaded // Display loading text if model is not ready
                 ? Text("Loading Questions...")
                 : _buildQuestionDrawer(context, theme, model)),
       ),

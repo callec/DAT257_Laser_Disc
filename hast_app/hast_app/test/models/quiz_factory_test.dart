@@ -14,7 +14,7 @@ void main() {
     });
 
     test('Assert that the Factory returns a QuizContent', () async {
-      var q = await QuizFactory.createStandardQuiz();
+      var q = await QuizFactory.createQuiz("ReflectionQuiz");
       expect(q.runtimeType, QuizContent);
     });
   });

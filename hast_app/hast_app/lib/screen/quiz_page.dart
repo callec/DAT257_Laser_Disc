@@ -6,6 +6,7 @@ import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/question_overview.dart';
+import 'package:hast_app/screen/undefined_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -82,7 +83,7 @@ class QuizPage extends StatelessWidget {
                         // TODO maybe it would be better to rebuild individual Text widgets
                         // within the larger widgets?
                         builder: (context, model, child) => Column(
-                            children: model.loading ? [Text("LOADING")] : [
+                            children: !model.quizLoaded ? [UndefinedPage()] : [
                               // Question and alternatives
                               _QuestionText(model.currentQuestion.question),
                               _CreateAnswers(_getColor, model.currentQuestion),
