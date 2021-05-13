@@ -20,8 +20,9 @@ class ResultPage extends StatelessWidget {
     final _buttonText = 'Click here to learn more about HAST International'; // TODO set to HAST specified text
 
     var _windowHeight = MediaQuery.of(context).size.height - AppBar().preferredSize.height;
-    double _fixedHeight = 1000; // TODO set to relevant value with embed
-    var _large = _windowHeight > _fixedHeight;
+    var _windowWidth = MediaQuery.of(context).size.width;
+    double _fixedHeight = 1100; // TODO set to relevant value with embed
+    var _large = _windowHeight > 800 && (_windowWidth/_windowHeight) > (13/16);
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
