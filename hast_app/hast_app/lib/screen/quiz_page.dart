@@ -52,7 +52,7 @@ class QuizPage extends StatelessWidget {
                 constraints: BoxConstraints.expand(),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/4.png'),
+                        image: AssetImage('assets/images/quizPageImage.png'),
                         fit: BoxFit.cover)),
                 child: SingleChildScrollView(
                     child: Column(children: [
@@ -66,7 +66,7 @@ class QuizPage extends StatelessWidget {
                             minWidth: MediaQuery.of(context).size.width * 0.5,
                             maxWidth: MediaQuery.of(context).size.width * 0.7,
                             minHeight: MediaQuery.of(context).size.height * 0.2,
-                            maxHeight: MediaQuery.of(context).size.height * 0.7
+                            maxHeight: MediaQuery.of(context).size.height * 0.8
                           )
                           : BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,
@@ -74,14 +74,16 @@ class QuizPage extends StatelessWidget {
                             minHeight: MediaQuery.of(context).size.height*0.9,
                             maxHeight: MediaQuery.of(context).size.height*0.9),
                         decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
+                        color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
+                        /*boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
                             spreadRadius: 0.5,
                             blurRadius: 1,
                             offset: Offset(0, 2))
                           ],
+                          
+                         */
                         borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Consumer<QuizModel>(
