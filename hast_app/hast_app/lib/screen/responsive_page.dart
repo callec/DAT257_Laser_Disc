@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///This class is used to identify the size of the screen.
+///Can be used to adjust the interface depending on screen-size.
+
 class ResponsivePage extends StatelessWidget {
   final Widget largeScreen;
   final Widget? mediumScreen;
