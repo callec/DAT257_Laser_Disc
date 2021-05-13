@@ -64,15 +64,15 @@ class QuizPage extends StatelessWidget {
                           ? BoxConstraints(
                             //Size of the white box
                             minWidth: MediaQuery.of(context).size.width * 0.5,
-                            maxWidth: MediaQuery.of(context).size.width * 0.6,
-                            minHeight: MediaQuery.of(context).size.height * 0.4,
+                            maxWidth: MediaQuery.of(context).size.width * 0.7,
+                            minHeight: MediaQuery.of(context).size.height * 0.2,
                             maxHeight: MediaQuery.of(context).size.height * 0.7
                           )
                           : BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,
                             maxWidth: MediaQuery.of(context).size.width,
-                            minHeight: MediaQuery.of(context).size.height,
-                            maxHeight: MediaQuery.of(context).size.height),
+                            minHeight: MediaQuery.of(context).size.height*0.9,
+                            maxHeight: MediaQuery.of(context).size.height*0.9),
                         decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
@@ -97,7 +97,7 @@ class QuizPage extends StatelessWidget {
                                                 model.currentQuestion.question),
                                             _CreateAnswers(_getColor,
                                                 model.currentQuestion),
-                                            //TODO The following id-statements are incredible ugly atm.
+                                            //TODO The following if-statements are incredible ugly atm.
                                             model.currentQuestion.chosenAlternative != -1
                                                 ? Visibility(
                                                     visible: true,
