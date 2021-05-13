@@ -11,35 +11,98 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ResultModel _result = context.watch<ResultModel>(); // Load Result model
-    // list used to access score per question, question title and question number, for the overview.
-    final _url = 'https://youtu.be/eZTS4cL4Euo'; // TODO set to HAST link
-    final _buttonText = 'HAST International'; // TODO set text to HAST specified
     final _theme = Theme.of(context);
+    var _scrollController = new ScrollController();
+
+    final _url = 'https://www.hastutveckling.se'; // TODO set to HAST specified link
+    final _buttonText = 'Click here to learn more about HAST International'; // TODO set to HAST specified text
+
+    var _windowHeight = MediaQuery.of(context).size.height - AppBar().preferredSize.height;
+    double _fixedHeight = 1000; // TODO set to relevant value with embed
+    var _large = _windowHeight > _fixedHeight;
 
     return Scaffold(
         appBar: AppBar(
-          //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
           automaticallyImplyLeading: false,
           backgroundColor: _theme.backgroundColor,
         ),
         body: Center(
           child: SingleChildScrollView(
-            child: SizedBox(
-              height: 1000,//MediaQuery.of(context).size.height * 2, // TODO make sure this fits every result text
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(height: 30),
-                  _PointsAndText(_result, _theme),
-                  SizedBox(height: 20),
-                  //Spacer(),
-                  _HastButton(_theme, _buttonText, _url),
-                  _ResultOverview(_result, _theme),
-                  //SizedBox(height: 20),
-                  //_HomeButton(_theme),
-                  //SizedBox(height: 20),
-        ])))));
+            controller: _scrollController,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: _large ? _windowHeight : _fixedHeight,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(height: 30),
+                      _PointsAndText(_result, _theme),
+                      SizedBox(height: 20),
+                      //_Embed(_data),
+                      _HastButton(_theme, _buttonText, _url),
+                      _large ? Spacer() : SizedBox(height: 20,),
+                      _large ? _scrollButton(_scrollController) : _ResultOverview(_result, _theme),
+                    ]
+                  )
+                ),
+                !_large ? Container() : SizedBox(
+                  height: _windowHeight,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30),
+                      _ResultOverview(_result, _theme),
+                    ]
+                  )
+                )
+              ]
+            )
+          )
+        )
+    );
+  }
+
+  /// Return a clickable text that scrolls to bottom
+  Widget _scrollButton(ScrollController _scrollController) {
+    return InkWell(
+      onTap: () {
+        // the check doesn't work properly
+        var scrollPosition = _scrollController.position;
+
+        //if (scrollPosition.viewportDimension < scrollPosition.maxScrollExtent) {
+          _scrollController.animateTo(
+            scrollPosition.maxScrollExtent,
+            duration: new Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+          );
+        //}
+      },
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Text(
+          'Scroll down to see more information about Your result',
+          style: TextStyle(
+            color: Colors.grey,
+            fontStyle: FontStyle.italic,
+          ),
+        )
+      )
+    );
+  }
+}
+
+/// Embedded HTML
+class _Embed extends StatelessWidget {
+  final String _data;
+
+  _Embed(this._data);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
 
@@ -61,16 +124,15 @@ class _PointsAndText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding( //to get the overview in the middle and proper adjust when the window size is changed.
       padding: EdgeInsets.only(
-      left: MediaQuery.of(context).size.width * 0.12,
-      right: MediaQuery.of(context).size.width * 0.12),
+        left: MediaQuery.of(context).size.width * 0.12,
+        right: MediaQuery.of(context).size.width * 0.12),
       child: Column(
         children: [
-          Text('Your score is: $_score' + '/' + '${_numberOfQuestions * 12}', //The final score after a evaluation.
+          Text('Your score is: $_score' + '/' + '${_numberOfQuestions * 12}',
             textAlign: TextAlign.center,
             style: theme.textTheme.headline4),
           SizedBox(height: 30),
           Container(
-            //width: MediaQuery.of(context).size.width - 100,
             child: Text('$_scoreText',
               textAlign: TextAlign.justify, // TODO which is the best? TextAlign.center or justify?
               style: theme.textTheme.headline5)),
@@ -91,52 +153,46 @@ class _ResultOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: //the overview
-      Theme(
+    return Theme(
         data: Theme.of(context).copyWith(dividerColor: _theme.accentColor),
         child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
           padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.12,
             right: MediaQuery.of(context).size.width * 0.12),
-            child: ListView( //wrapped in a listView to be scrollable.
-              children: <Widget>[
-                IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
-                  child: DataTable(columns: const <DataColumn>[
-                    DataColumn(
-                      label: Text('Question',
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic
-                        ))),
-                    DataColumn(
-                      label: Text('Text',
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic
-                        ))),
-                    DataColumn(
-                      label: Text('Score',
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic
-                        ))),
-                      ],
-                      rows: _questions.map(((element) => DataRow(
-                        // Loops through dataColumnText, each iteration assigning the value to element
-                        // fills the dataTable with data from the list.
-                        cells: <DataCell>[
-                          DataCell(Text("      " + element.number.toString())),
-                          DataCell(Text(element.question)),
-                          DataCell(Text(
-                              ((element.chosenSubAlternative + 1)
-                                  + element.chosenAlternative * 3)
-                                          .toString() + "/12"))
-                                ],
-                              )
-                      )).toList()
-                  )
+            child: IgnorePointer( //wrapped in a IgnorePointer to remove clickable event
+              child: DataTable(columns: const <DataColumn>[
+                DataColumn(
+                  label: Text('Question',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic
+                    ))),
+                DataColumn(
+                  label: Text('Text',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic
+                    ))),
+                DataColumn(
+                  label: Text('Score',
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic
+                    ))),
+                  ],
+                  rows: _questions.map(((element) => DataRow(
+                    // Loops through dataColumnText, each iteration assigning the value to element
+                    // fills the dataTable with data from the list.
+                    cells: <DataCell>[
+                      DataCell(Text("      " + element.number.toString())),
+                      DataCell(Text(element.question)),
+                      DataCell(Text(
+                          ((element.chosenSubAlternative + 1)
+                              + element.chosenAlternative * 3)
+                                      .toString() + "/12"))
+                            ],
+                          )
+                  )).toList()
                 )
-              ]
+              )
             )
-        )
-      )
     );
   }
 }
@@ -155,8 +211,8 @@ class _HastButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(//button wrapped in sizeBox to be able to change its size.
-        width: 150, height: 40,
+    return SizedBox(
+        //height: 40, // no height specified for button on home_page
         child: TextButton(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
@@ -167,10 +223,9 @@ class _HastButton extends StatelessWidget {
             }),
           ),
           onPressed: () {
-            // TODO redirect to HAST
             _launchURL(_url);
           },
-          child: Text(_text),
+          child: Text('  '+_text+'  '),
         )
     );
   }
