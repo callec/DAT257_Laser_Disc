@@ -99,45 +99,26 @@ class QuizPage extends StatelessWidget {
                                                 model.currentQuestion.question),
                                             _CreateAnswers(_getColor,
                                                 model.currentQuestion),
-                                            //TODO The following if-statements are incredible ugly atm.
                                             model.currentQuestion.chosenAlternative != -1
                                                 ? Visibility(
                                                     visible: true,
-                                                    child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                                                        child: Text("Is your situation worse, better, or exactly as the chosen statement describes?",
-                                                            style: new TextStyle(fontSize: 18)
-                                                        )))
+                                                    child: _subAltTitle(context))
                                                 : Visibility(
                                                     visible: false,
                                                     maintainSize: true,
                                                     maintainAnimation: true,
                                                     maintainState: true,
-                                                    child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                                                        child: Text(
-                                                            "Is your situation worse, better, or exactly as the chosen statement describes?",
-                                                            style: new TextStyle(fontSize: 18)))),
+                                                    child: _subAltTitle(context)),
                                             model.currentQuestion.chosenAlternative != -1
                                                 ? Visibility(
                                                     visible: true,
-                                                    child: Padding(
-                                                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                                                        child: _CreateFollowUpAnswers(
-                                                            _getColor,
-                                                            model.currentQuestion)))
+                                                    child: _subAlt(context, model))
                                                 : Visibility(
                                                     visible: false,
                                                     maintainSize: true,
                                                     maintainAnimation: true,
                                                     maintainState: true,
-                                                    child: Padding(
-                                                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                                                        child: _CreateFollowUpAnswers(
-                                                            _getColor,
-                                                            model.currentQuestion))),
+                                                    child: _subAlt(context, model)),
                                             Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 0,
@@ -150,6 +131,26 @@ class QuizPage extends StatelessWidget {
                       )
                 ])))));
   }
+
+  ///Padding and the creation of the follow up answers
+  Widget _subAlt(context, model) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: _CreateFollowUpAnswers(
+            _getColor,
+            model.currentQuestion));
+  }
+
+}
+
+///Padding and the the text for the follow up answers
+Widget _subAltTitle(context) {
+  return Padding(
+      padding:
+      const EdgeInsets.fromLTRB(0, 16, 0, 0),
+      child: Text(
+          "Is your situation worse, better, or exactly as the chosen statement describes?",
+          style: new TextStyle(fontSize: 18))); 
 }
 
 /// Create a row of IconButtons that display progress
