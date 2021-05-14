@@ -119,9 +119,9 @@ class _HomePageState extends State<HomePage> {
   /// Displays information text on the home_page in a nice formatted way
   Widget _presentText(context, String presentingText, TextAlign alignment) {
     return Container(
-        // for small devices: keep text to 85% of the width, otherwise 600px to
+        // for small devices: keep text to 80% of the width, otherwise 600px to
         // keep ~70 character at a time in a paragraph for readability.
-        width: ResponsivePage.isMediumScreen(context) ? MediaQuery.of(context).size.width*0.85 : 600,
+        width: ResponsivePage.isMediumScreen(context) ? (MediaQuery.of(context).size.width*0.8) : 600,
         child: SingleChildScrollView(child: Column(children: [Text(presentingText,
             textAlign: alignment,
             style: Theme.of(context).textTheme.headline6)]),));
