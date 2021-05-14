@@ -95,6 +95,6 @@ class ResultPage extends StatelessWidget {
               )),
 
               SizedBox(height: 20),
-        ]))));
+        ])))));
   }
 }

@@ -5,8 +5,6 @@ import 'package:hast_app/common/quiz_content.dart';
 
 /// Handles the inner workings of a Quiz.
 /// Stores the title, questions, and enables traversing between them.
-
-
 class QuizModel with ChangeNotifier {
   late QuizContent _quiz;
 

@@ -134,7 +134,7 @@ class QuizPage extends StatelessWidget {
                                                     _CreateNextBackRow(model))
                                           ]))),
                       )
-                ])))));
+                ]))))));
   }
 
   ///Padding and the creation of the follow up answers
@@ -143,7 +143,7 @@ class QuizPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: _CreateFollowUpAnswers(
             _getColor,
-            model.currentQuestion));
+            model));
   }
 
 }
@@ -309,7 +309,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
   final QuizModel model;
   late final QuestionContent question;
 
-  _CreateFollowUpAnswers(this.color, this.model){
+  _CreateFollowUpAnswers(this.color, this.model) {
     question = model.currentQuestion;
   }
 
