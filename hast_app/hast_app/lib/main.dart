@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         )
       ],
         child: MaterialApp(
+          title: "Hast Self Reflection",
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             // Define the default brightness and colors.

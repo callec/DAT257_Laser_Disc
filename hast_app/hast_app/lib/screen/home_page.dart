@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Hast Self Reflection',
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
