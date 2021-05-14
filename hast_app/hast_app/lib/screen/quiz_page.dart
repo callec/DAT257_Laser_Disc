@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/routing/route_names.dart';
-import 'package:hast_app/screen/question_overview.dart';
 import 'package:hast_app/screen/undefined_page.dart';
 import 'package:hast_app/screen/responsive_page.dart';
 

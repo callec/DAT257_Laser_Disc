@@ -1,20 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
-import 'package:hast_app/screen/home_page.dart';
-import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
 import 'routing/route_names.dart';
-import 'screen/result_page.dart';
 import 'package:hast_app/models/result_model.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:hast_app/routing/router.dart' as router;
 
 /// Creates the application, defines theme,
 /// start Models and set up navigation routes
-
 void main() {
   runApp(MyApp());
 }
