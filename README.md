@@ -83,10 +83,5 @@
                   ]
                 },
   5) Once you have added all the text to your file, save the file to the [quizzes folder](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app/assets/quizzes). (Same location as "example.json")
-  6) Navigate to the ["hast_app/hast_app"](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app) folder.
-  7) Open the the file "pubspec.yaml" with a text editor of your choice.
-  8) Scroll to the bottom of the document and add the new path.
-
-              - assets/quizzes/[Name of file].json
-
-  9) Recompile the code and publish the new version
+  
+  6) Push the changes
