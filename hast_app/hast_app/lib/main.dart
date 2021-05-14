@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     //Precache the background
-    precacheImage(AssetImage('assets/images/4.png'), context);
+    precacheImage(AssetImage('assets/images/quizPageImage.png'), context);
 
     //Precache the HAST logo
     precacheImage(AssetImage("assets/images/hastlogga.png"), context);

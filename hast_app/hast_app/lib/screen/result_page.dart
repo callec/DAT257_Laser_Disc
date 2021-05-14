@@ -26,11 +26,11 @@ class ResultPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: theme.backgroundColor,
         ),
-        body: Center(child:
+        body: Center( child:SingleChildScrollView(child:
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-          SizedBox(height: 30),
+              SizedBox(height: 30),
               Text('Your score is: $_score' + '/' + '${questions.length * 12}', //The final score after a evaluation.
                 textAlign: TextAlign.center,
                 style: theme.textTheme.headline4),
@@ -42,7 +42,7 @@ class ResultPage extends StatelessWidget {
                   style: theme.textTheme.headline5)),
           SizedBox(height: 20),
 
-          new Expanded(child: //the overview
+          Container(child: //the overview
           Theme(
             data: Theme.of(context).copyWith(dividerColor: theme.accentColor),
             child:
@@ -51,20 +51,18 @@ class ResultPage extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.12,
                   right: MediaQuery.of(context).size.width * 0.12),
               child:
-              ListView( //wrapped in a listView to be scrollable.
-                  children: <Widget>[
-                IgnorePointer(child: //wrapped in a IgnorePointer to remove clickable event.
-                SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child:
-                    DataTable( columns: const <DataColumn>[
-                      DataColumn(
+              IgnorePointer(child: //wrapped in a IgnorePointer to remove clickable event.
+              SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child:
+                  DataTable( columns: const <DataColumn>[
+                    DataColumn(
                         label: Text('Question', style: TextStyle(fontStyle: FontStyle.italic))),
-                      DataColumn(
+                    DataColumn(
                         label: Text('Text', style: TextStyle(fontStyle: FontStyle.italic))),
-                      DataColumn(
+                    DataColumn(
                         label: Text('Score', style: TextStyle(fontStyle: FontStyle.italic))),
-                          ],
+                  ],
                       rows:
                       questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
                         //fills the dataTable with data from the list.
@@ -74,8 +72,7 @@ class ResultPage extends StatelessWidget {
                           DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
                         ],
                       ))).toList())))
-              ]
-              )))),
+              ))),
 
           SizedBox(
             height: 20),

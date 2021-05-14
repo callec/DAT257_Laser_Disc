@@ -55,6 +55,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var quizModel = Provider.of<QuizModel>(context, listen: false);
     final theme = Theme.of(context);
+    final String _infoHast = "HAST Utveckling offer services of consulting, training, "
+        "seminars and coaching as experts in the areas of Leadership, Communication, "
+        "Effectiveness and Team Development. The company was founded in 2001 and have since then "
+        "created results for managers, leaders and their personnel in over 40% of Sweden’s 100 largest companies. "
+        "They have travelled to do work in more than 15 countries and have had participants in our programs "
+        "from more than 40 different nations worldwide. We at HAST Utveckling, provide the climate needed for "
+        "individuals and groups to take a good look at and discover key principles, behaviors and unaware preconceptions "
+        "that keep us as human beings from reaching our true potential. These discoveries lead to waking people up to what "
+        "is really going on. From real insight you hardly need to tell people what to do. Instead, people have a natural tendency "
+        "to automatically implement behavior changes creating a new level of sustainable results. Fascinating! These changes result in "
+        "increased peace of mind, focus and productivity as well as better worklife balance and new possibilities of innovation."
+        " We turn stress to calm, conflict to teamwork, limitations to new results and managers to true leaders. We asked some of "
+        "our most cherished customers, such as The West Sweden Chamber of Commerce, Volvo Penta, ABB, RISE (Research Institutes of Sweden),"
+        " Preem, The Swedish Transport Administration and others, to describe, in their own words, what comes to mind when they think of HAST."
+        " Here are a few examples of their comments: “Great structures. Keep their promises. Clear processes and competent people.”"
+        "“Your level of competence is high, like many others, but you serve them with warmth and humor in a way that makes you stand out "
+        "from the crowd.” “HAST dares to “touch on” matters that are not always comfortable to take a look at and that other suppliers just let go of.”";
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
@@ -93,11 +110,11 @@ class _HomePageState extends State<HomePage> {
 
               Center(
                   child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
-                      child: Column(children: [
-                        _presentText(context, 'Hast Info, good company'),
+                      margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      child: SingleChildScrollView(child: Column(children: [ //InfoPage is now scrollable, and their text is "inkastad".
+                        _presentText(context, _infoHast),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
-                      ]))),
+                      ])))),
             ],
           ),
         ),
@@ -109,21 +126,21 @@ class _HomePageState extends State<HomePage> {
   Widget _presentText(context, String presentingText) {
     return Container(
         width: MediaQuery.of(context).size.width - 200,
-        child: Text(presentingText,
+        child: SingleChildScrollView(child: Column(children: [Text(presentingText,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline6));
+            style: Theme.of(context).textTheme.headline6)]),));
   }
 
   /// Displays a welcoming text and a start button IF we managed to load a Quiz
   Widget _homePageHomePage(context, QuizModel quizModel) {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
-        child: Column(children: [
+        child: SingleChildScrollView(child: Column(children: [
           _presentText(
               context, 'WELCOME! this is a quiz about ${isQuizLoaded ? quiz.quizTitle : "LOADING..."}'),
           Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
           _startButton(context, quizModel)
-        ]));
+        ])));
   }
 
   /// The button used to start the Quiz
