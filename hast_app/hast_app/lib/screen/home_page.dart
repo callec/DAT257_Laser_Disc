@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               isQuizLoaded ? _homePageAbout(_padding) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading...", TextAlign.center)),
               SingleChildScrollView(
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding/2 + 10),
+                  margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
                     child: Column(
                       children: [ //InfoPage is now scrollable, and their text is "inkastad".
                         _presentText(context, _infoHast, TextAlign.justify),
@@ -119,7 +119,9 @@ class _HomePageState extends State<HomePage> {
   /// Displays information text on the home_page in a nice formatted way
   Widget _presentText(context, String presentingText, TextAlign alignment) {
     return Container(
-        width: ResponsivePage.isMediumScreen(context) ? MediaQuery.of(context).size.width - 80 : MediaQuery.of(context).size.width - 200,
+        // for small devices: keep text to 85% of the width, otherwise 600px to
+        // keep ~70 character at a time in a paragraph for readability.
+        width: ResponsivePage.isMediumScreen(context) ? MediaQuery.of(context).size.width*0.85 : 600,
         child: SingleChildScrollView(child: Column(children: [Text(presentingText,
             textAlign: alignment,
             style: Theme.of(context).textTheme.headline6)]),));
