@@ -102,12 +102,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               errorOccurred ? UndefinedPage() : _homePageHomePage(context, _quizModel, _padding),
               isQuizLoaded ? _homePageAbout(_padding) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading...", TextAlign.center)),
-              Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                  child: SingleChildScrollView(child: Column(
-                    children: [ //InfoPage is now scrollable, and their text is "inkastad".
-                      _presentText(context, _infoHast, TextAlign.justify),
-                      Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
+              SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding/2 + 10),
+                    child: Column(
+                      children: [ //InfoPage is now scrollable, and their text is "inkastad".
+                        _presentText(context, _infoHast, TextAlign.justify),
                   ]))),
             ],
           ),
