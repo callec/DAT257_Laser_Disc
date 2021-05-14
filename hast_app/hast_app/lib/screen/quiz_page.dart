@@ -217,45 +217,42 @@ class _CreateNextBackRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: <Widget>[
-        ElevatedButton(
-          style: TextButton.styleFrom(
-              primary: Theme.of(context).backgroundColor,
-              backgroundColor: (_model.currentNumber == 0)
-                  ? disabledGrey
-                  : Theme.of(context).accentColor),
-          onPressed: () {
-            if (_model.currentNumber >= 1) {
-              _model.prevQuestion();
-            }
-          },
-          child: Text('Back'),
-        ),
-        Spacer(),
-        // Progress indication (dots)
-
-        ResponsivePage.isSmallScreen(context)
-            ? Spacer()
-            : _CreateProgressIndicators(_model),
-
-        Spacer(),
-        ElevatedButton(
-          style: TextButton.styleFrom(
-            primary: Colors.white,
-            backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
-                ? (_model.finished ? hastGreen : disabledGrey)
-                : Theme.of(context).accentColor,
+        Row(children: <Widget>[Spacer(), _CreateProgressIndicators(_model), Spacer()]),
+        Row(children: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+                primary: Theme.of(context).backgroundColor,
+                backgroundColor: (_model.currentNumber == 0)
+                    ? disabledGrey
+                    : Theme.of(context).accentColor),
+            onPressed: () {
+              if (_model.currentNumber >= 1) {
+                _model.prevQuestion();
+              }
+            },
+            child: Text('Back'),
           ),
-          onPressed: () {
-            if (_model.currentNumber <= _model.numberOfQuestions - 2) {
-              _model.nextQuestion();
-            } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
-              Navigator.pushNamed(context, ResultRoute);
-            }
-          },
-          child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
-        ),
+          Spacer(),
+          // Progress indication (dots)
+          Spacer(),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+              backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
+                  ? (_model.finished ? hastGreen : disabledGrey)
+                  : Theme.of(context).accentColor,
+            ),
+            onPressed: () {
+              if (_model.currentNumber <= _model.numberOfQuestions - 2) {
+                _model.nextQuestion();
+              } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
+                Navigator.pushNamed(context, ResultRoute);
+              }
+            },
+            child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
+          )]),
       ],
     );
   }
