@@ -9,13 +9,18 @@ void main() {
     TestWidgetsFlutterBinding.ensureInitialized();
     late ResultModel _r;
     late ResultModel _r2;
+    late QuizModel _q1;
+    late QuizModel _q2;
     final _random = Random();
 
     setUp(() {
       _r = new ResultModel();
       _r2 = new ResultModel();
-      _r.quizModel = new QuizModel();
-      _r2.quizModel = new QuizModel();
+      _q1 = new QuizModel();
+      _q2 = new QuizModel();
+      
+      _r.setModel(_q1);
+      _r2.setModel(_q2);
     });
 
     test('`score` gives the correct score', () {
@@ -25,17 +30,17 @@ void main() {
 
       int _score = 0;
       // answer all questions
-      for (int i = 0; i < _r.quizModel.numberOfQuestions; ++i) {
+      for (int i = 0; i < _q1.numberOfQuestions; ++i) {
         var _alt = _random.nextInt(3);
         var _sub = _random.nextInt(3);
 
-        _r.quizModel.setAlternative(_alt);
-        _r.quizModel.setSubAlternative(_sub);
+        _q1.setAlternative(_alt);
+        _q1.setSubAlternative(_sub);
 
         _score += (1+_sub) + (_alt*3);
 
-        if (i == _r.quizModel.numberOfQuestions-1) break;
-        _r.quizModel.nextQuestion();
+        if (i == _q1.numberOfQuestions-1) break;
+        _q1.nextQuestion();
       }
 
       expect(_r.score, _score);
@@ -44,26 +49,24 @@ void main() {
     /*test('`text` gives different text depending on score', () {
       // TODO don't like initialising two ResultModels, separate setup? how?
       // first ResultModel
-      for (int i = 0; i < _r.quizModel.numberOfQuestions; ++i) {
-        _r.quizModel.setAlternative(0);
-        _r.quizModel.setSubAlternative(0);
+      for (int i = 0; i < _q1.numberOfQuestions; ++i) {
+        _q1.setAlternative(0);
+        _q1.setSubAlternative(0);
 
-        if (i == _r.quizModel.numberOfQuestions-1) break;
-        _r.quizModel.nextQuestion();
+        if (i == _q1.numberOfQuestions-1) break;
+        _q1.nextQuestion();
       }
 
       // second ResultModel
-      _r2.quizModel.reset();
-      for (int i = 0; i < _r2.quizModel.numberOfQuestions; ++i) {
-        _r2.quizModel.setAlternative(2);
-        _r2.quizModel.setSubAlternative(2);
+      _q2.reset();
+      for (int i = 0; i < _q2.numberOfQuestions; ++i) {
+        _q2.setAlternative(2);
+        _q2.setSubAlternative(2);
 
-        if (i == _r2.quizModel.numberOfQuestions-1) break;
-        _r2.quizModel.nextQuestion();
+        if (i == _q2.numberOfQuestions-1) break;
+        _q2.nextQuestion();
       }
 
-      print(_r.text);
-      print(_r2.text);
       expect(_r.text != _r2.text, true);
     });*/
   });
