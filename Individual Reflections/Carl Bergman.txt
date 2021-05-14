@@ -1,4 +1,4 @@
-﻿Wk 1
+﻿Week 1
 * what do I want to learn or understand better?
    * For this week I want to learn scrum and better understand KPI. At this
      point I have some experience in agile development and think I am new to
@@ -115,3 +115,28 @@ Week 6
      started the technical documentation, I have also started implementing
      unit tests for our application. Teamwise I have helped out by doing code
      reviews and testing the other groups' code.
+
+
+Week 7
+* what do I want to learn or understand better?
+   * This week I was mostly invested in using embeds and exporting data from
+     our site, so I wanted to learn that. To learn it we browsed the web and
+     used the flutter documentation.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our previous knowledge of the topics we need to learn more
+     about, for this week by making sure that we got the correct knowledge
+     from the stakeholders so we can finish the project in time.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way. As previous weeks we discuss what need to be changed
+     together, at the moment i feel that we are fairly satisfied with how the
+     structure is (although we still need to discuss who does code reviews).
+* what is my contribution towards the team’s deliveries?
+   * This week we have collaborated (as usual) and I am satisfied with how it
+     went. I was the scrum leader and it went well enough, there has been a
+     lot of relevant progress and it has been a calm sprint so nothing in
+     particular has been done except holding meetings. As we are missing some
+     data from the stakeholders mine (and Felix) user stories have not been
+     fully completed. We have however prepared the application for when the
+     data arrives to us. Further on we also set it up so it's viewable as a
+     normal website and this has worked well.
