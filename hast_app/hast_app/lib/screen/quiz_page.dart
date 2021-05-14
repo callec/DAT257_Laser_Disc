@@ -219,7 +219,10 @@ class _CreateNextBackRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(children: <Widget>[Spacer(), _CreateProgressIndicators(_model), Spacer()]),
+        ResponsivePage.isSmallScreen(context)
+            ? Text("")
+            : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(_model), Spacer()]),
+
         Row(children: <Widget>[
           ElevatedButton(
             style: TextButton.styleFrom(
