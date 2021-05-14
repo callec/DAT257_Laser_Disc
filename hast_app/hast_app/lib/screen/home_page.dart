@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var _quizModel = Provider.of<QuizModel>(context, listen: false);
     final _theme = Theme.of(context);
-    double _padding = ResponsivePage.isMediumScreen(context) ? 50 : 100;
+    double _padding = ResponsivePage.isMediumScreen(context) ? 30 : 100;
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               errorOccurred ? UndefinedPage() : _homePageHomePage(context, _quizModel, _padding),
               isQuizLoaded ? _homePageAbout(_padding) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading...", TextAlign.center)),
               Container(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
                   child: SingleChildScrollView(child: Column(
                     children: [ //InfoPage is now scrollable, and their text is "inkastad".
                       _presentText(context, _infoHast, TextAlign.justify),
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.fromLTRB(0, _padding, 0, 0),
           child: Column(
             children: [
-              _size ? SizedBox(height: 20,) : Container(),
+              //_size ? SizedBox(height: 20,) : Container(),
               _presentText(
                 context, 'WELCOME! this is a quiz about ${isQuizLoaded ? quiz.quizTitle : "LOADING..."}',
                 TextAlign.center
