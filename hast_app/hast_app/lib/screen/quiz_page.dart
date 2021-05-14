@@ -71,7 +71,7 @@ class QuizPage extends StatelessWidget {
                             minWidth: MediaQuery.of(context).size.width * 0.5,
                             maxWidth: MediaQuery.of(context).size.width * 0.7,
                             minHeight: MediaQuery.of(context).size.height * 0.2,
-                            maxHeight: MediaQuery.of(context).size.height * 0.8
+                            maxHeight: MediaQuery.of(context).size.height * 2
                           )
                           : BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,

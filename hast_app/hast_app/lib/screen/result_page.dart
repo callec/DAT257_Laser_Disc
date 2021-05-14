@@ -35,7 +35,7 @@ class ResultPage extends StatelessWidget {
           ..style.border = 'none');
 
     return WillPopScope(onWillPop: () => Future.value(false),
-    child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           title: HastLogo(),
           automaticallyImplyLeading: false,
@@ -45,37 +45,22 @@ class ResultPage extends StatelessWidget {
           child: SingleChildScrollView(
             controller: _scrollController,
             child: Column(
-              children: [
-                SizedBox(
-                  height: _large ? _windowHeight : _fixedHeight,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: 30),
-                      _PointsAndText(_result, _theme),
-                      SizedBox(height: 20),
-                      //_Embed(),
-                      _HastButton(_theme, _buttonText, _url),
-                      _large ? Spacer() : SizedBox(height: 20,),
-                      _large ? _scrollButton(_scrollController) : _ResultOverview(_result, _theme),
-                    ]
-                  )
-                ),
-                !_large ? Container() : SizedBox(
-                  height: _windowHeight,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 30),
-                      _ResultOverview(_result, _theme),
-                    ]
-                  )
-                )
-              ]
+              mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 30),
+                  _PointsAndText(_result, _theme),
+                  SizedBox(height: 20),
+                  //_Embed(),
+                  _HastButton(_theme, _buttonText, _url),
+                  SizedBox(height: 20,),
+                  _ResultOverview(_result, _theme),
+                  SizedBox(height: 20),
+                ]
             )
-          )
+          ),
         )
-    ));
+      )
+    );
   }
 
   /// Return a clickable text that scrolls to bottom

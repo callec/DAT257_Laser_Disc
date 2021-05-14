@@ -3,7 +3,6 @@ import 'package:hast_app/models/quiz_model.dart';
 
 /// This class is responsible for calculating the total score after a Quiz
 /// and displaying the appropriate conclusion
-
 class ResultModel {
 
   late QuizModel _quizModel;

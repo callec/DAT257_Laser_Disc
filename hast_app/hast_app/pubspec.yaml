@@ -3,16 +3,6 @@ description: An application developed for HAST
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-
-
-  # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  # ////////////////////////////////////////////////////////////////////////////////////////////
-  # TODO Want to add more quizzes? - look at the bottom of this document!
-  # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  # ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 # The following defines the version and build number for your application.
 version: 1.0.0+1
 
@@ -47,17 +37,4 @@ flutter:
   assets:
     - assets/images/hastlogga.png
     - assets/images/quizPageImage.png
-
-
-
-    # ////////////////////////////////////////////////////////////////////////////////////////////
-    # IGNORE EVERYTHING ABOVE HERE
-    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
-
-    # FOR HAST
-    # TO ADD MORE QUIZZES, ADD JSON FILE NAMES HERE
-    # FOR EXAMPLE: " - assets/quizzes/[Name of file].json "
-    - assets/quizzes/ReflectionQuiz.json
-    - assets/quizzes/example.json
+    - assets/quizzes/
