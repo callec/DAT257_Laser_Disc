@@ -25,8 +25,6 @@ class ResultPage extends StatelessWidget {
     double _fixedHeight = 1100; // TODO set to relevant value with embed
     var _large = _windowHeight > 800 && (_windowWidth/_windowHeight) > (13/16);
 
-    int questionNumber = 0;
-
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
         'HAST-embed',
@@ -77,7 +75,7 @@ class ResultPage extends StatelessWidget {
             )
           )
         )
-    );
+    ));
   }
 
   /// Return a clickable text that scrolls to bottom
@@ -164,6 +162,8 @@ class _ResultOverview extends StatelessWidget {
   final ResultModel _model;
   late final List<QuestionContent> _questions;
 
+  int _questionNumber = 0;
+
   _ResultOverview(this._model, this._theme) {
     this._questions = _model.questions;
   }
@@ -198,7 +198,7 @@ class _ResultOverview extends StatelessWidget {
                     // Loops through dataColumnText, each iteration assigning the value to element
                     // fills the dataTable with data from the list.
                     cells: <DataCell>[
-                      DataCell(Text("      " + (++questionNumber).toString())),
+                      DataCell(Text("      " + (++_questionNumber).toString())),
                       DataCell(Text(element.question)),
                       DataCell(Text(
                           ((element.chosenSubAlternative + 1)

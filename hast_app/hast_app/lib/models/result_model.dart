@@ -11,7 +11,7 @@ class ResultModel {
 
   void setModel(QuizModel model) => this._quizModel = model;
 
-  bool get finished => quizModel.finished;
+  bool get finished => _quizModel.finished;
 
   //TODO DO NOT DISPLAY RESULT IF ALL QUESTION HAVEN'T BEEN ANSWERED
   int get score {
@@ -34,7 +34,7 @@ class ResultModel {
     int s = this.score;
     int index;
 
-    int interval = ((quizModel.numberOfQuestions * 12) / 4) as int;
+    int interval = ((_quizModel.numberOfQuestions * 12) / 4) as int;
 
     if (s <= interval) {
       index = 0;
