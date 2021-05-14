@@ -1,15 +1,59 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hast_app/colors.dart';
+import 'package:hast_app/common/quiz_content.dart';
+import 'package:hast_app/routing/route_names.dart';
+import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
+import 'package:hast_app/models/quiz_factory.dart';
 
-/// This is the first page that is displayed to the User
+
+/// This is the first page that is displayed to the User.
+/// We load the Quiz from the URL query parameters
 /// Here we can start the quiz or get information about the Quiz or HAST
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+
+  final String query;
+
+  HomePage(this.query);
+
+  @override
+  _HomePageState createState() => _HomePageState(query);
+}
+
+class _HomePageState extends State<HomePage> {
+  late QuizContent quiz;
+
+  bool isQuizLoaded = false;
+  bool errorOccurred = false;
+
+  _HomePageState(String query){
+    print("current query:" + query);
+    _tryLoadingFile(query);
+  }
+
+  /// Load the Quiz file from the query parameters
+  /// If we fail loading the file, errors will be displayed
+  void _tryLoadingFile(String fileName) async{
+    try{
+      quiz = await QuizFactory.createQuiz(fileName);
+      setState(() {
+        isQuizLoaded = true;
+        errorOccurred = false;
+      });
+    }catch(err){
+      setState(() {
+        isQuizLoaded = false;
+        errorOccurred = true;
+      });
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    var quizModel = context.watch<QuizModel>();
-
+    var quizModel = Provider.of<QuizModel>(context, listen: false);
     final theme = Theme.of(context);
 
     // Here we display 3 tabs (home, about the test and about HAST)
@@ -33,24 +77,20 @@ class HomePage extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            // What will be displayed on each tab
+            // What will be displayed on each tab (Home, About test, About us)
             children: [
               Center(
-                  child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
-                      child: Column(children: [
-                        _presentText(
-                            context, 'WELCOME! Presenting Information'),
-                        Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
-                        _startButton(context, quizModel)
-                      ]))),
+                  child: errorOccurred ? UndefinedPage() : _homePageHomePage(context, quizModel)),
+
               Center(
-                  child: Container(
+                  child: isQuizLoaded ? Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
                       child: Column(children: [
-                        _presentText(context, 'Answer honestly!!'),
+                        _presentText(context, quiz.quizInfo),
                         Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0))
-                      ]))),
+                      ])) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading..."))
+              ),
+
               Center(
                   child: Container(
                       margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
@@ -74,17 +114,38 @@ class HomePage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6));
   }
 
+  /// Displays a welcoming text and a start button IF we managed to load a Quiz
+  Widget _homePageHomePage(context, QuizModel quizModel) {
+    return Container(
+        margin: EdgeInsets.fromLTRB(0, 100, 0, 200),
+        child: Column(children: [
+          _presentText(
+              context, 'WELCOME! this is a quiz about ${isQuizLoaded ? quiz.quizTitle : "LOADING..."}'),
+          Container(margin: EdgeInsets.fromLTRB(0, 100, 0, 0)),
+          _startButton(context, quizModel)
+        ]));
+  }
+
+  /// The button used to start the Quiz
+  /// Displays a grayed out button if the Quiz is currently loading
   Widget _startButton(context, QuizModel quizModel) {
-    return ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(
-                Theme.of(context).accentColor)),
-        onPressed: () {
-          //quizModel.reset();
-          if (quizModel.answered != 0) quizModel.reset();
-          Navigator.pushNamed(context, '/quiz');
-        },
-        child: Text("Start Self Reflection"));
+    if (isQuizLoaded){
+      return ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Theme.of(context).accentColor)),
+          onPressed: () {
+            quizModel.loadQuiz(quiz);
+            Navigator.pushNamed(context, QuizRoute);
+          },
+          child: Text("Start Self Reflection"));
+    } else {
+      return ElevatedButton(
+          style: TextButton.styleFrom(
+              backgroundColor: disabledGrey),
+          onPressed: null,
+          child: Text("Start Self Reflection"));
+    }
   }
 }
 

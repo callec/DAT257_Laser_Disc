@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
+import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +16,10 @@ class ResultPage extends StatelessWidget {
     final String _scoreText = _result.text;
     final int _score = _result.score;
     final theme = Theme.of(context);
+    int questionNumber = 0;
 
-    return Scaffold(
+    return WillPopScope(onWillPop: () => Future.value(false),
+    child: Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
@@ -66,7 +69,7 @@ class ResultPage extends StatelessWidget {
                       questions.map(((element) => DataRow( // Loops through dataColumnText, each iteration assigning the value to element
                         //fills the dataTable with data from the list.
                         cells: <DataCell>[
-                          DataCell(Text("      " + element.number.toString())),
+                          DataCell(Text("      " + (++questionNumber).toString())),
                           DataCell(Text(element.question)),
                           DataCell(Text(((element.chosenSubAlternative + 1) + element.chosenAlternative * 3).toString() + "/12"))
                         ],
@@ -89,12 +92,12 @@ class ResultPage extends StatelessWidget {
                   }),
                 ),
                onPressed: () {
-                 Navigator.pushNamed(context, '/');
+                 Navigator.pushNamed(context, HomeRoute);
                 },
                child: Text('Home'),
               )),
 
               SizedBox(height: 20),
-        ])));
+        ]))));
   }
 }

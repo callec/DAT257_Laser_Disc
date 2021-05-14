@@ -7,6 +7,8 @@ class ResultModel{
 
   late QuizModel quizModel;
 
+  bool get finished => quizModel.finished;
+
   //TODO DO NOT DISPLAY RESULT IF ALL QUESTION HAVEN'T BEEN ANSWERED
   int get score {
     var questions = quizModel.questions;
@@ -21,17 +23,20 @@ class ResultModel{
     return totalScore;
   }
 
-  //Get the conclusion text based on which interval the score lands
+  /// Divide the total score into 4 different intervals
+  /// Get the conclusion text based on which interval the score lands
   String get text {
     var resultTextList = quizModel.resultList;
     int s = this.score;
     int index;
 
-    if (s <= 30) {
+    int interval = ((quizModel.numberOfQuestions * 12) / 4) as int;
+
+    if (s <= interval) {
       index = 0;
-    } else if (s <= 60) {
+    } else if (s <= 2*interval) {
       index = 1;
-    } else if (s <= 90) {
+    } else if (s <= 3*interval) {
       index = 2;
     } else {
       index = 3;

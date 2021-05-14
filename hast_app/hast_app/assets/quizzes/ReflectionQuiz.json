@@ -1,6 +1,8 @@
 {
   "quizTitle": "Lifestyle and Work Assessment",
-  "quizInfo": "info",
+  "quizInfo": "This is quiz about lifestyle and work, glhf",
+  "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?",
+  "subAlternatives": ["Worse", "Exactly", "Better"],
   "resultText": [
     "Perhaps you feel a little down or ‘feel’ like a failure. Life is hard, most things feel like it is a struggle. We know that from here it is difficult for you to get your head above water and see the possibilities for yourself and your life. In our signature programme, we create the conditions for our clients to operate from a place of strength, calm, clarity, creativity and resilience for both the short term and the long term, as we believe that without unleashing these and our other human capacities, hard work, or external productivity tools, no matter how sophisticated, will never be enough.",
     "A lot of hard work, but no leverage, very little traction or results. Sometimes it is just all a little too frustrating. Thriving — both professionally and personally — isn’t about requiring the external world around us to be exactly as we want it to be. It’s about creating pathways of connection to our inner resources, those treasures inside us that enable us to handle whatever the external world throws our way. In our signature programme, we help you access your amazing inner capacities, unleash them and leverage them to create great results at work and a life you thrive in.",
@@ -10,91 +12,93 @@
   "questions": [
     {
       "question": "Reactivity vs. finding 'the space'",
-      "number": 1,
       "alternatives": [
         "You often overreact to other people, since you are often treated unfairly. Sometimes you feel the world is against you.",
         "You see that you react in ways that don’t work in many situations. You don’t feel good about it, but you have no idea how to change your behaviour.",
         "You often catch yourself when you overreact, you find ‘the space’, and from there you can create a more balanced response.",
         "As you let your reactions be instead of trying to change them, you often get insights and see new possibilities."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "Relaxed or Stressed",
-      "number": 2,
       "alternatives": [
         "You are very stressed. You notice your physical health is suffering. You are not sure how long you can keep this up without going into Burnout.",
         "You are stressed most days; you are frequently anxious or worried and you are not sure what to do to change things for the better. Sometimes, you might feel a little better, but stress comes back very quickly.",
         "You have reached a place where you feel relaxed a lot of the time, even if you feel stressed now and again. You are alert for when you have stressful thinking and can move relatively easily beyond stress into relaxation.",
         "You are relaxed, yet responsive to what happens in life and you seem to be able to handle big and small challenges with grace and ease. Others wonder how you can be so productive and yet so relaxed."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "Distracted or Focused",
-      "number": 3,
       "alternatives": [
         "You are constantly distracted by people and technology. You rarely have a chance to focus on doing your work. Sometimes you think your life is controlled by others and you don’t see this improving anytime soon.",
         "You are easily distracted, you rarely so ‘no’ to distractions and interruptions. You know you it would help if you were less distracted, but you have not really considered what will make the difference to enable you focus.",
         "You are mostly focused and clear. You say ‘no’ to human interruptions, and you allow technology to serve you rather than being a slave to its distractions. You find yourself in a “state of flow” from time to time, which enables you to do good work.",
         "You are focused and clear and you live in a state of flow most of the time, which you maximize and lever to do your best work consistently. You also experience this flow or focus in your life outside of work."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "Quiet-minded or busy minded",
-      "number": 4,
       "alternatives": [
         "You are very busy-minded. You have lots of thinking going on inside your head. Sometimes you feel like a hamster on a wheel or a ‘headless chicken’. You forget things, find it difficult to concentrate, and sometimes find it hard to relax after work or even get to sleep at night.",
         "You spend a lot of your time caught up in your thinking. A lot of your thoughts are judgements about yourself, others and life, and how things ‘should be’ or ‘needs to be better’ so you can be happier. Sometimes you find a relief from your busy mind, but you don’t know how to bring peace of mind into your everyday life.",
         "You experience a quiet mind most of the time. You realise what is happening to you when you become busy-minded and have ways to create some space and get quiet which supports clarity and creativity at work and in life.",
         "You experience “peace of mind” and ease even in busy and chaotic situations. You continually access that deeper part of your innate capacity that enables a quieter mind, so you experience insight and wisdom, make clear decisions and take inspired actions."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "A calendar that makes you smile, or ‘lose it’.",
-      "number": 5,
       "alternatives": [
         "Your calendar does not work for you! It is either so overwhelming you don’t look at it, or, you don’t see the point in having one because it just does not work! Your days, at work are driven by other people’s demands on your time, interruptions and urgent requests.",
         "You feel out of control when you look at your calendar and wonder how am I going to manage to do all this? It seems like you are constantly behind the curve trying to catch up, but feel you never do.",
         "You have a calendar that works well. You are not overbooked because you planned your week in advance You have time to get your vital work done. You also have time to deal with urgent issues that show up. You are content with your calendar and feel like it is a tool that works well for you.",
         "You look at your calendar and you smile; it is exactly the way you love it! You see plenty of time to do your most fascinating, motivating and purposeful tasks, meetings that add value, as well as having reminders that support all areas of your work and life."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "An empty inbox vs. out of control email",
-      "number": 6,
       "alternatives": [
         "You have given up! You dislike email, check it frequently, and it is the latest and loudest that triggers you into action. You might have hundreds or even thousands of mails in your inbox, many unread.",
         "From time to time you try to get the stream of emails under control. No matter what you try, you miss responding to important mails or cannot find key emails when you need them.",
         "Your mail works OK. You respond mostly on time during your workday. However, your email is more of a disruption and distraction than a great tool that works for you.",
         "Your email works really well for you. You only check mail a couple of times a day and your inbox is empty regularly. You have the exact systems and processes which work for you. You respond in time and miss nothing."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "Resilient vs. upset by people, events and circumstances",
-      "number": 7,
       "alternatives": [
         "You find many difficult situations hard to deal with. You get hurt and stuck frequently and tell your friends how hard ‘life’ is. You can get really upset by what people say or do and sometimes harbor resentments or ignore people who do not have the same opinion as you.",
         "You know there are some people and situations that make you feel unhappy, frustrated and irritated. And it is not always easy to get past these things. You know that it this is a waste of energy, but you don’t understand how you can escape from these feelings.",
         "You have reached a place where you are comfortable that you can handle most people and situations in life. Now and again your foundations get rocked as you deal with ‘challenging’ life circumstances, changes or people.",
         "You are rarely upset. You know that are not bound by circumstances or situations in life, and nothing outside of you can make you feel any particular way, no matter what the circumstances looks like. You experience freedom, peace of mind, ease and grace, no matter what is happening in life."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
     },
     {
       "question": "Results",
-      "number": 8,
       "alternatives": [
         "You often feel that it is easier for other people to accomplish things in life than you do.",
         "You work really hard, but often think you are not enough.",
         "You know that with willpower, hard work and discipline you can create good results.",
         "Wisdom, ease and flow is your source of results beyond the ordinary. You know where to look to access that place."
-      ],
-      "subAlternatives": ["Alternative 1", "Alternative 2", "Alternative 3"]
+      ]
+    },
+    {
+      "question": "Work-Life Balance",
+      "alternatives": [
+        "Your entire life, every day and hour are filled with work at your job or at home. You experience resentment, frustration, and even hopelessness. You have no time to pursue your interests – so you never feel relaxed or refreshed.",
+        "Your work pressures make it impossible for you to plan and take relaxing and rejuvenating time off from your business or work, even if you need it. You miss out on a lot of what you would love to do for yourself and others.",
+        "You have reached a place where you enjoy a good work-life balance. You enjoy your work while having a satisfying lifestyle.",
+        "Your growing productivity, clarity and creativity reduces your work time, while producing the results you want. You also have the time and freedom to create and live a life you love."
+      ]
+    },
+    {
+      "question": "Relationship to yourself ",
+      "alternatives": [
+        "You are insecure and feel that whatever you do is just never quite good enough. You are hard on yourself.",
+        "You feel that “you are as you are” and there is not much one can do about it.",
+        "You experience that you have good and not so good sides and you are working on yourself to be better.",
+        "You have found peace in your relationship to yourself. Every day you appreciate who you are in life for yourself and others."
+      ]
     }
   ]
 }

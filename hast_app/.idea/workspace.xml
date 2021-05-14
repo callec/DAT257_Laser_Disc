@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -49,6 +52,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ultim\Documents\GitHub\DAT257_projekt\hast_app\hast_app\lib\common\JSONFiles" />
       <recent name="C:\Users\ultim\Documents\GitHub\DAT257_projekt\hast_app\hast_app\lib\screen" />
     </key>
   </component>
@@ -63,6 +67,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -93,37 +98,53 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="198" key="#Inspections/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1618480323662" />
+    <state x="552" y="161" key="#Plugins" timestamp="1620201921757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="161" key="#Plugins/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620201921757" />
+    <state x="877" y="313" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620120177109">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="877" y="313" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620120177109" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1620747120529">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620747120529" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1619699835110">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619699835110" />
-    <state width="916" height="276" key="GridCell.Tab.0.bottom" timestamp="1619700616563">
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom" timestamp="1620896295005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619700616563" />
-    <state width="916" height="276" key="GridCell.Tab.0.center" timestamp="1619700616563">
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620896295005" />
+    <state width="1877" height="198" key="GridCell.Tab.0.center" timestamp="1620896295005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619700616563" />
-    <state width="916" height="276" key="GridCell.Tab.0.left" timestamp="1619700616563">
+    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620896295005" />
+    <state width="1877" height="198" key="GridCell.Tab.0.left" timestamp="1620896295005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619700616563" />
-    <state width="916" height="276" key="GridCell.Tab.0.right" timestamp="1619700616563">
+    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620896295005" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right" timestamp="1620896295005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="916" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619700616563" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620896295005" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1618480396556">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1618480396556" />
-    <state width="631" height="500" key="javadoc.popup.new" timestamp="1619700419526">
+    <state width="631" height="500" key="javadoc.popup.new" timestamp="1620205139117">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="631" height="500" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619700419526" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1619609447337">
+    <state width="631" height="500" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620205139117" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1620896221045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1619609447337" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620896221045" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1620825071608">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1620825071608" />
   </component>
 </project>

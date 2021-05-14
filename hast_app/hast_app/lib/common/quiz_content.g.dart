@@ -14,6 +14,8 @@ QuizContent _$QuizContentFromJson(Map<String, dynamic> json) {
     (json['questions'] as List<dynamic>)
         .map((e) => QuestionContent.fromJson(e as Map<String, dynamic>))
         .toList(),
+      json['subAltText'] as String,
+    (json['subAlternatives'] as List<dynamic>).map((e) => e as String).toList(),
   );
 }
 
@@ -23,4 +25,6 @@ Map<String, dynamic> _$QuizContentToJson(QuizContent instance) =>
       'quizInfo': instance.quizInfo,
       'resultText': instance.resultText,
       'questions': instance.questions.map((e) => e.toJson()).toList(),
+      'subAltText': instance.subAltText,
+      'subAlternatives': instance.subAlternatives,
     };

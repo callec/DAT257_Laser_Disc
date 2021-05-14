@@ -4,7 +4,9 @@ import 'package:flutter/rendering.dart';
 
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
+import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/question_overview.dart';
+import 'package:hast_app/screen/undefined_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
@@ -38,7 +40,9 @@ class QuizPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
+    return WillPopScope(onWillPop: () => Future.value(false),
+    child:
+      Scaffold(
         appBar: AppBar(
           //title: Text(context.read<QuizModel>().title),
           title: HastLogo(),
@@ -79,7 +83,7 @@ class QuizPage extends StatelessWidget {
                         // TODO maybe it would be better to rebuild individual Text widgets
                         // within the larger widgets?
                         builder: (context, model, child) => Column(
-                            children: model.loading ? [Text("LOADING")] : [
+                            children: !model.quizLoaded ? [UndefinedPage()] : [
                               // Question and alternatives
                               _QuestionText(model.currentQuestion.question),
                               _CreateAnswers(_getColor, model.currentQuestion),
@@ -94,8 +98,7 @@ class QuizPage extends StatelessWidget {
                                   ? Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           0, 16, 0, 0),
-                                      child: Text(
-                                          "How much do you agree to the chosen statement?",
+                                      child: Text("${model.subAltText}",
                                           style: new TextStyle(fontSize: 18)))
                                   : Text(""),
                               model.currentQuestion.chosenAlternative != -1
@@ -103,7 +106,7 @@ class QuizPage extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 128),
                                       child: _CreateFollowUpAnswers(
-                                          _getColor, model.currentQuestion))
+                                          _getColor, model))
                                   : Text(""),
                               Padding(
                                   padding:
@@ -112,7 +115,7 @@ class QuizPage extends StatelessWidget {
                                   child: _CreateNextBackRow(model))
                             ])),
                   )
-                ]))));
+                ])))));
   }
 }
 
@@ -197,18 +200,18 @@ class _CreateNextBackRow extends StatelessWidget {
         ElevatedButton(
           style: TextButton.styleFrom(
             primary: Colors.white,
-            backgroundColor: (_model.currentNumber == 7)
+            backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
                 ? (_model.finished ? hastGreen : disabledGrey)
                 : Theme.of(context).accentColor,
           ),
           onPressed: () {
-            if (_model.currentNumber <= 6) {
+            if (_model.currentNumber <= _model.numberOfQuestions - 2) {
               _model.nextQuestion();
-            } else if (_model.currentNumber == 7 && _model.finished) {
-              Navigator.pushNamed(context, '/result');
+            } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
+              Navigator.pushNamed(context, ResultRoute);
             }
           },
-          child: Text(_model.currentNumber < 7 ? 'Next' : 'Result'),
+          child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
         ),
       ],
     );
@@ -258,9 +261,12 @@ class _CreateAnswers extends StatelessWidget {
 /// Has arguments: color function and QuestionContent object
 class _CreateFollowUpAnswers extends StatelessWidget {
   final _ColorCallBack color;
-  final QuestionContent question;
+  final QuizModel model;
+  late final QuestionContent question;
 
-  _CreateFollowUpAnswers(this.color, this.question);
+  _CreateFollowUpAnswers(this.color, this.model){
+    question = model.currentQuestion;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +287,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
 
     int alternativeNumber = question.chosenAlternative;
     int subAlternativeNumber = question.chosenSubAlternative;
-    List<String> options = question.subAlternatives;
+    List<String> options = model.subAlternatives;
 
     //Create three sub alternatives
     for(int x = 0; x < 3; x++) {
