@@ -314,13 +314,20 @@ class _CreateFollowUpAnswers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _salt = _buildSubAlternatives();
     return IntrinsicHeight(
         key: UniqueKey(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildSubAlternatives(),
-        ));
+        child: ResponsivePage.isMediumScreen(context)
+          ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _salt,
+          )
+          : Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _salt,
+          ));
   }
 
   List<Widget> _buildSubAlternatives() {
@@ -422,7 +429,7 @@ class _SubAlternativeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,
