@@ -89,8 +89,11 @@ class QuizPage extends StatelessWidget {
                           Column(
                             children: !model.quizLoaded
                                 ? [UndefinedPage()]
-                                : [ // Question and alternatives
-                                  _QuestionText(
+                                : [
+                                  ResponsivePage.isSmallScreen(context) //Progressbar over the questions
+                                  ? Text("")
+                                    : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
+                                  _QuestionText( // Question and alternatives
                                     model.currentQuestion.question),
                                   _CreateAnswers(_getColor,
                                     model.currentQuestion),
@@ -119,10 +122,8 @@ class QuizPage extends StatelessWidget {
                                       left: 0,
                                       right: 0,
                                       bottom: 16),
-                                    //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
                                     child: _CreateNextBackRow(model))
                                 ]))),
-
                 ))]),),
               SliverFillRemaining(
                 hasScrollBody: false,
@@ -230,46 +231,38 @@ class _CreateNextBackRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ResponsivePage.isSmallScreen(context)
-            ? Text("")
-            : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(_model), Spacer()]),
-
-        Row(children: <Widget>[
-          ElevatedButton(
-            style: TextButton.styleFrom(
-                primary: Theme.of(context).backgroundColor,
-                backgroundColor: (_model.currentNumber == 0)
-                    ? _disabledColor
-                    : _enabledColor),
-            onPressed: () {
-              if (_model.currentNumber >= 1) {
-                _model.prevQuestion();
-              }
-            },
-            child: Text('Back'),
-          ),
-          Spacer(),
-          // Progress indication (dots)
-          Spacer(),
-          ElevatedButton(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-              backgroundColor: _nextButtonColor(),
-            ),
-            onPressed: () {
-              if (!_model.hasAnswered) return;
-              if (_model.currentNumber <= _model.numberOfQuestions - 2) {
-                _model.nextQuestion();
-              } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
-                Navigator.pushNamed(context, ResultRoute);
-              }
-            },
-            child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
-          )]),
-      ],
-    );
+    return Row(children: <Widget>[
+      ElevatedButton(
+        style: TextButton.styleFrom(
+            primary: Theme.of(context).backgroundColor,
+            backgroundColor: (_model.currentNumber == 0)
+                ? _disabledColor
+                : _enabledColor),
+        onPressed: () {
+          if (_model.currentNumber >= 1) {
+            _model.prevQuestion();
+          }
+        },
+        child: Text('Back'),
+      ),
+      Spacer(),
+      // Progress indication (dots)
+      Spacer(),
+      ElevatedButton(
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: _nextButtonColor(),
+        ),
+        onPressed: () {
+          if (!_model.hasAnswered) return;
+          if (_model.currentNumber <= _model.numberOfQuestions - 2) {
+            _model.nextQuestion();
+          } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
+            Navigator.pushNamed(context, ResultRoute);
+          }
+        },
+        child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
+      )]);
   }
 }
 
