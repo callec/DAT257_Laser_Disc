@@ -17,3 +17,6 @@ const dotGrey = Color.fromARGB(255, 189, 189, 189);
 
 const traverseGrey = Color(0xffa2a8ac);
 const disabledGrey = Colors.grey;
+
+const footerBackground = Color(0x9cbdbdbd);
+const footerForeground = Colors.white;
