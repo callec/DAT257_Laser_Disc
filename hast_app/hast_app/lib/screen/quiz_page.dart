@@ -49,91 +49,76 @@ class QuizPage extends StatelessWidget {
           backgroundColor: theme.backgroundColor,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
-        body: Center(
+        body: Container(
+          // Background image, already precached
+          constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+               image: AssetImage('assets/images/quizPageImage.png'),
+               fit: BoxFit.cover)),
+          child: SingleChildScrollView(
             child: Container(
-                // Background image, already precached
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                constraints: BoxConstraints.expand(),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/quizPageImage.png'),
-                        fit: BoxFit.cover)),
-                child: SingleChildScrollView(
-                    child: Column(children: [
-                  // Flexible(child:
-                      Container(
-                    // This is the white box!
-                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                        constraints: ResponsivePage.isLargeScreen(context)
-                          ? BoxConstraints(
-                            //Size of the white box
-                            minWidth: MediaQuery.of(context).size.width * 0.5,
-                            maxWidth: MediaQuery.of(context).size.width * 0.7,
-                            minHeight: MediaQuery.of(context).size.height * 0.2,
-                            maxHeight: MediaQuery.of(context).size.height * 2
-                          )
-                          : BoxConstraints(
-                            minWidth: MediaQuery.of(context).size.width,
-                            maxWidth: MediaQuery.of(context).size.width,
-                            minHeight: MediaQuery.of(context).size.height*0.9,
-                            maxHeight: MediaQuery.of(context).size.height*0.9),
-                        decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
-                        /*boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            spreadRadius: 0.5,
-                            blurRadius: 1,
-                            offset: Offset(0, 2))
-                          ],
-
-                         */
-                        borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Consumer<QuizModel>(
-                          // TODO maybe it would be better to rebuild individual Text widgets
-                          // within the larger widgets?
-                          builder: (context, model, child) =>
-                            SingleChildScrollView(
-                                child: Column(
-                                    children: !model.quizLoaded
-                                        ? [UndefinedPage()]
-                                        : [ // Question and alternatives
-                                            _QuestionText(
-                                                model.currentQuestion.question),
-                                            _CreateAnswers(_getColor,
-                                                model.currentQuestion),
-                                            model.currentQuestion.chosenAlternative != -1
-                                                ? Visibility(
-                                                    visible: true,
-                                                    child: _subAltTitle(context))
-                                                : Visibility(
-                                                    visible: false,
-                                                    maintainSize: true,
-                                                    maintainAnimation: true,
-                                                    maintainState: true,
-                                                    child: _subAltTitle(context)),
-                                            model.currentQuestion.chosenAlternative != -1
-                                                ? Visibility(
-                                                    visible: true,
-                                                    child: _subAlt(context, model))
-                                                : Visibility(
-                                                    visible: false,
-                                                    maintainSize: true,
-                                                    maintainAnimation: true,
-                                                    maintainState: true,
-                                                    child: _subAlt(context, model)),
-                                            Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0,
-                                                    right: 0,
-                                                    bottom: 16),
-                                                //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
-                                                child:
-                                                    _CreateNextBackRow(model))
-                                          ]))),
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                child: Container(
+                  // This is the white box!
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                  constraints: ResponsivePage.isLargeScreen(context)
+                      ? BoxConstraints(
+                        // Size of the white box, height not specified
+                        minWidth: MediaQuery.of(context).size.width * 0.5,
+                        maxWidth: MediaQuery.of(context).size.width * 0.7,
                       )
-                ]))))));
+                      : BoxConstraints(
+                        minWidth: MediaQuery.of(context).size.width,
+                        maxWidth: MediaQuery.of(context).size.width,
+                      ),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Consumer<QuizModel>(
+                    // TODO maybe it would be better to rebuild individual Text widgets
+                    // within the larger widgets?
+                    builder: (context, model, child) =>
+                      Column(
+                        children: !model.quizLoaded
+                            ? [UndefinedPage()]
+                            : [ // Question and alternatives
+                              _QuestionText(
+                                model.currentQuestion.question),
+                              _CreateAnswers(_getColor,
+                                model.currentQuestion),
+                              model.currentQuestion.chosenAlternative != -1
+                                  ? Visibility(
+                                    visible: true,
+                                    child: _subAltTitle(context))
+                                  : Visibility(
+                                    visible: false,
+                                    maintainSize: true,
+                                    maintainAnimation: true,
+                                    maintainState: true,
+                                    child: _subAltTitle(context)),
+                              model.currentQuestion.chosenAlternative != -1
+                                  ? Visibility(
+                                    visible: true,
+                                    child: _subAlt(context, model))
+                                  : Visibility(
+                                    visible: false,
+                                    maintainSize: true,
+                                    maintainAnimation: true,
+                                    maintainState: true,
+                                    child: _subAlt(context, model)),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 16),
+                                //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
+                                child: _CreateNextBackRow(model))
+                            ]))),
+
+                ))))));
   }
 
   ///Padding and the creation of the follow up answers
