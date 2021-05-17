@@ -199,6 +199,25 @@ class _CreateNextBackRow extends StatelessWidget {
 
   _CreateNextBackRow(this._model);
 
+  // not sure if disabledGrey is used elsewhere so won't change it
+  var _disabledColor = disabledGrey[200];
+  var _enabledColor = traverseGrey;
+  var _nextColor = hastGreen;
+
+  Color _nextButtonColor() {
+    if (_model.currentNumber == _model.numberOfQuestions - 1) {
+      if (_model.finished) {
+        return _nextColor;
+      } else {
+        return _disabledColor!;
+      }
+    } else if (_model.hasAnswered) {
+      return _nextColor;
+    } else {
+      return _disabledColor!;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -212,8 +231,8 @@ class _CreateNextBackRow extends StatelessWidget {
             style: TextButton.styleFrom(
                 primary: Theme.of(context).backgroundColor,
                 backgroundColor: (_model.currentNumber == 0)
-                    ? disabledGrey
-                    : Theme.of(context).accentColor),
+                    ? _disabledColor
+                    : _enabledColor),
             onPressed: () {
               if (_model.currentNumber >= 1) {
                 _model.prevQuestion();
@@ -227,11 +246,10 @@ class _CreateNextBackRow extends StatelessWidget {
           ElevatedButton(
             style: TextButton.styleFrom(
               primary: Colors.white,
-              backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
-                  ? (_model.finished ? hastGreen : disabledGrey)
-                  : Theme.of(context).accentColor,
+              backgroundColor: _nextButtonColor(),
             ),
             onPressed: () {
+              if (!_model.hasAnswered) return;
               if (_model.currentNumber <= _model.numberOfQuestions - 2) {
                 _model.nextQuestion();
               } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
