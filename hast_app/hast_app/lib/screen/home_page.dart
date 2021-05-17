@@ -184,10 +184,18 @@ class _HomePageState extends State<HomePage> {
 /// Widget representing the HAST logo
 class HastLogo extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/hastlogga.png",
-      fit: BoxFit.contain,
-      height: 45,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+        children:
+        [
+          Image.asset("assets/images/hastlogga.png",
+                      fit: BoxFit.contain,
+                      height: 45),
+          SizedBox(width: 16),
+          Text("Lifestyle & Work Assessment Tool",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: hastGrey, fontSize: 16))
+        ]
     );
   }
 }
