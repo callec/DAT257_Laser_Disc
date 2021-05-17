@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/routing/route_names.dart';
+import 'package:hast_app/screen/footer.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:hast_app/screen/responsive_page.dart';
 import 'package:provider/provider.dart';
@@ -42,23 +43,32 @@ class ResultPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: _theme.backgroundColor,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(height: 30),
-                  _PointsAndText(_result, _theme),
-                  SizedBox(height: 20),
-                  //_Embed(),
-                  _HastButton(_theme, _buttonText, _url),
-                  SizedBox(height: 20,),
-                  _ResultOverview(_result, _theme),
-                  SizedBox(height: 20),
-                ]
+        body: CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: 30),
+                        _PointsAndText(_result, _theme),
+                        SizedBox(height: 20),
+                        //_Embed(),
+                        _HastButton(_theme, _buttonText, _url),
+                        SizedBox(height: 20,),
+                        _ResultOverview(_result, _theme),
+                        SizedBox(height: 36),
+                      ]
+                    )
+                  ),
+              ])
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: HastFooter()
             )
-          ),
+          ]
         )
       )
     );
