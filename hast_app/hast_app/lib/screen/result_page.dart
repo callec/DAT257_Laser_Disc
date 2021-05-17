@@ -6,6 +6,7 @@ import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page.dart';
+import 'package:hast_app/screen/responsive_page.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -122,10 +123,11 @@ class _PointsAndText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding( //to get the overview in the middle and proper adjust when the window size is changed.
-      padding: EdgeInsets.only(
+    return Container( //to get the overview in the middle and proper adjust when the window size is changed.
+      width: ResponsivePage.isMediumScreen(context) ? MediaQuery.of(context).size.width*0.8 : 600,
+      /*padding: EdgeInsets.only(
         left: MediaQuery.of(context).size.width * 0.12,
-        right: MediaQuery.of(context).size.width * 0.12),
+        right: MediaQuery.of(context).size.width * 0.12),*/
       child: Column(
         children: [
           Text('Your score is: $_score' + '/' + '${_numberOfQuestions * 12}',
