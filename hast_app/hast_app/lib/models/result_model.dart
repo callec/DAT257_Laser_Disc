@@ -1,15 +1,20 @@
+import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
 /// This class is responsible for calculating the total score after a Quiz
 /// and displaying the appropriate conclusion
+class ResultModel {
 
-class ResultModel{
+  late QuizModel _quizModel;
+  List<QuestionContent> get questions => _quizModel.questions;
 
-  late QuizModel quizModel;
+  void setModel(QuizModel model) => this._quizModel = model;
+
+  bool get finished => _quizModel.finished;
 
   //TODO DO NOT DISPLAY RESULT IF ALL QUESTION HAVEN'T BEEN ANSWERED
   int get score {
-    var questions = quizModel.questions;
+    var questions = _quizModel.questions;
     int totalScore = 0;
 
     // To calculate the points accordingly we first multiply the alternative with 3
@@ -21,17 +26,20 @@ class ResultModel{
     return totalScore;
   }
 
-  //Get the conclusion text based on which interval the score lands
+  /// Divide the total score into 4 different intervals
+  /// Get the conclusion text based on which interval the score lands
   String get text {
-    var resultTextList = quizModel.resultList;
+    var resultTextList = _quizModel.resultList;
     int s = this.score;
     int index;
 
-    if (s <= 30) {
+    int interval = ((_quizModel.numberOfQuestions * 12) / 4) as int;
+
+    if (s <= interval) {
       index = 0;
-    } else if (s <= 60) {
+    } else if (s <= 2*interval) {
       index = 1;
-    } else if (s <= 90) {
+    } else if (s <= 3*interval) {
       index = 2;
     } else {
       index = 3;

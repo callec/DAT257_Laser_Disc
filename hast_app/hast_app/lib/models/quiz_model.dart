@@ -1,61 +1,60 @@
 import 'package:flutter/foundation.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/common/quiz_content.dart';
-import 'package:hast_app/models/quiz_factory.dart';
 
 
 /// Handles the inner workings of a Quiz.
-///
-/// Keeps the titles, questions, and enables traversing between them.
+/// Stores the title, questions, and enables traversing between them.
 class QuizModel with ChangeNotifier {
-  // TODO do we need a QuizContent class? or same title for 8 qs?
   late QuizContent _quiz;
-  late int _questionNumber = 0;
-  int _answered = 0;
-  late String _questionTitle;
 
-  late List<String> _resultText;
-  late List<QuestionContent> _questions = <QuestionContent>[];
+  int _questionNumber = 0;
+  List<QuestionContent> _questions = <QuestionContent>[];
 
-  bool loading = true;
+  bool quizLoaded = false;
 
-  int get answered => _answered;
+
   List<QuestionContent> get questions => _questions;
   QuestionContent get currentQuestion => _questions[_questionNumber];
+
   int get currentNumber => _questionNumber;
-  String get title => _questionTitle;
   int get numberOfQuestions => _questions.length;
-  List<String> get resultList => _resultText;
+
   bool get finished {
     for (QuestionContent q in this._questions) {
       if (q.chosenSubAlternative == -1) {
         return false;
       }
     }
-
     return true;
   }
 
-  QuizModel() {
-    this.reset();
+  String get title => _quiz.quizTitle;
+
+  String get subAltText => _quiz.subAltText;
+  List<String> get subAlternatives => _quiz.subAlternatives;
+
+  List<String> get resultList => _quiz.resultText;
+
+
+  /// Inject a new Quiz into the model
+  void loadQuiz(QuizContent quiz) {
+
+    _quiz = quiz;
+    _questions = _quiz.questions;
+
+    _reset();
+
+    quizLoaded = true;
   }
 
   /// Reset the quiz to the starting point.
-  /// Waits for the JSON file to decode, this is done asynchronous
-  void reset(){
-    loading = true;
-
-    QuestionFactory.createStandardQuiz().then((value) {
-      _quiz = value;
-      _questions = _quiz.questions;
-      _questionTitle = _quiz.quizTitle;
-      _resultText = _quiz.resultText;
-      _questionNumber = 0;
-
-      loading = false;
-      notifyListeners();
+  void _reset(){
+    _questions.forEach((element) {
+      element.chosenAlternative = -1;
+      element.chosenSubAlternative = -1;
     });
-
+    _questionNumber = 0;
   }
 
   /// Change question forward.
@@ -83,17 +82,15 @@ class QuizModel with ChangeNotifier {
   /// Set which alternative has been chosen.
   void setAlternative(int n) {
     if (this.currentQuestion.chosenAlternative == n) {
-      --_answered;
       this.currentQuestion.chosenAlternative = -1;
     } else {
       this.currentQuestion.chosenAlternative = n;
-      ++_answered;
     }
 
     notifyListeners();
   }
 
-  /// Set which subalternative has been chosen.
+  /// Set which sub alternative has been chosen.
   void setSubAlternative(int n) {
     if (this.currentQuestion.chosenSubAlternative == n)
       this.currentQuestion.chosenSubAlternative = -1;

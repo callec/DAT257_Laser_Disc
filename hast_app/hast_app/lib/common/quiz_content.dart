@@ -10,12 +10,16 @@ class QuizContent {
   final String quizInfo;
   final List<String> resultText;
   final List<QuestionContent> questions;
+  final String subAltText;
+  final List<String> subAlternatives;
 
   QuizContent(
     this.quizTitle,
     this.quizInfo,
     this.resultText,
-    this.questions
+    this.questions,
+    this.subAltText,
+    this.subAlternatives
   );
 
   ///USed to deserialize a JSON string to a QuizContent object

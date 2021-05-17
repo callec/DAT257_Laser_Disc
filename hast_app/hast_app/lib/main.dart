@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
-import 'package:hast_app/screen/home_page.dart';
-import 'package:hast_app/screen/quiz_page.dart';
 import 'package:provider/provider.dart';
-import 'screen/result_page.dart';
+import 'routing/route_names.dart';
 import 'package:hast_app/models/result_model.dart';
+import 'package:hast_app/routing/router.dart' as router;
 
 /// Creates the application, defines theme,
 /// start Models and set up navigation routes
-
 void main() {
   runApp(MyApp());
 }
@@ -18,8 +16,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     //Precache the background
-    precacheImage(AssetImage('assets/images/4.png'), context);
+    precacheImage(AssetImage('assets/images/quizPageImage.png'), context);
 
     //Precache the HAST logo
     precacheImage(AssetImage("assets/images/hastlogga.png"), context);
@@ -32,13 +31,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<ResultModel, QuizModel>(
           create: (context) => QuizModel(),
           update: (context, result, quiz){
-            result.quizModel = quiz!;
+            result.setModel(quiz!);
             return quiz;
           }
 
         )
       ],
         child: MaterialApp(
+          title: "Hast Self Reflection",
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             // Define the default brightness and colors.
@@ -59,11 +59,13 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),
-        routes: {
+        onGenerateRoute: router.generateRoute,
+        initialRoute: HomeRoute,
+        /*routes: {
           '/': (context) => HomePage(),
           '/quiz': (context) => QuizPage(),
           '/result': (context) => ResultPage(),
-        },
+        },*/
       )
     );
   }

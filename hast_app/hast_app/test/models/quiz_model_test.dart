@@ -53,17 +53,6 @@ void main() {
       expect(_oldNumber > _q.currentNumber, true);
     });
 
-    test('`setAlternative` sets alternative', () {
-      _q.setAlternative(1);
-      expect(_q.currentQuestion.chosenAlternative, 1);
-      expect(_q.answered > 0, true);
-
-      // make sure selection of the same resets
-      _q.setAlternative(1);
-      expect(_q.currentQuestion.chosenAlternative, -1);
-      expect(_q.answered > 0, false);
-    });
-
     test('`setSubAlternative` sets subAlternative', () {
       _q.setSubAlternative(1);
       expect(_q.currentQuestion.chosenSubAlternative, 1);
@@ -73,17 +62,17 @@ void main() {
       expect(_q.currentQuestion.chosenSubAlternative, -1);
     });
 
-    test('`reset()` resets the progress', () async {
+    /*test('`reset()` resets the progress', () async {
       int _oldNumber;
 
       _q.nextQuestion();
       _oldNumber = _q.currentNumber;
 
-      _q.reset();
+      _q._reset();
       // android studio tells me this await is unnecessary, however it emulates
       // how the app is run and the test fails without it.
       await _q.loading == false;
       expect(_q.currentNumber != _oldNumber, true);
-    });
+    });*/
   });
 }
