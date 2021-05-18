@@ -8,6 +8,7 @@ import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/models/quiz_factory.dart';
+import 'package:simple_rich_text/simple_rich_text.dart';
 
 
 /// This is the first page that is displayed to the User.
@@ -47,6 +48,14 @@ class _HomePageState extends State<HomePage> {
       " Here are a few examples of their comments: \n\n  “Great structures. Keep their promises. Clear processes and competent people.”"
       "\n\n  “Your level of competence is high, like many others, but you serve them with warmth and humor in a way that makes you stand out "
       "from the crowd.” \n\n  “HAST dares to “touch on” matters that are not always comfortable to take a look at and that other suppliers just let go of.”";
+final String _hastWelcome = "*Welcome!*\n\n"
+    "We at HAST Utveckling are pleased to offer our much-appreciated *Lifestyle & Work Assessment Tool.* When completed, it will point you towards the actual state of your work-life balance at this moment in time.\n\n"
+    "Take this opportunity, to pause in the midst of everyday worklife and perform this self-assessment which *focuses on 8 carefully selected perspectives of effectiveness.* Mastering these perspectives will collectively increase your production capacity to new unchartered levels of results.\n\n"
+    "*This tool will provide you with clarification* on what areas you have already successfully mastered and in what areas you could greatly benefit from new insights and tools.\n\n"
+    "We provide this tool for anyone who is curious as to where you are at today, compared to what is possible! *We at HAST, love honest conversations and transparency*, so… as you view your personal total score at the end of this self-assessment, you may decide to connect with us and have a coaching conversation with us to explore your missing pieces – or not. The choice is yours!\n\n"
+    "At your service,"
+    " The HAST Team";
+
 
   _HomePageState(String query){
     print("current query:" + query);
@@ -122,7 +131,7 @@ class _HomePageState extends State<HomePage> {
         // for small devices: keep text to 80% of the width, otherwise 600px to
         // keep ~70 character at a time in a paragraph for readability.
         width: ResponsivePage.isMediumScreen(context) ? (MediaQuery.of(context).size.width*0.8) : 600,
-        child: SingleChildScrollView(child: Column(children: [Text(presentingText,
+        child: SingleChildScrollView(child: Column(children: [SimpleRichText(presentingText,
             textAlign: alignment,
             style: Theme.of(context).textTheme.headline6)]),));
   }
@@ -133,13 +142,13 @@ class _HomePageState extends State<HomePage> {
 
     return SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(0, _padding, 0, 0),
+            margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
           child: Column(
             children: [
               //_size ? SizedBox(height: 20,) : Container(),
               _presentText(
-                context, 'WELCOME! this is a quiz about ${isQuizLoaded ? quiz.quizTitle : "LOADING..."}',
-                TextAlign.center
+                context, _hastWelcome +  '${isQuizLoaded ? quiz.quizTitle : "LOADING..."}',
+                TextAlign.justify
               ),
               SizedBox(height: _size ? 50 : 100,),
               _startButton(context, quizModel),
@@ -152,9 +161,9 @@ class _HomePageState extends State<HomePage> {
   Widget _homePageAbout(double _padding) {
     return SingleChildScrollView(
         child: Container(
-            margin: EdgeInsets.fromLTRB(0, _padding, 0, 0),
+            margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
             child: Column(children: [
-              _presentText(context, quiz.quizInfo, TextAlign.center),
+              _presentText(context, quiz.quizInfo, TextAlign.justify),
             ])));
   }
 
@@ -165,18 +174,19 @@ class _HomePageState extends State<HomePage> {
       return ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme.of(context).accentColor)),
+                  hastLightGreen)),
           onPressed: () {
             quizModel.loadQuiz(quiz);
             Navigator.pushNamed(context, QuizRoute);
           },
-          child: Text("Start Self Reflection"));
+          child: Text("\nGo to HAST’s Lifestyle & Work Assessment Tool now!\n", textAlign: TextAlign.center, textScaleFactor: 1.25)
+      );
     } else {
       return ElevatedButton(
           style: TextButton.styleFrom(
               backgroundColor: disabledGrey),
           onPressed: null,
-          child: Text("Start Self Reflection"));
+          child: Text("Go to HAST’s Lifestyle & Work Assessment Tool now!"));
     }
   }
 }
