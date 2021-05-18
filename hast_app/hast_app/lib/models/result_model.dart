@@ -12,7 +12,8 @@ class ResultModel {
 
   bool get finished => _quizModel.finished;
 
-  //TODO DO NOT DISPLAY RESULT IF ALL QUESTION HAVEN'T BEEN ANSWERED
+  //DO NOT DISPLAY RESULT IF ALL QUESTION HAVEN'T BEEN ANSWERED
+  //COMPLEX, CANNOT UNDERSTAND
   int get score {
     var questions = _quizModel.questions;
     int totalScore = 0;

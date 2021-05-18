@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Display a 404 error if no matching path can be found
-
 class UndefinedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

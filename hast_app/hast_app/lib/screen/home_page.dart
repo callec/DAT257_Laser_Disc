@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/quiz_content.dart';
-import 'package:hast_app/screen/responsive_page.dart';
+import 'package:hast_app/models/quiz_factory.dart';
+import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/routing/route_names.dart';
+import 'package:hast_app/screen/home_page_data.dart';
+import 'package:hast_app/screen/responsive_page.dart';
 import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
-import 'package:hast_app/models/quiz_model.dart';
-import 'package:hast_app/models/quiz_factory.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
 
 /// This is the first page that is displayed to the User.
@@ -57,7 +58,6 @@ final String _hastWelcome = "*Welcome!*\n\n"
 
 
   _HomePageState(String query){
-    print("current query:" + query);
     _tryLoadingFile(query);
   }
 
@@ -141,10 +141,9 @@ final String _hastWelcome = "*Welcome!*\n\n"
 
     return SingleChildScrollView(
         child: Container(
-            margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
+          margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
           child: Column(
             children: [
-              //_size ? SizedBox(height: 20,) : Container(),
               _presentText(
                 context,'${isQuizLoaded ? /*quiz.quizTitle*/ _hastWelcome : "LOADING..."}', //vad använder vi quiztitle till? Borde vi inte kunna ta bort den från JSON eller blir det galet med schema?
                 TextAlign.justify
@@ -157,6 +156,7 @@ final String _hastWelcome = "*Welcome!*\n\n"
         ])));
   }
 
+  /// Display information about the current Quiz.
   Widget _homePageAbout(double _padding) {
     return SingleChildScrollView(
         child: Container(
@@ -169,6 +169,11 @@ final String _hastWelcome = "*Welcome!*\n\n"
   /// The button used to start the Quiz
   /// Displays a grayed out button if the Quiz is currently loading
   Widget _startButton(context, QuizModel quizModel) {
+
+    String text = "Go to HAST’s Lifestyle & Work Assessment Tool now!";
+
+    var text1 = Padding( padding: EdgeInsets.fromLTRB(8, 24 ,8,24), child: SimpleRichText("*Start the Lifestyle & Work Assessment now!*", textAlign: TextAlign.center, textScaleFactor: 1.25, style: TextStyle(color: hastWhite)));
+
     if (isQuizLoaded){
       return ElevatedButton(
           style: ButtonStyle(
@@ -178,15 +183,14 @@ final String _hastWelcome = "*Welcome!*\n\n"
             quizModel.loadQuiz(quiz);
             Navigator.pushNamed(context, QuizRoute);
           },
-          child: SimpleRichText("\n*Start the Lifestyle & Work Assessment now!*\n", textAlign: TextAlign.center, textScaleFactor: 1.25, style: TextStyle(color: hastWhite))
+          child: text1
       );
     } else {
       return ElevatedButton(
           style: TextButton.styleFrom(
               backgroundColor: disabledGrey),
           onPressed: null,
-          child: SimpleRichText("\n*Start the Lifestyle & Work Assessment now!*\n", textAlign: TextAlign.center, textScaleFactor: 1.25, style: TextStyle(color: hastWhite))
-      );
+          child: text1);
     }
   }
 }

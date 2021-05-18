@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
-import 'package:provider/provider.dart';
-import 'routing/route_names.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/routing/router.dart' as router;
+import 'package:provider/provider.dart';
 
-/// Creates the application, defines theme,
-/// start Models and set up navigation routes
+import 'routing/route_names.dart';
+
+/// Creates the application, defines theme, start Models
 void main() {
-  runApp(MyApp());
+  runApp(_MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class _MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -61,11 +61,6 @@ class MyApp extends StatelessWidget {
           ),
         onGenerateRoute: router.generateRoute,
         initialRoute: HomeRoute,
-        /*routes: {
-          '/': (context) => HomePage(),
-          '/quiz': (context) => QuizPage(),
-          '/result': (context) => ResultPage(),
-        },*/
       )
     );
   }
