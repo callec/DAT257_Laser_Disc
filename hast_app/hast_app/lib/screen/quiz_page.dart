@@ -296,13 +296,12 @@ class _CreateAnswers extends StatelessWidget {
 
     //Build Answer boxes
     for (int x = 0; x < question.alternatives.length; x++) {
-      tempList.add(Expanded(
-          child: _AlternativeText(
+      tempList.add(_AlternativeText(
               question.alternatives[x],
               x,
               colorFunction(alternativeBeenChosen
                   ? (alternativeNumber == x ? x : -1)
-                  : x))));
+                  : x)));
     }
     return tempList;
   }
@@ -397,11 +396,10 @@ class _AlternativeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Expanded(
+      child: Padding(
       padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
-      child: Column(children: [
-        Expanded(
-            child: ElevatedButton(
+      child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,
             onPrimary: Colors.black,
@@ -419,7 +417,6 @@ class _AlternativeText extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText2,
               )),
         )),
-      ]),
     );
   }
 }
