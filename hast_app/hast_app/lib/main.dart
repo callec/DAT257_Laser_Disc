@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: hastWhite,
 
             // Define the default font family.
-            fontFamily: 'Georgia',
+            fontFamily: GoogleFonts.roboto().fontFamily, // previously georgia but not on google fonts
 
             // Define the default TextTheme. Use this to specify the default
             // text styling for headlines, titles, bodies of text, and more.
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
               headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
               headline4: TextStyle(fontSize: 40.0, color: Colors.black),
               headline6: TextStyle(fontSize: 20.0),
-              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: GoogleFonts.hind().fontFamily),
             ),
           ),
         onGenerateRoute: router.generateRoute,
