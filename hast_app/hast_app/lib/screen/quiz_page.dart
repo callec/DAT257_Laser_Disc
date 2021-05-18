@@ -67,7 +67,7 @@ class QuizPage extends StatelessWidget {
                     child: Container(
                       // This is the white box!
                       // larger bot padding due to footer
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                       constraints: ResponsivePage.isLargeScreen(context)
                           ? BoxConstraints(
                             // Size of the white box, height not specified
@@ -121,7 +121,8 @@ class QuizPage extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                       left: 0,
                                       right: 0,
-                                      bottom: 16),
+                                      bottom: 0,
+                                      top: 16),
                                     child: _CreateNextBackRow(model))
                                 ]))),
                 ))]),),
