@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:hast_app/common/quiz_content.dart';
 
+/// Load in Quiz to application from JSON
 class QuizFactory {
 
   ///Load in Quiz JSON file

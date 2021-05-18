@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/common/quiz_content.dart';
 
-
 /// Handles the inner workings of a Quiz.
 /// Stores the title, questions, and enables traversing between them.
 class QuizModel with ChangeNotifier {
@@ -13,12 +12,21 @@ class QuizModel with ChangeNotifier {
 
   bool quizLoaded = false;
 
-
   List<QuestionContent> get questions => _questions;
+
   QuestionContent get currentQuestion => _questions[_questionNumber];
 
   int get currentNumber => _questionNumber;
+
   int get numberOfQuestions => _questions.length;
+
+  String get title => _quiz.quizTitle;
+
+  String get subAltText => _quiz.subAltText;
+
+  List<String> get subAlternatives => _quiz.subAlternatives;
+
+  List<String> get resultList => _quiz.resultText;
 
   bool get finished {
     for (QuestionContent q in this._questions) {
@@ -29,17 +37,8 @@ class QuizModel with ChangeNotifier {
     return true;
   }
 
-  String get title => _quiz.quizTitle;
-
-  String get subAltText => _quiz.subAltText;
-  List<String> get subAlternatives => _quiz.subAlternatives;
-
-  List<String> get resultList => _quiz.resultText;
-
-
   /// Inject a new Quiz into the model
   void loadQuiz(QuizContent quiz) {
-
     _quiz = quiz;
     _questions = _quiz.questions;
 
@@ -49,7 +48,7 @@ class QuizModel with ChangeNotifier {
   }
 
   /// Reset the quiz to the starting point.
-  void _reset(){
+  void _reset() {
     _questions.forEach((element) {
       element.chosenAlternative = -1;
       element.chosenSubAlternative = -1;
@@ -72,8 +71,8 @@ class QuizModel with ChangeNotifier {
   }
 
   /// Updates current question in model if user clicks question in questionDrawer
-  void setQuestion(int n){
-    if (n > - 1 && n < _questions.length) {
+  void setQuestion(int n) {
+    if (n > -1 && n < _questions.length) {
       _questionNumber = n;
       notifyListeners();
     }
