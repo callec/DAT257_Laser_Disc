@@ -10,7 +10,7 @@ import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
 
-
+/// Welcome
 /// This is the first page that is displayed to the User.
 /// We load the Quiz from the URL query parameters
 /// Here we can start the quiz or get information about the Quiz or HAST
