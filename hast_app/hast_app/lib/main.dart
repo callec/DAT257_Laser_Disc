@@ -6,13 +6,12 @@ import 'routing/route_names.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/routing/router.dart' as router;
 
-/// Creates the application, defines theme,
-/// start Models and set up navigation routes
+/// Creates the application, defines theme, start Models
 void main() {
-  runApp(MyApp());
+  runApp(_MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class _MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -61,11 +60,6 @@ class MyApp extends StatelessWidget {
           ),
         onGenerateRoute: router.generateRoute,
         initialRoute: HomeRoute,
-        /*routes: {
-          '/': (context) => HomePage(),
-          '/quiz': (context) => QuizPage(),
-          '/result': (context) => ResultPage(),
-        },*/
       )
     );
   }
