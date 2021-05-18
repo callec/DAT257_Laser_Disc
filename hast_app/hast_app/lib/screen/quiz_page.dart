@@ -14,14 +14,13 @@ import 'package:hast_app/models/quiz_model.dart';
 import 'home_page.dart';
 
 /// A function that takes an int and returns a Color.
-typedef _ColorCallBack = Color Function(int n, [int intensity]);
+typedef _ColorCallBack = Color Function(int n);
 
 /// Displays a single question, and its respective alternatives
 /// Also enables the navigation between questions
 class QuizPage extends StatelessWidget {
-
   /// Display color depending on alternative index
-  Color _getColor(int n, [int intensity = 200]) {
+  static Color getAlternativeColors(int n) {
     switch (n) {
       case 0:
         return hastAlt1;
@@ -35,6 +34,7 @@ class QuizPage extends StatelessWidget {
         return altGrey;
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +101,7 @@ class QuizPage extends StatelessWidget {
                                         : [ // Question and alternatives
                                             _QuestionText(
                                                 model.currentQuestion.question),
-                                            _CreateAnswers(_getColor,
-                                                model.currentQuestion),
+                                            _CreateAnswers(model.currentQuestion),
                                             model.currentQuestion.chosenAlternative != -1
                                                 ? Visibility(
                                                     visible: true,
@@ -140,14 +139,12 @@ class QuizPage extends StatelessWidget {
   Widget _subAlt(context, model) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: _CreateFollowUpAnswers(
-            _getColor,
-            model));
+        child: _CreateFollowUpAnswers(model));
   }
 
 }
 
-///Padding and the the text for the follow up answers
+/// Padding and the the text for the follow up answers
 Widget _subAltTitle(context) {
   return Padding(
       padding:
@@ -158,8 +155,6 @@ Widget _subAltTitle(context) {
 }
 
 /// Create a row of IconButtons that display progress
-///
-///
 class _CreateProgressIndicators extends StatelessWidget {
   final QuizModel _model;
 
@@ -264,9 +259,9 @@ class _CreateNextBackRow extends StatelessWidget {
 /// Has arguments: color function and QuestionContent object
 class _CreateAnswers extends StatelessWidget {
   final QuestionContent question;
-  final _ColorCallBack colorFunction;
+  final _ColorCallBack colorFunction = QuizPage.getAlternativeColors;
 
-  _CreateAnswers(this.colorFunction, this.question);
+  _CreateAnswers(this.question);
 
   @override
   Widget build(BuildContext context) {
@@ -304,11 +299,11 @@ class _CreateAnswers extends StatelessWidget {
 /// Create the three alternatives used to answer questions.
 /// Has arguments: color function and QuestionContent object
 class _CreateFollowUpAnswers extends StatelessWidget {
-  final _ColorCallBack color;
+  final _ColorCallBack color = QuizPage.getAlternativeColors;
   final QuizModel model;
   late final QuestionContent question;
 
-  _CreateFollowUpAnswers(this.color, this.model) {
+  _CreateFollowUpAnswers(this.model) {
     question = model.currentQuestion;
   }
 
@@ -396,7 +391,6 @@ class _AlternativeText extends StatelessWidget {
             // Set chosen alternative in the QuizModel
             context.read<QuizModel>().setAlternative(number);
             context.read<QuizModel>().setSubAlternative(-1);
-            //print('$number : answertext');
           },
           child: Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
