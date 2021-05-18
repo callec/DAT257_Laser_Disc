@@ -77,7 +77,7 @@ class _PointsAndText extends StatelessWidget {
           SizedBox(height: 30),
           Container(
             child: Text('$_scoreText',
-              textAlign: TextAlign.justify, // TODO which is the best? TextAlign.center or justify?
+              textAlign: TextAlign.justify,
               style: theme.textTheme.headline5)),
     ]));
   }

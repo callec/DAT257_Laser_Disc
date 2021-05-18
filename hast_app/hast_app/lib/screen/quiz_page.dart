@@ -76,21 +76,11 @@ class QuizPage extends StatelessWidget {
                             minHeight: MediaQuery.of(context).size.height*0.9,
                             maxHeight: MediaQuery.of(context).size.height*0.9),
                         decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
-                        /*boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            spreadRadius: 0.5,
-                            blurRadius: 1,
-                            offset: Offset(0, 2))
-                          ],
+                        color: Colors.white.withOpacity(0.92), //If we want transparent box
 
-                         */
                         borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Consumer<QuizModel>(
-                          // TODO maybe it would be better to rebuild individual Text widgets
-                          // within the larger widgets?
                           builder: (context, model, child) =>
                             SingleChildScrollView(
                                 child: Column(
@@ -125,7 +115,6 @@ class QuizPage extends StatelessWidget {
                                                     left: 0,
                                                     right: 0,
                                                     bottom: 16),
-                                                //TODO Balanserar ut next/back-knapparna med alternativen (kanske ta bort för att städa upp lite)
                                                 child:
                                                     _CreateNextBackRow(model))
                                           ]))),

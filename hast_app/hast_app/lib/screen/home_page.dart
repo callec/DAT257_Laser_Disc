@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   bool isQuizLoaded = false;
   bool errorOccurred = false;
 
-  // TODO formatting
   final String _infoHast = INFO_TEXT;
   final String _hastWelcome = HAST_WELCOME;
 
