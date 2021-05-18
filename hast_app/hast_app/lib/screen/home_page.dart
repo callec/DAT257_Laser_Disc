@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/quiz_content.dart';
+import 'package:hast_app/models/quiz_factory.dart';
+import 'package:hast_app/models/quiz_model.dart';
+import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page_data.dart';
 import 'package:hast_app/screen/responsive_page.dart';
-import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
-import 'package:hast_app/models/quiz_model.dart';
-import 'package:hast_app/models/quiz_factory.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
 
 /// This is the first page that is displayed to the User.

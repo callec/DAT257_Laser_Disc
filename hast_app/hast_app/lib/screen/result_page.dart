@@ -1,10 +1,9 @@
-import 'dart:ui' as ui;
 import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/result_model.dart';
-import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,20 +18,6 @@ class ResultPage extends StatelessWidget {
 
     final _url = 'https://www.hastutveckling.se'; // TODO set to HAST specified link
     final _buttonText = 'Click here to learn more about HAST International'; // TODO set to HAST specified text
-
-    var _windowHeight = MediaQuery.of(context).size.height - AppBar().preferredSize.height;
-    var _windowWidth = MediaQuery.of(context).size.width;
-    double _fixedHeight = 1100; // TODO set to relevant value with embed
-    var _large = _windowHeight > 800 && (_windowWidth/_windowHeight) > (13/16);
-
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-        'HAST-embed',
-            (int viewId) => IFrameElement()
-          ..width = '640'
-          ..height = '360'
-          ..src = 'https://www.youtube.com/embed/eZTS4cL4Euo'
-          ..style.border = 'none');
 
     return WillPopScope(onWillPop: () => Future.value(false),
       child: Scaffold(
@@ -50,7 +35,6 @@ class ResultPage extends StatelessWidget {
                   SizedBox(height: 30),
                   _PointsAndText(_result, _theme),
                   SizedBox(height: 20),
-                  //_Embed(),
                   _HastButton(_theme, _buttonText, _url),
                   SizedBox(height: 20,),
                   _ResultOverview(_result, _theme),
@@ -62,49 +46,8 @@ class ResultPage extends StatelessWidget {
       )
     );
   }
-
-  /// Return a clickable text that scrolls to bottom
-  Widget _scrollButton(ScrollController _scrollController) {
-    return InkWell(
-      onTap: () {
-        // the check doesn't work properly
-        var scrollPosition = _scrollController.position;
-
-        //if (scrollPosition.viewportDimension < scrollPosition.maxScrollExtent) {
-          _scrollController.animateTo(
-            scrollPosition.maxScrollExtent,
-            duration: new Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        //}
-      },
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Text(
-          'Scroll down to see more information about Your result',
-          style: TextStyle(
-            color: Colors.grey,
-            fontStyle: FontStyle.italic,
-          ),
-        )
-      )
-    );
-  }
 }
 
-/// Embedded HTML
-class _Embed extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        width: 640,
-        height: 360,
-        child: HtmlElementView(
-          viewType: 'HAST-embed',
-        )
-    );
-  }
-}
 
 /// Displays points out of max and corresponding text
 class _PointsAndText extends StatelessWidget {
@@ -142,21 +85,27 @@ class _PointsAndText extends StatelessWidget {
 
 /// The column with question number, title, and amount of points for
 /// your answer.
-class _ResultOverview extends StatelessWidget {
+class _ResultOverview extends StatefulWidget {
   final _theme;
   final ResultModel _model;
   late final List<QuestionContent> _questions;
 
-  int _questionNumber = 0;
 
   _ResultOverview(this._model, this._theme) {
     this._questions = _model.questions;
   }
 
   @override
+  __ResultOverviewState createState() => __ResultOverviewState();
+}
+
+class __ResultOverviewState extends State<_ResultOverview> {
+  int _questionNumber = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Theme(
-        data: Theme.of(context).copyWith(dividerColor: _theme.accentColor),
+        data: Theme.of(context).copyWith(dividerColor: widget._theme.accentColor),
         child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
           padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.12,
@@ -179,7 +128,7 @@ class _ResultOverview extends StatelessWidget {
                         fontStyle: FontStyle.italic
                     ))),
                   ],
-                  rows: _questions.map(((element) => DataRow(
+                  rows: widget._questions.map(((element) => DataRow(
                     // Loops through dataColumnText, each iteration assigning the value to element
                     // fills the dataTable with data from the list.
                     cells: <DataCell>[
@@ -228,35 +177,6 @@ class _HastButton extends StatelessWidget {
             _launchURL(_url);
           },
           child: Text('  '+_text+'  '),
-        )
-    );
-  }
-}
-
-/// Button that redirects you to the start page
-class _HomeButton extends StatelessWidget {
-  final _theme;
-
-  _HomeButton(this._theme);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return SizedBox(//button wrapped in sizeBox to be able to change its size.
-        width: 100, height: 40,
-        child: TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-              return _theme.backgroundColor;
-            }),
-            backgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-              return _theme.accentColor;
-            }),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, HomeRoute);
-          },
-          child: Text('Home'),
         )
     );
   }
