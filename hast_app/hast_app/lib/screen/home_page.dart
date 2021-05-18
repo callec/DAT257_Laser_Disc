@@ -44,9 +44,10 @@ class _HomePageState extends State<HomePage> {
       " We turn stress to calm, conflict to teamwork, limitations to new results and managers to true leaders. \n\n*We asked some of "
       "our most cherished customers,* such as The West Sweden Chamber of Commerce, Volvo Penta, ABB, RISE (Research Institutes of Sweden),"
       " Preem, The Swedish Transport Administration and others, to describe, in their own words, what comes to mind when they think of HAST."
-      " Here are a few examples of their comments: \n\n    /“Great structures. Keep their promises. Clear processes and \n    competent people.”/"
-      "\n\n    /“Your level of competence is high, like many others, but you\n    serve them with warmth and humor in a way that makes\n    you stand out "
-      "from the crowd.”/ \n\n    /“HAST dares to “touch on” matters that are not always\n    comfortable to take a look at and that other suppliers just\n    let go of.”/";
+      " Here are a few examples of their comments: \n\n";
+  final String _customerQuotes = "/“Great structures. Keep their promises. Clear processes and competent people.”/"
+      "\n\n/“Your level of competence is high, like many others, but you serve them with warmth and humor in a way that makes you stand out"
+      "from the crowd.”/ \n\n/“HAST dares to “touch on” matters that are not always comfortable to take a look at and that other suppliers just let go of.”/";
 final String _hastWelcome = "*Welcome!*\n\n"
     "We at HAST Utveckling are pleased to offer our much-appreciated *Lifestyle & Work Assessment Tool.* When completed, it will point you towards the actual state of your work-life balance at this moment in time.\n\n"
     "Take this opportunity, to pause in the midst of everyday worklife and perform this self-assessment which *focuses on 8 carefully selected perspectives of effectiveness.* Mastering these perspectives will collectively increase your production capacity to new unchartered levels of results.\n\n"
@@ -116,6 +117,7 @@ final String _hastWelcome = "*Welcome!*\n\n"
                     child: Column(
                       children: [ //InfoPage is now scrollable, and their text is "inkastad".
                         _presentText(context, _infoHast, TextAlign.justify),
+                        _presentText(context, _customerQuotes, TextAlign.center),
                   ]))),
             ],
           ),
@@ -146,7 +148,7 @@ final String _hastWelcome = "*Welcome!*\n\n"
             children: [
               //_size ? SizedBox(height: 20,) : Container(),
               _presentText(
-                context,'${isQuizLoaded ? /*quiz.quizTitle*/ _hastWelcome : "LOADING..."}', //vad använder vi quiztitle till? Borde vi inte kunna ta bort den från JSON eller blir det galet med schema?
+                context,'${isQuizLoaded ? _hastWelcome : "LOADING..."}',
                 TextAlign.justify
               ),
               SizedBox(height: _size ? 50 : 100,),
