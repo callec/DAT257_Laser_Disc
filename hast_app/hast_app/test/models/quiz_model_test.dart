@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hast_app/common/question_content.dart';
+import 'package:hast_app/models/quiz_factory.dart';
 import 'package:hast_app/models/quiz_model.dart';
 
 void main() {
@@ -8,8 +9,9 @@ void main() {
     TestWidgetsFlutterBinding.ensureInitialized();
     late QuizModel _q;
 
-    setUp(() {
+    setUp(() async {
       _q = new QuizModel();
+      _q.loadQuiz(await QuizFactory.createQuiz('ReflectionQuiz'));
     });
 
     test('QuizModel shall have a QuizContent after startup', () {

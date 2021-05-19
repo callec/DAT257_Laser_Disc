@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/models/quiz_model.dart';
+import 'package:hast_app/models/quiz_factory.dart';
 import 'dart:math';
 
 void main() {
@@ -13,11 +14,13 @@ void main() {
     late QuizModel _q2;
     final _random = Random();
 
-    setUp(() {
+    setUp(() async {
       _r = new ResultModel();
       _r2 = new ResultModel();
       _q1 = new QuizModel();
+      _q1.loadQuiz(await QuizFactory.createQuiz('ReflectionQuiz'));
       _q2 = new QuizModel();
+      _q2.loadQuiz(await QuizFactory.createQuiz('ReflectionQuiz'));
       
       _r.setModel(_q1);
       _r2.setModel(_q2);
@@ -46,8 +49,7 @@ void main() {
       expect(_r.score, _score);
     });
 
-    /*test('`text` gives different text depending on score', () {
-      // TODO don't like initialising two ResultModels, separate setup? how?
+    test('`text` gives different text depending on score', () async {
       // first ResultModel
       for (int i = 0; i < _q1.numberOfQuestions; ++i) {
         _q1.setAlternative(0);
@@ -58,7 +60,6 @@ void main() {
       }
 
       // second ResultModel
-      _q2.reset();
       for (int i = 0; i < _q2.numberOfQuestions; ++i) {
         _q2.setAlternative(2);
         _q2.setSubAlternative(2);
@@ -68,6 +69,6 @@ void main() {
       }
 
       expect(_r.text != _r2.text, true);
-    });*/
+    });
   });
 }

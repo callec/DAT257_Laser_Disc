@@ -34,7 +34,7 @@ class ResultModel {
     int s = this.score;
     int index;
 
-    int interval = ((_quizModel.numberOfQuestions * 12) / 4) as int;
+    var interval = ((_quizModel.numberOfQuestions * 12) / 4);
 
     if (s <= interval) {
       index = 0;
