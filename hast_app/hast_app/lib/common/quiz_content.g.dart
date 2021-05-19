@@ -9,7 +9,6 @@ part of 'quiz_content.dart';
 QuizContent _$QuizContentFromJson(Map<String, dynamic> json) {
   return QuizContent(
     json['quizTitle'] as String,
-    json['quizInfo'] as String,
     (json['resultText'] as List<dynamic>).map((e) => e as String).toList(),
     (json['questions'] as List<dynamic>)
         .map((e) => QuestionContent.fromJson(e as Map<String, dynamic>))
@@ -22,7 +21,6 @@ QuizContent _$QuizContentFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$QuizContentToJson(QuizContent instance) =>
     <String, dynamic>{
       'quizTitle': instance.quizTitle,
-      'quizInfo': instance.quizInfo,
       'resultText': instance.resultText,
       'questions': instance.questions.map((e) => e.toJson()).toList(),
       'subAltText': instance.subAltText,

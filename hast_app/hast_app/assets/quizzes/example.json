@@ -1,6 +1,5 @@
 {
   "quizTitle": "THIS IS THE TITLE OF THE WHOLE QUIZ",
-  "quizInfo": "INFORMATION ABOUT THE QUIZ - VISIBLE ON THE HOME PAGE",
   "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?",
   "subAlternatives": ["Worse", "Exactly", "Better"],
   "resultText": [

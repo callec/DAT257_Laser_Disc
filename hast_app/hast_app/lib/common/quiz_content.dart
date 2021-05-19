@@ -7,7 +7,6 @@ part 'quiz_content.g.dart';
 @JsonSerializable(explicitToJson: true)
 class QuizContent {
   final String quizTitle;
-  final String quizInfo;
   final List<String> resultText;
   final List<QuestionContent> questions;
   final String subAltText;
@@ -15,7 +14,6 @@ class QuizContent {
 
   QuizContent(
     this.quizTitle,
-    this.quizInfo,
     this.resultText,
     this.questions,
     this.subAltText,

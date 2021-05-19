@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
         child: Container(
             margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
             child: Column(children: [
-              _presentText(context, quiz.quizInfo, TextAlign.justify),
+              _presentText(context, QUIZ_INFO, TextAlign.justify),
             ])));
   }
 
