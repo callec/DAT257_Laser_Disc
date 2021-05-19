@@ -192,9 +192,12 @@ class HastLogo extends StatelessWidget {
                       fit: BoxFit.contain,
                       height: ResponsivePage.isMediumScreen(context) ? 35 : 40),
           SizedBox(width: 16),
-          Text("Lifestyle & Work Assessment Tool",
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text("Lifestyle & Work Assessment Tool",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: hastGrey, fontSize: ResponsivePage.isMediumScreen(context) ? 14 : 18))
+                style: TextStyle(color: hastGrey)),
+          )
         ]
     );
   }
