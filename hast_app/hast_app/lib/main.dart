@@ -57,7 +57,7 @@ class _MyApp extends StatelessWidget {
               headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
               headline4: TextStyle(fontSize: 40.0, color: Colors.black),
               headline6: TextStyle(fontSize: 20.0),
-              bodyText2: TextStyle(fontSize: 14.0, fontFamily: GoogleFonts.hind().fontFamily),
+              bodyText2: TextStyle(fontSize: 16.0, fontFamily: GoogleFonts.hind().fontFamily),
             ),
           ),
         onGenerateRoute: router.generateRoute,

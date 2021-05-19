@@ -35,7 +35,6 @@ class QuizPage extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -63,67 +62,69 @@ class QuizPage extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
-                    child: Container(
-                      // This is the white box!
-                      // larger bot padding due to footer
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                      constraints: ResponsivePage.isLargeScreen(context)
-                          ? BoxConstraints(
-                            // Size of the white box, height not specified
-                            minWidth: MediaQuery.of(context).size.width * 0.5,
-                            maxWidth: MediaQuery.of(context).size.width * 0.7,
-                          )
-                          : BoxConstraints(
-                            minWidth: MediaQuery.of(context).size.width,
-                            maxWidth: MediaQuery.of(context).size.width,
-                          ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      child: Consumer<QuizModel>(
-                        // TODO maybe it would be better to rebuild individual Text widgets
-                        // within the larger widgets?
-                        builder: (context, model, child) =>
-                          Column(
-                            children: !model.quizLoaded
-                                ? [UndefinedPage()]
-                                : [
-                                  ResponsivePage.isSmallScreen(context) //Progressbar over the questions
-                                  ? Text("")
-                                    : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
-                                  _QuestionText( // Question and alternatives
-                                    model.currentQuestion.question),
-                                  _CreateAnswers(model.currentQuestion),
-                                  model.currentQuestion.chosenAlternative != -1
-                                      ? Visibility(
-                                        visible: true,
-                                        child: _subAltTitle(context))
-                                      : Visibility(
-                                        visible: false,
-                                        maintainSize: true,
-                                        maintainAnimation: true,
-                                        maintainState: true,
-                                        child: _subAltTitle(context)),
-                                  model.currentQuestion.chosenAlternative != -1
-                                      ? Visibility(
-                                        visible: true,
-                                        child: _subAlt(context, model))
-                                      : Visibility(
-                                        visible: false,
-                                        maintainSize: true,
-                                        maintainAnimation: true,
-                                        maintainState: true,
-                                        child: _subAlt(context, model)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 0,
-                                      right: 0,
-                                      bottom: 0,
-                                      top: 16),
-                                    child: _CreateNextBackRow(model))
-                                ]))),
-                ))]),),
+                    child: SizedBox(
+                      width: ResponsivePage.isLargeScreen(context) ? 1000 : null,
+                      child: Container(
+                        // This is the white box!
+                        // larger bot padding due to footer
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                        constraints: ResponsivePage.isLargeScreen(context)
+                            ? BoxConstraints(
+                              // Size of the white box, height not specified
+                              /*minWidth: MediaQuery.of(context).size.width * 0.5,
+                              maxWidth: MediaQuery.of(context).size.width * 0.7,*/
+                            )
+                            : BoxConstraints(
+                              minWidth: MediaQuery.of(context).size.width,
+                              maxWidth: MediaQuery.of(context).size.width,
+                            ),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Consumer<QuizModel>(
+                          // TODO maybe it would be better to rebuild individual Text widgets
+                          // within the larger widgets?
+                          builder: (context, model, child) =>
+                            Column(
+                              children: !model.quizLoaded
+                                  ? [UndefinedPage()]
+                                  : [
+                                    ResponsivePage.isSmallScreen(context) //Progressbar over the questions
+                                    ? Text("")
+                                      : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
+                                    _QuestionText( // Question and alternatives
+                                      model.currentQuestion.question),
+                                    _CreateAnswers(model.currentQuestion),
+                                    model.currentQuestion.chosenAlternative != -1
+                                        ? Visibility(
+                                          visible: true,
+                                          child: _subAltTitle(context))
+                                        : Visibility(
+                                          visible: false,
+                                          maintainSize: true,
+                                          maintainAnimation: true,
+                                          maintainState: true,
+                                          child: _subAltTitle(context)),
+                                    model.currentQuestion.chosenAlternative != -1
+                                        ? Visibility(
+                                          visible: true,
+                                          child: _subAlt(context, model))
+                                        : Visibility(
+                                          visible: false,
+                                          maintainSize: true,
+                                          maintainAnimation: true,
+                                          maintainState: true,
+                                          child: _subAlt(context, model)),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        top: 16),
+                                      child: _CreateNextBackRow(model))
+                                  ]))),
+                )))]),),
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: HastFooter()
@@ -206,7 +207,7 @@ class _CreateNextBackRow extends StatelessWidget {
   _CreateNextBackRow(this._model);
 
   // not sure if disabledGrey is used elsewhere so won't change it
-  var _disabledColor = disabledGrey[200];
+  var _disabledColor = disabledGrey.shade300;
   var _enabledColor = traverseGrey;
   var _nextColor = hastGreen;
 
@@ -215,12 +216,12 @@ class _CreateNextBackRow extends StatelessWidget {
       if (_model.finished) {
         return _nextColor;
       } else {
-        return _disabledColor!;
+        return _disabledColor;
       }
     } else if (_model.hasAnswered) {
       return _nextColor;
     } else {
-      return _disabledColor!;
+      return _disabledColor;
     }
   }
 
