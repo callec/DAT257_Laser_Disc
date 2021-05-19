@@ -94,8 +94,7 @@ class QuizPage extends StatelessWidget {
                                     : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
                                   _QuestionText( // Question and alternatives
                                     model.currentQuestion.question),
-                                  _CreateAnswers(_getColor,
-                                    model.currentQuestion),
+                                  _CreateAnswers(model.currentQuestion),
                                   model.currentQuestion.chosenAlternative != -1
                                       ? Visibility(
                                         visible: true,
