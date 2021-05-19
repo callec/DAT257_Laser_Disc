@@ -318,7 +318,7 @@ class _CreateFollowUpAnswers extends StatelessWidget {
     var _salt = _buildSubAlternatives();
     return IntrinsicHeight(
         key: UniqueKey(),
-        child: ResponsivePage.isMediumScreen(context)
+        child: !ResponsivePage.isLargeScreen(context)
           ? Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
