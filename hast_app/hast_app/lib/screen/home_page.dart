@@ -4,6 +4,8 @@ import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/quiz_content.dart';
 import 'package:hast_app/models/quiz_factory.dart';
 import 'package:hast_app/models/quiz_model.dart';
+import 'package:hast_app/routing/locator.dart';
+import 'package:hast_app/routing/navigation_service.dart';
 import 'package:hast_app/routing/route_names.dart';
 import 'package:hast_app/screen/home_page_data.dart';
 import 'package:hast_app/screen/responsive_page.dart';
@@ -148,7 +150,6 @@ class _HomePageState extends State<HomePage> {
   /// Displays a grayed out button if the Quiz is currently loading
   Widget _startButton(context, QuizModel quizModel) {
 
-
     if (isQuizLoaded){
       return ElevatedButton(
           style: ButtonStyle(
@@ -156,7 +157,10 @@ class _HomePageState extends State<HomePage> {
                   hastLightGreen)),
           onPressed: () {
             quizModel.loadQuiz(quiz);
-            Navigator.pushNamed(context, QuizRoute);
+
+            locator<NavigationService>().navigateTo(QuizRoute);
+
+            /*Navigator.pushNamed(context, QuizRoute);*/
           },
           child: Padding( padding: EdgeInsets.fromLTRB(8, 24 ,8,24), child: SimpleRichText("*Start the ${quiz.quizTitle} now!*", textAlign: TextAlign.center, textScaleFactor: 1.25, style: TextStyle(color: hastWhite)))
       );

@@ -3,6 +3,7 @@ import 'package:hast_app/colors.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/models/result_model.dart';
 import 'package:hast_app/routing/locator.dart';
+import 'package:hast_app/routing/navigation_service.dart';
 import 'package:hast_app/routing/router.dart' as router;
 import 'package:provider/provider.dart';
 
@@ -60,6 +61,7 @@ class _MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
             ),
           ),
+        navigatorKey: locator<NavigationService>().navigatorKey,
         onGenerateRoute: router.generateRoute,
         initialRoute: HomeRoute,
       )
