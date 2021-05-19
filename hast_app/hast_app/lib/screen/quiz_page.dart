@@ -5,6 +5,8 @@ import 'package:hast_app/colors.dart';
 import 'package:hast_app/common/question_content.dart';
 import 'package:hast_app/models/quiz_model.dart';
 import 'package:hast_app/routing/route_names.dart';
+import 'package:hast_app/screen/footer.dart';
+import 'package:hast_app/screen/undefined_page.dart';
 import 'package:hast_app/screen/responsive_page.dart';
 import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
@@ -47,79 +49,87 @@ class QuizPage extends StatelessWidget {
           backgroundColor: theme.backgroundColor,
           automaticallyImplyLeading: false, //removes "go back arrow"
         ),
-        body: Center(
-            child: Container(
-                // Background image, already precached
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                constraints: BoxConstraints.expand(),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/quizPageImage.png'),
-                        fit: BoxFit.cover)),
-                child: SingleChildScrollView(
-                    child: Column(children: [
-                  // Flexible(child:
-                      Container(
-                    // This is the white box!
-                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                        constraints: ResponsivePage.isLargeScreen(context)
+        body: Container(
+          // Background image, already precached
+          constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+               image: AssetImage('assets/images/quizPageImage.png'),
+               fit: BoxFit.cover)),
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildListDelegate([
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: Container(
+                      // This is the white box!
+                      // larger bot padding due to footer
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                      constraints: ResponsivePage.isLargeScreen(context)
                           ? BoxConstraints(
-                            //Size of the white box
+                            // Size of the white box, height not specified
                             minWidth: MediaQuery.of(context).size.width * 0.5,
                             maxWidth: MediaQuery.of(context).size.width * 0.7,
-                            minHeight: MediaQuery.of(context).size.height * 0.2,
-                            maxHeight: MediaQuery.of(context).size.height * 2
                           )
                           : BoxConstraints(
                             minWidth: MediaQuery.of(context).size.width,
                             maxWidth: MediaQuery.of(context).size.width,
-                            minHeight: MediaQuery.of(context).size.height*0.9,
-                            maxHeight: MediaQuery.of(context).size.height*0.9),
-                        decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.92), //If we want transparent box
-
+                          ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.92), //Om vi vill ha lite genomskinlig box.
                         borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Consumer<QuizModel>(
-                          builder: (context, model, child) =>
-                            SingleChildScrollView(
-                                child: Column(
-                                    children: !model.quizLoaded
-                                        ? [UndefinedPage()]
-                                        : [ // Question and alternatives
-                                            _QuestionText(
-                                                model.currentQuestion.question),
-                                            _CreateAnswers(model.currentQuestion),
-                                            model.currentQuestion.chosenAlternative != -1
-                                                ? Visibility(
-                                                    visible: true,
-                                                    child: _subAltTitle(context))
-                                                : Visibility(
-                                                    visible: false,
-                                                    maintainSize: true,
-                                                    maintainAnimation: true,
-                                                    maintainState: true,
-                                                    child: _subAltTitle(context)),
-                                            model.currentQuestion.chosenAlternative != -1
-                                                ? Visibility(
-                                                    visible: true,
-                                                    child: _subAlt(context, model))
-                                                : Visibility(
-                                                    visible: false,
-                                                    maintainSize: true,
-                                                    maintainAnimation: true,
-                                                    maintainState: true,
-                                                    child: _subAlt(context, model)),
-                                            Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0,
-                                                    right: 0,
-                                                    bottom: 16),
-                                                child:
-                                                    _CreateNextBackRow(model))
-                                          ]))),
-                      )
-                ]))))));
+                      ),
+                      child: Consumer<QuizModel>(
+                        // TODO maybe it would be better to rebuild individual Text widgets
+                        // within the larger widgets?
+                        builder: (context, model, child) =>
+                          Column(
+                            children: !model.quizLoaded
+                                ? [UndefinedPage()]
+                                : [
+                                  ResponsivePage.isSmallScreen(context) //Progressbar over the questions
+                                  ? Text("")
+                                    : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
+                                  _QuestionText( // Question and alternatives
+                                    model.currentQuestion.question),
+                                  _CreateAnswers(_getColor,
+                                    model.currentQuestion),
+                                  model.currentQuestion.chosenAlternative != -1
+                                      ? Visibility(
+                                        visible: true,
+                                        child: _subAltTitle(context))
+                                      : Visibility(
+                                        visible: false,
+                                        maintainSize: true,
+                                        maintainAnimation: true,
+                                        maintainState: true,
+                                        child: _subAltTitle(context)),
+                                  model.currentQuestion.chosenAlternative != -1
+                                      ? Visibility(
+                                        visible: true,
+                                        child: _subAlt(context, model))
+                                      : Visibility(
+                                        visible: false,
+                                        maintainSize: true,
+                                        maintainAnimation: true,
+                                        maintainState: true,
+                                        child: _subAlt(context, model)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      top: 16),
+                                    child: _CreateNextBackRow(model))
+                                ]))),
+                ))]),),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: HastFooter()
+    )
+    ]))));
   }
 
   ///Padding and the creation of the follow up answers
@@ -196,49 +206,59 @@ class _CreateNextBackRow extends StatelessWidget {
 
   _CreateNextBackRow(this._model);
 
+  // not sure if disabledGrey is used elsewhere so won't change it
+  var _disabledColor = disabledGrey[200];
+  var _enabledColor = traverseGrey;
+  var _nextColor = hastGreen;
+
+  Color _nextButtonColor() {
+    if (_model.currentNumber == _model.numberOfQuestions - 1) {
+      if (_model.finished) {
+        return _nextColor;
+      } else {
+        return _disabledColor!;
+      }
+    } else if (_model.hasAnswered) {
+      return _nextColor;
+    } else {
+      return _disabledColor!;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ResponsivePage.isSmallScreen(context)
-            ? Text("")
-            : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(_model), Spacer()]),
-
-        Row(children: <Widget>[
-          ElevatedButton(
-            style: TextButton.styleFrom(
-                primary: Theme.of(context).backgroundColor,
-                backgroundColor: (_model.currentNumber == 0)
-                    ? disabledGrey
-                    : Theme.of(context).accentColor),
-            onPressed: () {
-              if (_model.currentNumber >= 1) {
-                _model.prevQuestion();
-              }
-            },
-            child: Text('Back'),
-          ),
-          Spacer(),
-          // Progress indication (dots)
-          Spacer(),
-          ElevatedButton(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-              backgroundColor: (_model.currentNumber == _model.numberOfQuestions - 1)
-                  ? (_model.finished ? hastGreen : disabledGrey)
-                  : Theme.of(context).accentColor,
-            ),
-            onPressed: () {
-              if (_model.currentNumber <= _model.numberOfQuestions - 2) {
-                _model.nextQuestion();
-              } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
-                Navigator.pushNamed(context, ResultRoute);
-              }
-            },
-            child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
-          )]),
-      ],
-    );
+    return Row(children: <Widget>[
+      ElevatedButton(
+        style: TextButton.styleFrom(
+            primary: Theme.of(context).backgroundColor,
+            backgroundColor: (_model.currentNumber == 0)
+                ? _disabledColor
+                : _enabledColor),
+        onPressed: () {
+          if (_model.currentNumber >= 1) {
+            _model.prevQuestion();
+          }
+        },
+        child: Text('Back'),
+      ),
+      Spacer(),
+      // Progress indication (dots)
+      Spacer(),
+      ElevatedButton(
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: _nextButtonColor(),
+        ),
+        onPressed: () {
+          if (!_model.hasAnswered) return;
+          if (_model.currentNumber <= _model.numberOfQuestions - 2) {
+            _model.nextQuestion();
+          } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
+            Navigator.pushNamed(context, ResultRoute);
+          }
+        },
+        child: Text(_model.currentNumber < _model.numberOfQuestions - 1 ? 'Next' : 'Result'),
+      )]);
   }
 }
 
@@ -271,13 +291,12 @@ class _CreateAnswers extends StatelessWidget {
 
     //Build Answer boxes
     for (int x = 0; x < question.alternatives.length; x++) {
-      tempList.add(Expanded(
-          child: _AlternativeText(
+      tempList.add(_AlternativeText(
               question.alternatives[x],
               x,
               colorFunction(alternativeBeenChosen
                   ? (alternativeNumber == x ? x : -1)
-                  : x))));
+                  : x)));
     }
     return tempList;
   }
@@ -296,13 +315,20 @@ class _CreateFollowUpAnswers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _salt = _buildSubAlternatives();
     return IntrinsicHeight(
         key: UniqueKey(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildSubAlternatives(),
-        ));
+        child: ResponsivePage.isMediumScreen(context)
+          ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _salt,
+          )
+          : Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: _salt,
+          ));
   }
 
   List<Widget> _buildSubAlternatives() {
@@ -365,11 +391,10 @@ class _AlternativeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Expanded(
+      child: Padding(
       padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
-      child: Column(children: [
-        Expanded(
-            child: ElevatedButton(
+      child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,
             onPrimary: Colors.black,
@@ -386,7 +411,6 @@ class _AlternativeText extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText2,
               )),
         )),
-      ]),
     );
   }
 }
@@ -403,7 +427,7 @@ class _SubAlternativeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,

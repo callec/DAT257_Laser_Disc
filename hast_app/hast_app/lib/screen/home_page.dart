@@ -105,6 +105,7 @@ class _HomePageState extends State<HomePage> {
   /// Displays information text on the home_page in a nice formatted way
   Widget _presentText(context, String presentingText, TextAlign alignment) {
     return Container(
+        // TODO doesn't work properly on iOS
         // for small devices: keep text to 80% of the width, otherwise 600px to
         // keep ~70 character at a time in a paragraph for readability.
         width: ResponsivePage.isMediumScreen(context) ? (MediaQuery.of(context).size.width*0.8) : 600,
@@ -173,10 +174,18 @@ class _HomePageState extends State<HomePage> {
 /// Widget representing the HAST logo
 class HastLogo extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/hastlogga.png",
-      fit: BoxFit.contain,
-      height: 45,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+        children:
+        [
+          Image.asset("assets/images/hastlogga.png",
+                      fit: BoxFit.contain,
+                      height: ResponsivePage.isMediumScreen(context) ? 35 : 40),
+          SizedBox(width: 16),
+          Text("Lifestyle & Work Assessment Tool",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: hastGrey, fontSize: ResponsivePage.isMediumScreen(context) ? 14 : 18))
+        ]
     );
   }
 }

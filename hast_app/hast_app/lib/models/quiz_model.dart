@@ -11,6 +11,7 @@ class QuizModel with ChangeNotifier {
   List<QuestionContent> _questions = <QuestionContent>[];
 
   bool quizLoaded = false;
+  bool _hasAnswered = false;
 
   List<QuestionContent> get questions => _questions;
 
@@ -19,6 +20,7 @@ class QuizModel with ChangeNotifier {
   int get currentNumber => _questionNumber;
 
   int get numberOfQuestions => _questions.length;
+  bool get hasAnswered => currentQuestion.chosenSubAlternative != -1;
 
   String get title => _quiz.quizTitle;
 
