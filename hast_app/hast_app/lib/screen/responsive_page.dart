@@ -9,7 +9,8 @@ class ResponsivePage {
   }
 
   static bool isSmallScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width <= 400;
+    var _ratio = MediaQuery.of(context).size.aspectRatio < 9/16;
+    return MediaQuery.of(context).size.width <= 400 || _ratio;
   }
 
   static bool isLargeScreen(BuildContext context) {
