@@ -211,21 +211,21 @@ class _HomePageState extends State<HomePage> {
 /// Widget representing the HAST logo
 class HastLogo extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-        children:
-        [
-          Image.asset("assets/images/hastlogga.png",
-                      fit: BoxFit.contain,
-                      height: ResponsivePage.isMediumScreen(context) ? 35 : 40),
-          SizedBox(width: 16),
-          FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text("Lifestyle & Work Assessment Tool",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: hastGrey)),
-          )
-        ]
-    );
+    // Currently re-sizes the title text in the appbar to fit the screen width
+    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+      Image.asset("assets/images/hastlogga.png",
+          fit: BoxFit.contain, height: 40),
+      SizedBox(width: 16),
+      LimitedBox(
+        maxWidth: MediaQuery.of(context).size.width / 2,
+        child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text("Lifestyle & Work Assessment Tool",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: hastGrey)),
+        ),
+      )
+    ]);
   }
 }
+
