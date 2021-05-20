@@ -462,5 +462,6 @@ class _SubAlternativeText extends StatelessWidget {
 
 void _moveScroll(ScrollController sc, bool direction) {
   var _pos = direction ? sc.position.maxScrollExtent : sc.position.minScrollExtent;
-  sc.animateTo(_pos, duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  var _curve = direction ? Curves.easeInOut : Curves.decelerate;
+  sc.animateTo(_pos, duration: Duration(milliseconds: 300), curve: _curve);
 }
