@@ -41,23 +41,7 @@ class _HomePageState extends State<HomePage> {
     _tryLoadingFile(query);
   }
 
-  /// Load the Quiz file from the query parameters
-  /// If we fail loading the file, errors will be displayed
-  void _tryLoadingFile(String fileName) async{
-    try{
-      quiz = await QuizFactory.createQuiz(fileName);
-      setState(() {
-        isQuizLoaded = true;
-        errorOccurred = false;
-      });
-    }catch(err){
-      setState(() {
-        isQuizLoaded = false;
-        errorOccurred = true;
-      });
-    }
 
-  }
 
   @override
   Widget build(BuildContext context) {
