@@ -35,6 +35,8 @@ class QuizPage extends StatelessWidget {
     }
   }
 
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -56,6 +58,7 @@ class QuizPage extends StatelessWidget {
                image: AssetImage('assets/images/quizPageImage.png'),
                fit: BoxFit.cover)),
           child: CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverList(
                 delegate: SliverChildListDelegate([
@@ -95,7 +98,7 @@ class QuizPage extends StatelessWidget {
                                       : Row(children: <Widget>[Spacer(), _CreateProgressIndicators(model), Spacer()]),
                                     _QuestionText( // Question and alternatives
                                       model.currentQuestion.question),
-                                    _CreateAnswers(model.currentQuestion),
+                                    _CreateAnswers(_scrollController, model.currentQuestion),
                                     model.currentQuestion.chosenAlternative != -1
                                         ? Visibility(
                                           visible: true,
@@ -122,7 +125,7 @@ class QuizPage extends StatelessWidget {
                                         right: 0,
                                         bottom: 0,
                                         top: 16),
-                                      child: _CreateNextBackRow(model))
+                                      child: _CreateNextBackRow(_scrollController, model))
                                   ]))),
                 )))]),),
               SliverFillRemaining(
@@ -202,9 +205,10 @@ class _CreateProgressIndicators extends StatelessWidget {
 
 /// The row containing the back/next buttons and the progress indicator dots
 class _CreateNextBackRow extends StatelessWidget {
+  final ScrollController _sc;
   final QuizModel _model;
 
-  _CreateNextBackRow(this._model);
+  _CreateNextBackRow(this._sc, this._model);
 
   // not sure if disabledGrey is used elsewhere so won't change it
   var _disabledColor = disabledGrey.shade300;
@@ -237,6 +241,7 @@ class _CreateNextBackRow extends StatelessWidget {
         onPressed: () {
           if (_model.currentNumber >= 1) {
             _model.prevQuestion();
+            if (!_model.hasAnswered) _moveScroll(_sc, false);
           }
         },
         child: Text('Back'),
@@ -253,6 +258,7 @@ class _CreateNextBackRow extends StatelessWidget {
           if (!_model.hasAnswered) return;
           if (_model.currentNumber <= _model.numberOfQuestions - 2) {
             _model.nextQuestion();
+            if (!_model.hasAnswered) _moveScroll(_sc, false);
           } else if (_model.currentNumber == _model.numberOfQuestions - 1 && _model.finished) {
             Navigator.pushNamed(context, ResultRoute);
           }
@@ -265,10 +271,11 @@ class _CreateNextBackRow extends StatelessWidget {
 /// Create a row of _AnswerText objects that are displayed on the screen.
 /// Has arguments: color function and QuestionContent object
 class _CreateAnswers extends StatelessWidget {
+  final ScrollController _sc;
   final QuestionContent question;
   final _ColorCallBack colorFunction = QuizPage.getAlternativeColors;
 
-  _CreateAnswers(this.question);
+  _CreateAnswers(this._sc, this.question);
 
   @override
   Widget build(BuildContext context) {
@@ -291,7 +298,7 @@ class _CreateAnswers extends StatelessWidget {
 
     //Build Answer boxes
     for (int x = 0; x < question.alternatives.length; x++) {
-      tempList.add(_AlternativeText(
+      tempList.add(_AlternativeText(_sc,
               question.alternatives[x],
               x,
               colorFunction(alternativeBeenChosen
@@ -383,18 +390,19 @@ class _QuestionText extends StatelessWidget {
 /// Creates a single Alternative object
 /// Arguments: answer text, a number, a function
 class _AlternativeText extends StatelessWidget {
+  final ScrollController _sc;
   final String atext;
   final int number;
   final Color color;
 
-  _AlternativeText(this.atext, this.number, this.color);
+  _AlternativeText(this._sc, this.atext, this.number, this.color);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-      padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
-      child: ElevatedButton(
+        padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
+        child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: color,
             onPrimary: Colors.black,
@@ -403,6 +411,7 @@ class _AlternativeText extends StatelessWidget {
             // Set chosen alternative in the QuizModel
             context.read<QuizModel>().setAlternative(number);
             context.read<QuizModel>().setSubAlternative(-1);
+            _moveScroll(_sc, true);
           },
           child: Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
@@ -449,4 +458,9 @@ class _SubAlternativeText extends StatelessWidget {
                   ))),
         ));
   }
+}
+
+void _moveScroll(ScrollController sc, bool direction) {
+  var _pos = direction ? sc.position.maxScrollExtent : sc.position.minScrollExtent;
+  sc.animateTo(_pos, duration: Duration(milliseconds: 300), curve: Curves.decelerate);
 }
