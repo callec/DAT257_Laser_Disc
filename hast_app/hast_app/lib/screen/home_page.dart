@@ -12,6 +12,8 @@ import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
 
+import 'footer.dart';
+
 /// This is the first page that is displayed to the User.
 /// We load the Quiz from the URL query parameters
 /// Here we can start the quiz or get information about the Quiz or HAST
@@ -90,14 +92,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               errorOccurred ? UndefinedPage() : _homePageHomePage(context, _quizModel, _padding),
               isQuizLoaded ? _homePageAbout(_padding) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading...", TextAlign.center)),
-              SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
-                    child: Column(
-                      children: [ //InfoPage is now scrollable, and their text is "inkastad".
-                        _presentText(context, _infoHast, TextAlign.justify),
-                        _presentText(context, _customerQuotes, TextAlign.center),
-                  ]))),
+              _homePageAboutHast(_padding)
             ],
           ),
         ),
@@ -117,35 +112,67 @@ class _HomePageState extends State<HomePage> {
             style: Theme.of(context).textTheme.headline6)]),));
   }
 
+  Widget _homePageAboutHast(double _padding) {
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Container(
+              margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
+              child: Column(
+                children: [ //InfoPage is now scrollable, and their text is "inkastad".
+                  _presentText(context, _infoHast, TextAlign.justify),
+                  _presentText(context, _customerQuotes, TextAlign.center),
+        ]))])),
+        SliverFillRemaining(
+            hasScrollBody: false,
+            child: HastFooter()
+        )]);
+  }
+
   /// Displays a welcoming text and a start button IF we managed to load a Quiz
   Widget _homePageHomePage(context, QuizModel quizModel, double _padding) {
     bool _size = ResponsivePage.isMediumScreen(context);
 
-    return SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
-          child: Column(
-            children: [
-              _presentText(
-                context,'${isQuizLoaded ? _hastWelcome : "LOADING..."}',
-                TextAlign.justify
-              ),
-              SizedBox(height: _size ? 50 : 100,),
-              _startButton(context, quizModel),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, _padding, 0, 0),
-              )
-        ])));
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Container(
+              margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
+              child: Column(
+                children: [
+                  _presentText(
+                    context,'${isQuizLoaded ? _hastWelcome : "LOADING..."}',
+                    TextAlign.justify
+                  ),
+                  SizedBox(height: _size ? 50 : 100,),
+                  _startButton(context, quizModel),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, _padding, 0, 0),
+                  )
+                ]))])),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: HastFooter()
+        )]);
   }
 
   /// Display information about the current Quiz.
   Widget _homePageAbout(double _padding) {
-    return SingleChildScrollView(
-        child: Container(
-            margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
-            child: Column(children: [
-              _presentText(context, quiz.quizInfo, TextAlign.justify),
-            ])));
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Container(
+              margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
+              child: Column(children: [
+               _presentText(context, quiz.quizInfo, TextAlign.justify),
+            ]))])),
+        SliverFillRemaining(
+            hasScrollBody: false,
+            child: HastFooter()
+        )]);
   }
 
   /// The button used to start the Quiz
