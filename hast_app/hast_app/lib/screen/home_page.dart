@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   final String _customerQuotes = HAST_QUOTES;
 
 
-  _HomePageState(String query){
+  _HomePageState(String query) {
     _tryLoadingFile(query);
   }
 
