@@ -5,22 +5,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 class UndefinedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-      children: [
-        SizedBox(height: 32),
-        LimitedBox(
-            maxWidth: MediaQuery.of(context).size.width / 4,
-            child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                    'Whoops! Something broke,\ntry opening the link from HAST again...',
-                    style: Theme.of(context).textTheme.headline3,
-                    textAlign: TextAlign.center))),
-        SizedBox(height: 32),
-        image404()
-      ],
-    ));
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(32, 16, 16, 0),
+      child: Column(
+        children: [
+          FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                  'Whoops! Something broke,\ntry opening the link from HAST again...',
+                  style: Theme.of(context).textTheme.headline3,
+                  textAlign: TextAlign.center)),
+          SizedBox(height: 32),
+          image404()
+        ],
+      ),
+    );
   }
 
   Widget image404() {
