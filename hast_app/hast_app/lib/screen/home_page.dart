@@ -90,8 +90,8 @@ class _HomePageState extends State<HomePage> {
           body: TabBarView(
             // What will be displayed on each tab (Home, About test, About us)
             children: [
-              errorOccurred ? UndefinedPage() : _homePageHomePage(context, _quizModel, _padding),
-              isQuizLoaded ? _homePageAbout(_padding) : (errorOccurred ? UndefinedPage() : _presentText(context, "Loading...", TextAlign.center)),
+              _homePageHomePage(context, _quizModel, _padding),
+              _homePageAbout(_padding),
               _homePageAboutHast(_padding)
             ],
           ),
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
       slivers: [
         SliverList(
           delegate: SliverChildListDelegate([
-            Container(
+            errorOccurred ? UndefinedPage() : Container(
               margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
               child: Column(
                 children: [
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               margin: EdgeInsets.fromLTRB(0, _padding/2 + 15, 0, _padding),
               child: Column(children: [
-               _presentText(context, quiz.quizInfo, TextAlign.justify),
+               _presentText(context, QUIZ_INFO, TextAlign.justify),
             ]))])),
         SliverFillRemaining(
             hasScrollBody: false,

@@ -21,7 +21,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       if (q != null){
         return MaterialPageRoute(builder: (context) => HomePage(q));
       } else {
-        return MaterialPageRoute(builder: (context) => HomePage("ReflectionQuiz"));
+        return MaterialPageRoute(builder: (context) => HomePage(""));
       }
 
     case QuizRoute:

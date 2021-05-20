@@ -7,24 +7,22 @@ part 'quiz_content.g.dart';
 @JsonSerializable(explicitToJson: true)
 class QuizContent {
   final String quizTitle;
-  final String quizInfo;
   final List<String> resultText;
   final List<QuestionContent> questions;
   final String subAltText;
   final List<String> subAlternatives;
 
   QuizContent(
-    this.quizTitle,
-    this.quizInfo,
-    this.resultText,
-    this.questions,
-    this.subAltText,
-    this.subAlternatives
-  );
+      this.quizTitle,
+      this.resultText,
+      this.questions,
+      this.subAltText,
+      this.subAlternatives
+      );
 
   ///USed to deserialize a JSON string to a QuizContent object
   factory QuizContent.fromJson(Map<String, dynamic> json)
-    => _$QuizContentFromJson(json);
+  => _$QuizContentFromJson(json);
 
   ///This method is used to serialize the object to a JSON string
   Map<String, dynamic> toJson() => _$QuizContentToJson(this);
