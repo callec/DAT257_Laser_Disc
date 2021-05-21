@@ -1,0 +1,85 @@
+{
+  "quizTitle": "2",
+  "subAltText": "2?",
+  "subAlternatives": ["2", "2", "2"],
+  "resultText": [
+    "0 - 1/4 of total score",
+    "1/4 - 2/4 of total score",
+    "2/4 - 3/4 of total score",
+    "3/4  - 4/4 of total score"
+  ],
+  "questions": [
+    {
+      "question": "T2E",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE SECOND QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE THIRD QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE FOURTH QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE FIFTH QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE SIXTH QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE SEVENTH QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    },
+    {
+      "question": "THIS IS THE EIGHT QUESTIONS TITLE",
+      "alternatives": [
+        "Alt 1",
+        "Alt 2",
+        "Alt 3",
+        "Alt 4"
+      ]
+    }
+  ]
+}
