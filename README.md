@@ -1,87 +1,24 @@
-# DAT257_projekt
+# DAT257 Laser Disc
 
-## Start Quiz
-1) Open the page where the program is hosted
+# Important links
+Here is our trello board: [trello](https://trello.com/b/mKugQJYh/självskattningstool-för-hast)
 
-         myexamplewebsite(dot)com/
+Final report: link to final report
 
-2) Grab the URL and add the following to the end off the it:
+Folder with documentation: [`./Documentation`](https://github.com/callec/DAT257_Laser_Disc/tree/main/Documentation), the reflections and protocols are in different folders so browse through them and check.
 
-         ?q=example
-      It should look like this:
+Here are our meeting protocols: [google drive folder](https://drive.google.com/drive/folders/1uzpQzz05D-v1rGTBSolIAGP39Z83LgL7?usp=sharing)
 
-         myexamplewebsite(dot)com/?q=example
+Gitinspector: we did not manage to get gitinspector working and it doesn't have support for dart so please look at [github insights](https://github.com/callec/DAT257_Laser_Disc/graphs/contributors) instead.
 
-      This will load the file "example.json", that constains an example Quiz.
+Technical documentation: [google drive document](https://docs.google.com/document/d/1T82xsCrSuuGY0ROaK10LhsoE4vVVMOoqwufwu2DMPbw/edit?usp=sharing)
 
-3) Follow the Insturctions below, [Add new Quizzes](#addQuiz), if you want to create your own Quiz.
+## The code
+To see the project files you would visit [`./hast_app/hast_app/`](https://github.com/callec/DAT257_Laser_Disc/tree/main/hast_app/hast_app), and more specifically the `lib/` folder within it. The tests are in `tests/models/`, and the quizzes are in `assets/quizzes/`.
 
-4) To access a Quiz change the URL to:
+## Running the app
+To test the app in production, use this link: [https://gifted-beaver-3438ca.netlify.app/#/](https://gifted-beaver-3438ca.netlify.app/#/?q=reflectionquiz). To test the different quizzes you would add `?q=filename` to the end of the link. The quizzes we have at the moment are `reflectionquiz`, `example`, and `example2`.
 
-         myexamplewebsite(dot)com/?q=[Name of file]
+To run on macos or linux: Take down the repo to your machine and make sure you have flutter and chrome installed. Then from the folder with `pubspec.yaml` ([./hast_app/hast_app/](https://github.com/callec/DAT257_Laser_Disc/tree/main/hast_app/hast_app)) run the command `flutter run -d chrome`. 
 
-5) Now you should see your own Quiz
-
-## Add new Quizzes <a name= "addQuiz"></a>
-1) Open the project and navigate to ["hast_app/hast_app/assets/quizzes"](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app/assets/quizzes).
-2) Copy the file "example.json" and give it an appropriate name like "life_reflection.json" or "my_cool_quiz.json".
-3) Open the file you just created using any text editor. Example: Notepad, Notepad++, Atom, etc.
-4) Start editing the file (**only change the text within quotation marks**)
-   * quizTitle: This is the title for the whole Quiz
-   * quizInfo: Information text regarding the specific Quiz
-   * subAltText: Sub alternative question.
-
-         "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?"
-
-   * subAlternatives: The 3 different sub alternatives to choose from. Each alternative is seperated by a comma.   
-
-         "subAlternatives": ["Worse", "Exactly", "Better"]
-
-   * resultText: This is the different texts displayed depending on the total score.
-
-
-
-         "resultText": [      
-                "0 - 1/4 of total score",
-                "1/4 - 2/4 of total score",
-                "2/4 - 3/4 of total score",
-                "3/4  - 4/4 of total score"
-              ]
-
-   * questions: These are the questions presented in the Quiz. In "example.json" there are 8 questions, you can add or remove additional questions (careful going over 10)
-
-            "questions": [
-              {
-                "question": "THIS IS THE FIRST QUESTIONS TITLE",
-                "alternatives": [
-                  "Alt 1",
-                  "Alt 2",
-                  "Alt 3",
-                  "Alt 4"
-                ]
-              },
-              {
-                "question": "THIS IS THE SECOND QUESTIONS TITLE",
-                "alternatives": [
-                  "Alt 1",
-                  "Alt 2",
-                  "Alt 3",
-                  "Alt 4"
-                ]
-              }
-            ]
-      * question: This is the title
-      * alternatives: These are the 4 different alternatives
-
-                {
-                  "question": "THIS IS THE QUESTIONS TITLE",
-                  "alternatives": [
-                    "Alt 1",
-                    "Alt 2",
-                    "Alt 3",
-                    "Alt 4"
-                  ]
-                },
-  5) Once you have added all the text to your file, save the file to the [quizzes folder](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app/assets/quizzes). (Same location as "example.json")
-  
-  6) Push the changes
+To run on windows: The team members that use Windows have installed flutter and then used Android studio, imported the project there and ran `main.dart` with chrome specified as device.
