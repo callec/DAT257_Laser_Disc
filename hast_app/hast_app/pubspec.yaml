@@ -21,6 +21,8 @@ dependencies:
   simple_rich_text: ^2.0.46
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
+  shared_preferences: ^2.0.5
+  shared_preferences_web: ^2.0.0
 
   #cupertino_icons: ^1.0.2
 

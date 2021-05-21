@@ -11,6 +11,8 @@ import 'package:hast_app/screen/responsive_page.dart';
 import 'package:hast_app/screen/undefined_page.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_rich_text/simple_rich_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences_web/shared_preferences_web.dart';
 
 import 'footer.dart';
 
@@ -28,7 +30,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  late SharedPreferences prefs;
+
   late QuizContent quiz;
+  late String currentQuery;
 
   bool isQuizLoaded = false;
   bool errorOccurred = false;
@@ -40,25 +46,48 @@ class _HomePageState extends State<HomePage> {
 
 
   _HomePageState(String query) {
+    _setupSharedPrefs(query);
+    //_tryLoadingFile(query);
+  }
+
+  void _setupSharedPrefs(String query) async {
+    prefs = await SharedPreferences.getInstance();
     _tryLoadingFile(query);
   }
 
   /// Load the Quiz file from the query parameters
   /// If we fail loading the file, errors will be displayed
   void _tryLoadingFile(String fileName) async{
-    try{
-      quiz = await QuizFactory.createQuiz(fileName);
+
+    String _file;
+    String _reloadQuery = "";
+
+    if (prefs.getString("query") != null){
+      _reloadQuery = prefs.getString("query")!;
+    }
+
+    if (fileName != "") {
+      prefs.setString("query", fileName);
+      _file = fileName;
+    } else if (_reloadQuery != "") {
+      _file = _reloadQuery;
+    } else {
+      _file = "";
+    }
+
+    try {
+      quiz = await QuizFactory.createQuiz(_file);
       setState(() {
         isQuizLoaded = true;
         errorOccurred = false;
       });
-    }catch(err){
+    } catch (err) {
+      prefs.setString("query", "");
       setState(() {
         isQuizLoaded = false;
         errorOccurred = true;
       });
     }
-
   }
 
   @override
