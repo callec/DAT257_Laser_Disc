@@ -1,7 +1,7 @@
-# DAT257_projekt
+# DAT257_Laser_Disc
 
 ## Start Quiz
-1) Open the page where the program is hosted
+1) Open the page where the program is hosted.
 
          myexamplewebsite(dot)com/
 
@@ -20,23 +20,23 @@
 
          myexamplewebsite(dot)com/?q=[Name of file]
 
-5) Now you should see your own Quiz
+5) Now you should see your own Quiz.
 
 ## Add new Quizzes <a name= "addQuiz"></a>
-1) Open the project and navigate to ["hast_app/hast_app/assets/quizzes"](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app/assets/quizzes).
-2) Copy the file "example.json" and give it an appropriate name like "life_reflection.json" or "my_cool_quiz.json".
+1) Open the project and navigate to ["hast_app/hast_app/assets/quizzes"](https://github.com/callec/DAT257_Laser_Disc/tree/main/hast_app/hast_app/assets/quizzes).
+2) Make a copy of the file "example.json", place it in the same folder, and give it an appropriate name like "life_reflection.json" or "work_life_balance.json".
 3) Open the file you just created using any text editor. Example: Notepad, Notepad++, Atom, etc.
-4) Start editing the file (**only change the text within quotation marks**)
-   * quizTitle: This is the title for the whole Quiz
-   * subAltText: Sub alternative question.
+4) Start editing the file (**only change the text within quotation marks**).
+   * `quizTitle`: This is the title for the whole Quiz.
+   * `subAltText`: Sub alternative question.
 
          "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?"
 
-   * subAlternatives: The 3 different sub alternatives to choose from. Each alternative is seperated by a comma.   
+   * `subAlternatives`: The 3 different sub alternatives to choose from. Each alternative is seperated by a comma.   
 
          "subAlternatives": ["Worse", "Exactly", "Better"]
 
-   * resultText: This is the different texts displayed depending on the total score.
+   * `resultText`: This is the different texts displayed depending on the total score.
 
          "resultText": [      
                 "0 - 1/4 of total score",
@@ -45,7 +45,7 @@
                 "3/4  - 4/4 of total score"
               ]
 
-   * questions: These are the questions presented in the Quiz. In "example.json" there are 8 questions, you can add or remove additional questions (careful going over 10)
+   * `questions`: These are the questions presented in the Quiz. In "example.json" there are 8 questions, you can add or remove additional questions (careful going over 10).
 
             "questions": [
               {
@@ -67,8 +67,8 @@
                 ]
               }
             ]
-      * question: This is the title
-      * alternatives: These are the 4 different alternatives
+      * `question`: This is the title
+      * `alternatives`: These are the 4 different alternatives
 
                 {
                   "question": "THIS IS THE QUESTIONS TITLE",
@@ -79,7 +79,7 @@
                     "Alt 4"
                   ]
                 },
-  5) Once you have added all the text to your file, save the file to the [quizzes folder](https://github.com/callec/DAT257_projekt/tree/ID14_multiple_quizzes/hast_app/hast_app/assets/quizzes). (Same location as "example.json")
+  5) Once you have added all the text to your file, save the file
   
   6) Push the changes
 
