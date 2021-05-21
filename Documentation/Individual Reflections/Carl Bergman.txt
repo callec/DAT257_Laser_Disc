@@ -140,3 +140,26 @@ Week 7
      fully completed. We have however prepared the application for when the
      data arrives to us. Further on we also set it up so it's viewable as a
      normal website and this has worked well.
+
+
+Week 8
+* what do I want to learn or understand better?
+   * As the website was just about completed this week  there was nothing in
+     particular that I wanted to learn. I did however try to implement an api
+	 used by the stakeholder that didn't work out so I suppose I'd want to know
+	 how that works. To try to learn it I used their api documentation as well
+	 as the flutter documentation.
+* how can I help someone else, or the entire team, to learn something new?
+   * By sharing our experiences during the project to write the presentation and
+     the final report.
+* what is my contribution towards the team’s use of Scrum?
+   * Discussing how we should improve our current strategies to work in a
+     ‘scrum’ way. As previous weeks we discuss what need to be changed
+     together.
+* what is my contribution towards the team’s deliveries?
+   * As this week consisted mostly of polishing the app my work was mostly done
+     on my own. This made me a lot more productive as I could work whatever
+	 hour that suited me so I feel that this is something that we could have
+	 tried earlier. The actual deliveries are mostly refactoring and fixing
+	 things within the code. I also wrote the presentation together with a few
+	 other teammembers.
