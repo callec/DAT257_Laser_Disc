@@ -14,7 +14,7 @@
 
       This will load the file "example.json", that constains an example Quiz.
 
-3) Follow the Insturctions below, [Add new Quizzes](#addQuiz), if you want to create your own Quiz.
+3) Follow the Instructions below, [Add new Quizzes](#addQuiz), if you want to create your own Quiz.
 
 4) To access a Quiz change the URL to:
 
@@ -28,7 +28,6 @@
 3) Open the file you just created using any text editor. Example: Notepad, Notepad++, Atom, etc.
 4) Start editing the file (**only change the text within quotation marks**)
    * quizTitle: This is the title for the whole Quiz
-   * quizInfo: Information text regarding the specific Quiz
    * subAltText: Sub alternative question.
 
          "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?"
