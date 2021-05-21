@@ -1,7 +1,7 @@
 {
-  "quizTitle": "THIS 2222222",
-  "subAltText": "Is your situation worse, better, or exactly as the statement directly above describes?",
-  "subAlternatives": ["Worse", "Exactly", "Better"],
+  "quizTitle": "2",
+  "subAltText": "2?",
+  "subAlternatives": ["2", "2", "2"],
   "resultText": [
     "0 - 1/4 of total score",
     "1/4 - 2/4 of total score",
@@ -10,7 +10,7 @@
   ],
   "questions": [
     {
-      "question": "THIS IS THE FIRST QUESTIONS TITLE",
+      "question": "T2E",
       "alternatives": [
         "Alt 1",
         "Alt 2",

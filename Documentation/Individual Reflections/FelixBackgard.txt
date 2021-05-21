@@ -1,114 +1,106 @@
+WEEK 1
 what do I want to learn or understand better?
 Hur Scrum fungerar och hur det kan skapa värde. Jag hade i början av veckan väldigt lite kunskap, det har jag fortfarande, men lite mindre väldigt mycket. 
+
 how can I help someone else, or the entire team, to learn something new?
 Genom att bidra med positiv energi kan jag bidra till lärande!
+
 what is my contribution towards the team’s use of Scrum?
 Denna vecka har jag fokuserat på att läsa på vad Scrum är inom ett antal källor för att ha större kunskap
+
 what is my contribution towards the team’s deliveries?
 Jag har bidragit genom att komma med idéer och förslag som kan passa projektet. 
+
 WEEK 2
 what do I want to learn or understand better?
-
 what my contribution might look like. Also Scrum and what a good user story is. I believe SCRUM to be a great tool from what I’ve learnt so far with a focus on MVP.
 
 how can I help someone else, or the entire team, to learn something new?
-
 This week I have been the coordinator of the team and I feel that I’ve contributed to an environment where everyone can be themselves. This way I have contributed to everyone’s learning, maybe?
 
 what is my contribution towards the team’s use of Scrum?
-
 By being active at lectures I have contributed to the teams use of scrum.
 
 what is my contribution towards the team’s deliveries?
 I created the Figma mock-up which is one of our deliverables.
+
 Week 3
 
 what do I want to learn or understand better?
-
 Flutter and coding so I can become more productive.
 
 how can I help someone else, or the entire team, to learn something new?
-
 By being constructive
-what is my contribution towards the team’s use of Scrum?
 
+what is my contribution towards the team’s use of Scrum?
 I have been adamant about trying to fulfill our user stories 
 
 what is my contribution towards the team’s deliveries?
-
 I coded and contributed to team reflections.
 
 Week 4: 
 
 what do I want to learn or understand better?
-
 I want to improve my understanding of Flutter
 
 how can I help someone else, or the entire team, to learn something new?
-
 By contributing to the team atmosphere
 
 what is my contribution towards the team’s use of Scrum?
-
 This week i have been the product owner and i will do the demonstration for the external stakeholder
 
 what is my contribution towards the team’s deliveries?
-
 I wrote code for the project in the user story 1b and started thinking about the next story.
 
 Week 5:
-
 what do I want to learn or understand better?
-
 Coding
 
 how can I help someone else, or the entire team, to learn something new?
-
 Contribute to a great atmosphere
 
 what is my contribution towards the team’s use of Scrum?
-
 I’ve been looking a lot at trello and making sure everything there is great!
 
 what is my contribution towards the team’s deliveries?
-
 I helped find a way of removing some redundant parts from our apps.
+
 Week 6
 what do I want to learn or understand better?
-
 how to update text on the web from a JSON file
 
 how can I help someone else, or the entire team, to learn something new?
-
 By contributing to a great group climate
 
 what is my contribution towards the team’s use of Scrum?
-
 I have been looking at trello to make sure our USER stories are gr8
 
 what is my contribution towards the team’s deliveries?
-
 I have contributed by voicing my opinion on the design of the app and in discussion with other group members we have decided on stuff.
 
 Week 7:
-
 what do I want to learn or understand better?
-
 How really good googling happens
 
 how can I help someone else, or the entire team, to learn something new?
-
 Being a nice person and open for different questions
 
 what is my contribution towards the team’s use of Scrum?
-
 I have been adamant on the user stories
 
 what is my contribution towards the team’s deliveries?
-
 I have been working in pairs with Calle this week. We have had a lot of discussions about the product and made improvements.
 Questions
+
+WEEK 8:
 what do I want to learn or understand better?
+How this project ended up being so successful
+
 how can I help someone else, or the entire team, to learn something new?
+Continuing on the path of spreading great energy
+
 what is my contribution towards the team’s use of Scrum?
+Taking initiatives and moving the project forward
+
 what is my contribution towards the team’s deliveries?
+Ive been working with the presentations and some graphical stuff in the app
