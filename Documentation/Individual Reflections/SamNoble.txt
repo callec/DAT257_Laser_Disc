@@ -103,15 +103,16 @@ This sprint I had no designated roll but I was active in meetings.
 I have been involved in solving one of this weeks user stories and explored how to solve future user stories.
 
 
+Week 9
+- What do I want to learn or understand better?
+I want to learn what other types of apps you can make with flutter. I feel inspored to make one on my own!
 
+- How can I help someone else, or the entire team, to learn something new?
+I feel like the knowledge and skills gap between each group membes has become smaller and smaller. We have all learned som much from eachother this whole project so now it feels like I have nothing more to give.
 
+- What is my contribution towards the team’s use of Scrum?
+This sprint I was active in meetings and documented the meetings as secretary.
 
-
-
-
-
-
-
-
-
+- What is my contribution towards the team’s deliveries?
+I have been involved in solving some small fixes for HAST and finished two user stories of this last sprint.
 
