@@ -114,10 +114,11 @@ class _ResultOverview extends StatefulWidget {
 }
 
 class __ResultOverviewState extends State<_ResultOverview> {
-  int _questionNumber = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    int _questionNumber = 0;
     return Theme(
         data: Theme.of(context).copyWith(dividerColor: widget._theme.accentColor),
         child: Padding( //to get the overview in the middle and proper adjust when the window size is changed.
