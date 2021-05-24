@@ -238,7 +238,7 @@ class HastLogo extends StatelessWidget {
       Image.asset("assets/images/hastlogga.png",
           fit: BoxFit.contain, height: 40),
       SizedBox(width: 16),
-      LimitedBox(
+      ResponsivePage.isSmallScreen(context) ? Container() : LimitedBox(
         maxWidth: MediaQuery.of(context).size.width / 2,
         child: FittedBox(
               fit: BoxFit.fitWidth,
