@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var _quizModel = Provider.of<QuizModel>(context, listen: false);
     final _theme = Theme.of(context);
-    double _padding = ResponsivePage.isMediumScreen(context) ? 30 : 100;
+    double _padding = !ResponsivePage.isLargeScreen(context) ? 30 : 100;
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
         // TODO doesn't work properly on iOS
         // for small devices: keep text to 80% of the width, otherwise 600px to
         // keep ~70 character at a time in a paragraph for readability.
-        width: ResponsivePage.isMediumScreen(context) ? (MediaQuery.of(context).size.width*0.8) : 600,
+        width: !ResponsivePage.isLargeScreen(context) ? (MediaQuery.of(context).size.width*0.85) : 600,
         child: SingleChildScrollView(child: Column(children: [SimpleRichText(presentingText,
             textAlign: alignment,
             style: Theme.of(context).textTheme.headline6)]),));
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
 
   /// Displays a welcoming text and a start button IF we managed to load a Quiz
   Widget _homePageHomePage(context, QuizModel quizModel, double _padding) {
-    bool _size = ResponsivePage.isMediumScreen(context);
+    bool _size = !ResponsivePage.isLargeScreen(context);
 
     return CustomScrollView(
       slivers: [
