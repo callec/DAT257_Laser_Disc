@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               indicatorColor: _theme.accentColor,
               tabs: [
                 Tab(text: 'Home', icon: Icon(Icons.home)), //Our tabs
-                Tab(text: 'About the test', icon: Icon(Icons.help)),
+                Tab(text: 'Test info', icon: Icon(Icons.help)),
                 Tab(text: 'About us', icon: Icon(Icons.info)),
               ],
             ),
