@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
-      title: 'Hast Self Reflection',
+      title: 'HAST Lifestyle & Work Assessment Tool',
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
