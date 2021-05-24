@@ -10,6 +10,7 @@ import 'routing/route_names.dart';
 
 /// Creates the application, defines theme, start Models
 void main() {
+
   runApp(_MyApp());
 }
 

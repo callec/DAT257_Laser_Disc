@@ -31,8 +31,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  late SharedPreferences prefs;
-
   late QuizContent quiz;
   late String currentQuery;
 
@@ -46,20 +44,17 @@ class _HomePageState extends State<HomePage> {
 
 
   _HomePageState(String query) {
-    _setupSharedPrefs(query);
-    //_tryLoadingFile(query);
-  }
-
-  void _setupSharedPrefs(String query) async {
-    prefs = await SharedPreferences.getInstance();
     _tryLoadingFile(query);
   }
 
   /// Load the Quiz file from the query parameters
+  /// If a query parameter is valid, it will be stored to
   /// If we fail loading the file, errors will be displayed
   void _tryLoadingFile(String fileName) async{
 
-    String _file;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String _file = "";
     String _reloadQuery = "";
 
     if (prefs.getString("query") != null){
@@ -67,12 +62,10 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (fileName != "") {
-      prefs.setString("query", fileName);
+      await prefs.setString("query", fileName);
       _file = fileName;
     } else if (_reloadQuery != "") {
       _file = _reloadQuery;
-    } else {
-      _file = "";
     }
 
     try {
@@ -98,7 +91,7 @@ class _HomePageState extends State<HomePage> {
 
     // Here we display 3 tabs (home, about the test and about HAST)
     return MaterialApp(
-      title: 'Hast Self Reflection',
+      title: 'HAST Lifestyle & Work Assessment Tool',
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
