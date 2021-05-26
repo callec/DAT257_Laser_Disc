@@ -3,7 +3,7 @@
 # Important links
 Here is our trello board: [trello](https://trello.com/b/mKugQJYh/självskattningstool-för-hast)
 
-Final report: link to final report
+Final report: [final report](https://github.com/callec/DAT257_Laser_Disc/blob/main/Documentation/Team%20Reflections/Final_report_LaserDisc.pdf)
 
 Folder with documentation: [`./Documentation`](https://github.com/callec/DAT257_Laser_Disc/tree/main/Documentation), the reflections and protocols are in different folders so browse through them and check.
 
