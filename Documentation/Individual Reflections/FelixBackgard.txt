@@ -1,106 +1,133 @@
 WEEK 1
 what do I want to learn or understand better?
-Hur Scrum fungerar och hur det kan skapa värde. Jag hade i början av veckan väldigt lite kunskap, det har jag fortfarande, men lite mindre väldigt mycket. 
+How Scrum works and how it can create value. At the beginning of the week I had very little knowledge, I still have it, but a little less very much.
+I want to reach a point where i fully understand all sides of SCRUM.
+I can reach this point by listening to great sources like our teachers or youtube people
 
 how can I help someone else, or the entire team, to learn something new?
-Genom att bidra med positiv energi kan jag bidra till lärande!
+It is hard to say yet, since the project hasnt begun, but one thing i always try to do is contribute to a great team climate.
+I want to reach a point where I can be a great learning resource for others by contributing with different perspectives or providing info.
+I can reach this point by really listening to my partners and ask good questions that benefits learning.
 
 what is my contribution towards the team’s use of Scrum?
-Denna vecka har jag fokuserat på att läsa på vad Scrum är inom ett antal källor för att ha större kunskap
+This week I have worked on understanding scrum better. I have contributed by engaging in discussions about role structure.
+I want to reach a point where i really contribute to the team working efficiently.
+I can reach this point by looking for new info, understand the info, and then bring it up with the team.
 
 what is my contribution towards the team’s deliveries?
-Jag har bidragit genom att komma med idéer och förslag som kan passa projektet. 
+I have contributed with idea generation for different projects.
 
 WEEK 2
 what do I want to learn or understand better?
 what my contribution might look like. Also Scrum and what a good user story is. I believe SCRUM to be a great tool from what I’ve learnt so far with a focus on MVP.
+My optimal state in this regard is that I continously expand my knowledge of scrum.
+I can reach this point by daring to question assumptions.
 
 how can I help someone else, or the entire team, to learn something new?
-This week I have been the coordinator of the team and I feel that I’ve contributed to an environment where everyone can be themselves. This way I have contributed to everyone’s learning, maybe?
+This week I have been the coordinator of the team and I feel that I’ve contributed to an environment where everyone can be themselves. This way I have contributed to everyone’s learning.
+I belive an optimal way to help someone learn something new is to make sure everyone feel that they can be themselves, and know that its fine.
 
 what is my contribution towards the team’s use of Scrum?
-By being active at lectures I have contributed to the teams use of scrum.
+My contribution this week has mainly consisted of catching up to other team members who already know a lot about working in branches and so on.
+I want to reach a state where everyone in the group continously try to bring more info to the team.
+I can contribute to this by asking open questions that inspire discussion in the group.
 
 what is my contribution towards the team’s deliveries?
-I created the Figma mock-up which is one of our deliverables.
+I created the Figma mock-up which is one of our deliverables. We used tha mock up to shoe our client how a potential customer journey could look like through the application.
 
 Week 3
 
 what do I want to learn or understand better?
-Flutter and coding so I can become more productive.
+Flutter and coding so I can become more productive. This language is new for everyone in the team, and i want to contribute to our collective knowledge. 
+My optima state would be that if i didnt know an answer, being able to google it efficiently and implement it.
+I can reach this state by consuming more info about the language and also being deliberate in how i look up information.
 
 how can I help someone else, or the entire team, to learn something new?
-By being constructive
+By being constructive and really contribute to an atmosphere where everyone can feel relaxed. 
+I want to reach a state where I radiate calm and help my partners feel at home in the group.
+I can reach this state by being kind, empathetic and lifting everyones strength.
 
 what is my contribution towards the team’s use of Scrum?
-I have been adamant about trying to fulfill our user stories 
+I have been adamant about trying to fulfill our user stories. What have we agreed that this sprint should consist of.
+My dream state would be that I can tell when a user story is fulfilled, when a user story needs something added, and when a user story should be split up.
+I can reach this point by having discussing hypothetical scenarios. 
 
 what is my contribution towards the team’s deliveries?
-I coded and contributed to team reflections.
+I coded and contributed to team reflections. I also contributed to discussions
 
 Week 4: 
 
 what do I want to learn or understand better?
-I want to improve my understanding of Flutter
+Same as last week: Flutter and coding so I can become more productive. This language is new for everyone in the team, and i want to contribute to our collective knowledge. 
+My optima state would be that if i didnt know an answer, being able to google it efficiently and implement it.
+I can reach this state by consuming more info about the language and also being deliberate in how i look up information.
 
 how can I help someone else, or the entire team, to learn something new?
-By contributing to the team atmosphere
+By having a great understanding of what me and my partner has made this week, so that i can explain it in a good way.
+The optimal state is that i can explain on many levels of complexity.
+I can reach this state by both understanding the bigger picture, but also the details.
 
 what is my contribution towards the team’s use of Scrum?
-This week i have been the product owner and i will do the demonstration for the external stakeholder
+This week i have been the product owner and I demonstrated the product to the customer. I believe the presentation was well put together, where i first showed the entire progress, and later took questions on the pages one by one and later telling back to our stakeholder what they had said to show we understood.
 
 what is my contribution towards the team’s deliveries?
-I wrote code for the project in the user story 1b and started thinking about the next story.
+I have read up on dart and flutter. My contribution was to code and also to the meeting with our stakeholder.
 
 Week 5:
 what do I want to learn or understand better?
-Coding
+I am starting to understand how flutter works, but i still feel like i cant really grasp its potential.
+I want to reach a point where i know with certainty what can be done, and what cant be done. I also want to get an understanding of what might be hard, and what is easy.
+I can reach this point by talking about software development with my brother in law, as well as looking at different sources.
 
 how can I help someone else, or the entire team, to learn something new?
-Contribute to a great atmosphere
+Since our stories differ, I believe i have obtained knowledge that my partners dont have. Therefore i can help someone learn something by really understanding what i have done, and that way be able to teach it forward. Just like Albert Einstein said, something something being able to explain for a five year old something something fully understood a concept.
 
 what is my contribution towards the team’s use of Scrum?
-I’ve been looking a lot at trello and making sure everything there is great!
+I’ve been looking a lot at trello and making sure everything there is understandable and in the right spot. I have also been ready when our meeting has started by haveing an idea of problems and possible solutions beforehand.
 
 what is my contribution towards the team’s deliveries?
-I helped find a way of removing some redundant parts from our apps.
+I helped out with the story i was assigned to and i have also helped refactor some code
 
 Week 6
 what do I want to learn or understand better?
-how to update text on the web from a JSON file
+how to update text on the web from a JSON file. It really seems like a powerful tool for making data available and changed in a convenient way.
+I can reach this point by looking through my old notes from the database course.
 
 how can I help someone else, or the entire team, to learn something new?
-By contributing to a great group climate
+By contributing to a great group climate where everyone feel that they can say their part. I can help us reach this point by being kind and calm sending out great vibes.
 
 what is my contribution towards the team’s use of Scrum?
-I have been looking at trello to make sure our USER stories are gr8
+I have been looking at trello to make sure our USER stories are gr8. I have also brought a hollistic view to our meetings, since the project is coming up to an end, we really need to focus.
 
 what is my contribution towards the team’s deliveries?
-I have contributed by voicing my opinion on the design of the app and in discussion with other group members we have decided on stuff.
+I have contributed by voicing my opinion on the design of the app and in discussion with other group members we have decided some design choices that hopefully works well.
 
 Week 7:
 what do I want to learn or understand better?
-How really good googling happens
+How really good googling happens. Great googling is such a crazy strong enabler, and I feel like there is much to learn there. The students from the IT-programme do this very well, so to reach this goal I will ask questions. Even the ones that feel stupid.
 
 how can I help someone else, or the entire team, to learn something new?
-Being a nice person and open for different questions
+A combination of the last weeks answers. By contributing to a great atmosphere, understanding our code so i can explain it.
 
 what is my contribution towards the team’s use of Scrum?
-I have been adamant on the user stories
+I have been adamant on the user stories. This is even more important now when the project enters its final stages. We really want to make sure that our stakeholder becomes happy with our product.
 
 what is my contribution towards the team’s deliveries?
-I have been working in pairs with Calle this week. We have had a lot of discussions about the product and made improvements.
-Questions
+I have been working in pairs with Calle this week. We have had a lot of discussions about the product and made improvements. He is a very competent programmer and i am learning a lot from him.
+
 
 WEEK 8:
 what do I want to learn or understand better?
-How this project ended up being so successful
+How this project ended up being so successful. It trully has been a great experience. If i can understand how it ended up so good, i can replicate it in other projects!
 
 how can I help someone else, or the entire team, to learn something new?
-Continuing on the path of spreading great energy
+Continuing on the path of spreading great energy and being kind.
 
 what is my contribution towards the team’s use of Scrum?
-Taking initiatives and moving the project forward
+Really making sure that we keep it together for the finale.
 
 what is my contribution towards the team’s deliveries?
-Ive been working with the presentations and some graphical stuff in the app
+Ive been working with the presentations and some graphical stuff in the app. It has been a nice final week. Looking forward to presenting to teachers and our stakeholders.
+
+Kind regards,
+Felix
